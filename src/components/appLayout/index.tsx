@@ -9,7 +9,7 @@ const sliderWidth = 185;
 const ApplayoutComponent: React.FunctionComponent<appLayoutProps> = ({
   children,
 }) => {
-  const [openDrawer, setOpenDrawer] = useState<boolean>(true);
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false);
 
   return (
     <Fragment>

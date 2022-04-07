@@ -43,9 +43,7 @@ const AppNavbarComponent: React.FC<AppNavbarProps> = ({
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
         <ToolBar>
-          <Box>
-            <Button onClick={onOpenDrawer}>Slider</Button>
-          </Box>
+          <Box></Box>
           <Box sx={{ flexGrow: 1 }}></Box>
           <Tooltip title="Account settings">
             <IconButton
