@@ -10,29 +10,37 @@ import "../styles/globals.scss";
 const clientSideEmotionCache = createEmotionCache();
 import useNetworkStatus from "../src/utils/useNetworkStatus";
 import ApplayoutComponent from "../src/components/appLayout";
+import { SessionProvider, useSession } from "next-auth/react";
 
 function MyApp(props) {
   const { networkStatus } = useNetworkStatus();
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+  const {
+    Component,
+    emotionCache = clientSideEmotionCache,
+    pageProps,
+    session,
+  } = props;
   const appProps = {
     ...pageProps,
     networkStatus,
   };
   return (
-    <CacheProvider value={emotionCache}>
-      <Head>
-        <title>Admin2.0</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <ApolloProvider client={apolloClient}>
-          <ApplayoutComponent>
-            <Component {...appProps} />
-          </ApplayoutComponent>
-        </ApolloProvider>
-      </ThemeProvider>
-    </CacheProvider>
+    <SessionProvider session={session}>
+      <CacheProvider value={emotionCache}>
+        <Head>
+          <title>Style Club</title>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <ApolloProvider client={apolloClient}>
+            <ApplayoutComponent>
+              <Component {...appProps} />
+            </ApplayoutComponent>
+          </ApolloProvider>
+        </ThemeProvider>
+      </CacheProvider>
+    </SessionProvider>
   );
 }
 

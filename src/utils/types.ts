@@ -6,3 +6,10 @@ export type componentColors =
   | "error"
   | "info"
   | "warning";
+
+export type user = {
+  id?: number | string;
+  name?: string;
+  email?: string;
+  password?: string;
+};
