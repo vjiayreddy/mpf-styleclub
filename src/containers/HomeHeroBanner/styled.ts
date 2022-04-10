@@ -6,7 +6,7 @@ import ContainerComponent from "../../components/uiElements/Container/Container"
 
 const StyledHeroContainer = styled(ContainerComponent)(({ theme }) => ({
   marginTop: 20,
-  height: 500,
+  height: 550,
   borderRadius: 10,
   position: "relative",
   display: "flex",
@@ -31,14 +31,23 @@ const StyledHeroContent = styled(Box)(() => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  flexDirection: "column",
 }));
 
 const SxHeroTitleStyles: SxProps = (theme: Theme) => ({
-  width: "44%",
+  width: "55%",
   textAlign: "center",
   margin: "0 auto",
-  color:theme.palette.common.white,
-  lineHeight:1
+  color: theme.palette.common.white,
+  lineHeight: 1,
+});
+const SxHeroContentStyles: SxProps = (theme: Theme) => ({
+  width: "55%",
+  textAlign: "center",
+  margin: "0 auto",
+  color: theme.palette.common.white,
+  lineHeight: 1.3,
+  marginTop:'20px'
 });
 
 export const StyledSpanLabel = styled("mark")(({ theme }) => ({
@@ -55,4 +64,5 @@ export {
   StyledHeroImage,
   StyledHeroContent,
   SxHeroTitleStyles,
+  SxHeroContentStyles,
 };

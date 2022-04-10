@@ -4,6 +4,7 @@ export enum APP_COLORS {
 }
 
 export enum GLOBAL_FONTS {
-  PRIMARY_FONT = "Lora",
+  PRIMARY_FONT = "Playfair Display",
   SECONDARY_FONT = "Lato",
+  OPTIONAL_FONT="Lora"
 }

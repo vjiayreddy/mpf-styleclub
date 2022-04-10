@@ -9,4 +9,8 @@ const StyledSpanLabel = styled("mark")(({ theme }) => ({
   backgroundPosition: `0 65%`,
 }));
 
-export { StyledSpanLabel };
+const StyledContentSpanLabel = styled("span")(({ theme }) => ({
+  fontWeight: 600,
+}));
+
+export { StyledSpanLabel, StyledContentSpanLabel };
