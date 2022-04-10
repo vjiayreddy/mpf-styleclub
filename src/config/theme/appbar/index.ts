@@ -9,8 +9,8 @@ export const OverrideMuiAppbar = (muiTheme: Theme): any => {
     styleOverrides: {
       positionFixed: {
         backgroundColor: muiTheme.palette.common.white,
-        borderBottom: `1px solid ${muiTheme.palette.divider}`,
-        height:55
+        //borderBottom: `1px solid ${muiTheme.palette.divider}`,
+        height: 65,
       },
     },
   };

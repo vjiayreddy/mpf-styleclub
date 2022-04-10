@@ -1,13 +1,12 @@
 import { Fragment } from "react";
 import { NextPage } from "next";
+import { Box } from "@mui/material";
+import HomeHerobannerContainer from "../src/containers/HomeHeroBanner/HomeHerobanner";
 
 const HomePage: NextPage = (props: any) => {
-  console.log(process.env.NEXT_PUBLIC_API_URL);
   return (
     <Fragment>
-      <div>
-        <main>Main Component</main>
-      </div>
+      <HomeHerobannerContainer />
     </Fragment>
   );
 };

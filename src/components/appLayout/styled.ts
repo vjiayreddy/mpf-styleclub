@@ -19,7 +19,6 @@ export const RenderMainContent = styled("main")<RenderMainContentProps>(
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      //marginLeft: `${drawerWidth}px`,
       marginLeft: `185px`,
     }),
   })

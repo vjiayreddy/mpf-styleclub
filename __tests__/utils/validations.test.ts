@@ -1,4 +1,4 @@
-import { isValidEmail } from "../../../src/utils/validations";
+import { isValidEmail } from "../../src/utils/validations";
 
 describe("is Valid Email", () => {
   it("valid email", () => {

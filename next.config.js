@@ -12,10 +12,10 @@ const getEnvConfig = (phase) => {
 module.exports = (phase) => {
   const envConfig = getEnvConfig(phase);
   return {
-    i18: {
-      locales: ["en", "fr"],
-      defaultLocale: "en",
-    },
+    // i18: {
+    //   locales: ["en", "fr"],
+    //   defaultLocale: "en",
+    // },
     env: envConfig,
   };
 };

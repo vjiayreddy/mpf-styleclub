@@ -1,11 +1,10 @@
 import React, { Fragment, useState } from "react";
-import AppNavbarComponent from "../uiElements/appNavBar";
+import AppNavbarComponent from "../uiElements/AppNavBar/Appbar";
 import { RenderMainContent } from "./styled";
 interface appLayoutProps {
   children: React.ReactNode;
 }
 
-const sliderWidth = 185;
 const ApplayoutComponent: React.FunctionComponent<appLayoutProps> = ({
   children,
 }) => {
@@ -13,14 +12,8 @@ const ApplayoutComponent: React.FunctionComponent<appLayoutProps> = ({
 
   return (
     <Fragment>
-      <AppNavbarComponent
-        onOpenDrawer={() => setOpenDrawer(!openDrawer)}
-        openDrawer={openDrawer}
-        drawerWidth={sliderWidth}
-      />
-      <RenderMainContent open={openDrawer}>
-        {children}
-      </RenderMainContent>
+      <AppNavbarComponent />
+      <RenderMainContent open={openDrawer}>{children}</RenderMainContent>
     </Fragment>
   );
 };
