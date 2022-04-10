@@ -7,7 +7,8 @@ import ContainerComponent from "../../components/uiElements/Container/Container"
 const StyledHeroContainer = styled(ContainerComponent)(({ theme }) => ({
   marginTop: 20,
   height: 550,
-  borderRadius: 10,
+  borderTopLeftRadius: 10,
+  borderTopRightRadius: 10,
   position: "relative",
   display: "flex",
   flexDirection: "column",
@@ -19,7 +20,8 @@ const StyledHeroContainer = styled(ContainerComponent)(({ theme }) => ({
 const StyledHeroImage = styled(Image)(({ theme }) => ({
   //objectFit:"contain",
   objectPosition: "100% 0%",
-  borderRadius: 10,
+  borderTopLeftRadius: 10,
+  borderTopRightRadius: 10,
   zIndex: -1,
 }));
 
