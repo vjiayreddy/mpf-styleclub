@@ -9,8 +9,8 @@ import theme from "../src/config/theme";
 import "../styles/globals.scss";
 const clientSideEmotionCache = createEmotionCache();
 import useNetworkStatus from "../src/utils/useNetworkStatus";
-import DefautlayoutComponent from "../src/components/AppLayout/BaseLayout";
 import { SessionProvider, useSession } from "next-auth/react";
+import ApplayoutComponent from "../src/components/AppLayout/BaseLayout";
 
 function MyApp(props) {
   const { networkStatus } = useNetworkStatus();
@@ -34,9 +34,9 @@ function MyApp(props) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <ApolloProvider client={apolloClient}>
-            <DefautlayoutComponent>
+            <ApplayoutComponent>
               <Component {...appProps} />
-            </DefautlayoutComponent>
+            </ApplayoutComponent>
           </ApolloProvider>
         </ThemeProvider>
       </CacheProvider>
