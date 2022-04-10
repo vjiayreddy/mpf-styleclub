@@ -9,8 +9,8 @@ import theme from "../src/config/theme";
 import "../styles/globals.scss";
 const clientSideEmotionCache = createEmotionCache();
 import useNetworkStatus from "../src/utils/useNetworkStatus";
-import { SessionProvider, useSession } from "next-auth/react";
-import ApplayoutComponent from "../src/components/AppLayout/BaseLayout";
+import { SessionProvider } from "next-auth/react";
+import ApplayoutComponent from "../src/components/Layouts/DefaultLayout";
 
 function MyApp(props) {
   const { networkStatus } = useNetworkStatus();
