@@ -9,7 +9,7 @@ import theme from "../src/config/theme";
 import "../styles/globals.scss";
 const clientSideEmotionCache = createEmotionCache();
 import useNetworkStatus from "../src/utils/useNetworkStatus";
-import ApplayoutComponent from "../src/components/AppLayout/AppLayout";
+import ApplayoutComponent from "../src/components/AppLayout/BaseLayout";
 import { SessionProvider, useSession } from "next-auth/react";
 
 function MyApp(props) {
