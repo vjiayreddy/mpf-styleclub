@@ -1,10 +1,9 @@
-import Container from "@mui/material/Container";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 
-const StyledAppbarLogoBox = styled(Box)(({ theme }) => ({}));
+const StyledAppbarLogoBox = styled(Box)(() => ({}));
 const StyledAppbarTabsBox = styled(Box)(() => ({
   flexGrow: 1,
   color: "gray",
@@ -21,6 +20,9 @@ const StyledAppbarActionBox = styled(Box)(() => ({
 
 const StyledTabsList = styled(Tabs)(({}) => ({
   minHeight: 62,
+  "& .MuiTabs-indicator": {
+    display: "none",
+  },
 }));
 const StyledTab = styled(Tab)(({}) => ({
   minHeight: 62,

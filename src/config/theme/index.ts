@@ -37,7 +37,7 @@ const theme = createTheme({
     ),
     heading_large: {
       fontSize: 50,
-      fontWeight: 500,
+      fontWeight: 400,
       fontStyle: "normal",
     },
     heading_medium: {
