@@ -32,7 +32,11 @@ const HomeHerobannerContainer = () => {
           }
         />
         <Box mt={5}>
-          <ButtonComponent id="btn-access-now" onClick={() => {}} title="GET ACCESS NOW" />
+          <ButtonComponent
+            id="btn-access-now"
+            onClick={() => {}}
+            title="GET ACCESS NOW"
+          />
         </Box>
       </StyledHeroContent>
       <StyledHeroImage

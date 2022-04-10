@@ -9,7 +9,7 @@ type titleVariant =
   | "heading_large"
   | "heading_medium"
   | "heading_extra_small"
-  | "heading_extra_small";
+  | "heading_small";
 
 type contentVariant =
   | "content_medium"

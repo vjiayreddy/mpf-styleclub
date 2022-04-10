@@ -36,7 +36,7 @@ const theme = createTheme({
       GLOBAL_FONTS.OPTIONAL_FONT,
     ].join(","),
     heading_extra_large: {
-      fontSize:60,
+      fontSize: 60,
       fontWeight: 200,
       fontStyle: "normal",
     },
@@ -60,6 +60,12 @@ const theme = createTheme({
       fontSize: 19,
       fontWeight: 300,
       lineHeight: "25px",
+    },
+    content_small: {
+      fontSize: 16,
+      fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+      fontWeight: 300,
+      fontStyle: "normal",
     },
     primaryFont: {
       fontFamily: GLOBAL_FONTS.PRIMARY_FONT,

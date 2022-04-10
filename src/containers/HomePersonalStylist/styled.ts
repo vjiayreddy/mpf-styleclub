@@ -1,17 +1,16 @@
-import { styled, Theme } from "@mui/material/styles";
 import { SxProps } from "@mui/system";
+import { styled, Theme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Image from "next/image";
 import ContainerComponent from "../../components/uiElements/Container/Container";
 
 export const StyledSectionContainer = styled(ContainerComponent)(
   ({ theme }) => ({
-    backgroundColor: theme.palette.grey[100],
+    padding: "80px 50px",
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: "column",
-    padding: `80px 50px`,
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
   })
 );
 
@@ -31,3 +30,22 @@ export const SxSectionContentStyles: SxProps = (theme: Theme) => ({
   lineHeight: 1.5,
   marginTop: "20px",
 });
+
+export const StyledLeftSideGridBox = styled(Box)(({ theme }) => ({
+  minHeight: 400,
+  position: "relative",
+}));
+export const StyledLeftSideImage = styled(Image)(({ theme }) => ({
+  objectFit: "cover",
+  objectPosition: "100% 0%",
+  borderTopRightRadius: 50,
+}));
+
+export const StyledRightSideGridBox = styled(Box)(({ theme }) => ({
+  height: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  justifyContent: "center",
+  padding:50
+}));
