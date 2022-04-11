@@ -6,9 +6,27 @@ import { GLOBAL_FONTS, APP_COLORS } from "./enums/enums";
 import {
   customTypographyVarients,
   customTypographyProps,
+  EXTENDED_COLORS,
 } from "./interfaces/interfaces";
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides extends customTypographyProps {}
+}
+
+declare module "@mui/material/styles" {
+  interface Palette extends EXTENDED_COLORS {}
+  interface PaletteOptions extends EXTENDED_COLORS {}
+  interface Theme {
+    a?: {
+      fontFamily?: string;
+      fontSize?: string | number;
+    };
+  }
+  interface ThemeOptions {
+    a?: {
+      fontFamily?: string;
+      fontSize?: string | number;
+    };
+  }
 }
 
 declare module "@mui/material/styles/createTypography" {
@@ -82,6 +100,7 @@ const theme = createTheme({
     secondary: {
       main: APP_COLORS.SECONDARY_COLOR,
     },
+    THRID_COLOR: APP_COLORS.THRID_COLOR,
   },
   components: {
     MuiButton: OverrideMuiButton(muiTheme),

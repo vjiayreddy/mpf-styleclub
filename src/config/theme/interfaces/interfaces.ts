@@ -18,3 +18,7 @@ export interface customTypographyVarients {
   content_small: React.CSSProperties;
   content_extra_small: React.CSSProperties;
 }
+
+export interface EXTENDED_COLORS {
+  THRID_COLOR: string;
+}
