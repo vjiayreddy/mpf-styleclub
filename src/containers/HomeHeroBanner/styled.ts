@@ -15,6 +15,11 @@ const StyledHeroContainer = styled(ContainerComponent)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   overflow: "hidden",
+  [theme.breakpoints.down("sm")]: {
+    marginTop: 0,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
 }));
 
 const StyledHeroImage = styled(Image)(({ theme }) => ({
@@ -23,6 +28,11 @@ const StyledHeroImage = styled(Image)(({ theme }) => ({
   borderTopLeftRadius: 10,
   borderTopRightRadius: 10,
   zIndex: -1,
+  [theme.breakpoints.down("sm")]: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    objectPosition: "50% 0%",
+  },
 }));
 
 const StyledHeroContent = styled(Box)(() => ({
@@ -42,6 +52,10 @@ const SxHeroTitleStyles: SxProps = (theme: Theme) => ({
   margin: "0 auto",
   color: theme.palette.common.white,
   lineHeight: 1,
+  [theme.breakpoints.down("sm")]: {
+    width: "90%",
+    fontSize:50
+  },
 });
 const SxHeroContentStyles: SxProps = (theme: Theme) => ({
   width: "55%",
@@ -49,7 +63,11 @@ const SxHeroContentStyles: SxProps = (theme: Theme) => ({
   margin: "0 auto",
   color: theme.palette.common.white,
   lineHeight: 1.3,
-  marginTop:'20px'
+  marginTop: "20px",
+  [theme.breakpoints.down("sm")]: {
+    width: "90%",
+    fontSize:20
+  },
 });
 
 export const StyledSpanLabel = styled("mark")(({ theme }) => ({

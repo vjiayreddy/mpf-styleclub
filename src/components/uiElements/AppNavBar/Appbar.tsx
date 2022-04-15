@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import AppBar from "@mui/material/AppBar";
+import Hidden from "@mui/material/Hidden";
 import IconButton from "@mui/material/IconButton";
 import ToolBar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
@@ -32,9 +33,12 @@ const AppNavbarComponent = () => {
             <StyledAppbarLogoBox>
               <LogoComponent />
             </StyledAppbarLogoBox>
-            <StyledAppbarTabsBox>
-              <TabMenusComponent />
-            </StyledAppbarTabsBox>
+            <Hidden only={["xs", "sm"]}>
+              <StyledAppbarTabsBox>
+                <TabMenusComponent />
+              </StyledAppbarTabsBox>
+            </Hidden>
+
             <StyledAppbarIconsBox>
               <Box>
                 <TooltipComponent

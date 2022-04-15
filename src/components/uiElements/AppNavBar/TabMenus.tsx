@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyledTabsList, StyledTab } from "./styled";
 
 const TabMenusComponent = () => {
-  const [tabIndex, setTabIndex] = useState<string>("0");
+  const [tabIndex, setTabIndex] = useState<string | boolean>(false);
   return (
     <StyledTabsList
       value={tabIndex}
