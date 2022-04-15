@@ -12,6 +12,11 @@ export const StyledSectionContainer = styled(ContainerComponent)(
     padding: `80px 50px`,
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
+    [theme.breakpoints.down("sm")]: {
+      padding: `40px 20px`,
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
   })
 );
 
@@ -21,6 +26,10 @@ export const SxSectionTitleStyles: SxProps = (theme: Theme) => ({
   margin: "0 auto",
   color: theme.palette.secondary.main,
   lineHeight: 1,
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+    fontSize: 35,
+  },
 });
 
 export const SxSectionContentStyles: SxProps = (theme: Theme) => ({
@@ -30,4 +39,8 @@ export const SxSectionContentStyles: SxProps = (theme: Theme) => ({
   color: theme.palette.secondary.main,
   lineHeight: 1.5,
   marginTop: "20px",
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+    fontSize: 16,
+  },
 });

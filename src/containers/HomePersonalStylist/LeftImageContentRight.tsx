@@ -27,7 +27,7 @@ const LeftImageContentRightComponent: React.FC<HomePersonalStylistCardProps> =
   ({ data }) => {
     return (
       <Grid container>
-        <Grid item md={7}>
+        <Grid xs={12} item md={7}>
           <StyledImageBoxWrapper>
             <StyledLeftSideImage
               placeholder="blur"
@@ -39,7 +39,7 @@ const LeftImageContentRightComponent: React.FC<HomePersonalStylistCardProps> =
             />
           </StyledImageBoxWrapper>
         </Grid>
-        <Grid sx={{ padding: 0 }} item md={5}>
+        <Grid xs={12} sx={{ padding: 0 }} item md={5}>
           <StyledRightSideContentGridBox>
             <StyledNumberCircle>
               <span>{data.number}</span>
@@ -55,7 +55,11 @@ const LeftImageContentRightComponent: React.FC<HomePersonalStylistCardProps> =
               primaryContentText={data.primaryContentText}
             />
             <StyledShowcaseBorder variant="left" />
-            <StyledShowGridIcon variant="left" alt="grid_icon" src="/assets/grid.png" />
+            <StyledShowGridIcon
+              variant="left"
+              alt="grid_icon"
+              src="/assets/grid.png"
+            />
           </StyledRightSideContentGridBox>
         </Grid>
       </Grid>

@@ -10,6 +10,18 @@ import Box from "@mui/material/Box";
 import ContainerComponent from "../../components/uiElements/Container/Container";
 import LeftImageContentRightComponent from "./LeftImageContentRight";
 import RightImageLeftContentComponent from "./RightImageLeftContent";
+import { SxProps } from "@mui/system";
+
+const boxSxStyles: SxProps = {
+  marginBottom: {
+    md: "120px",
+    xs: "40px",
+    sm: "40px",
+    lg: "120px",
+    xl: "120px",
+  },
+};
+
 const HomePersonalStylistContainer = () => {
   return (
     <Box>
@@ -34,7 +46,7 @@ const HomePersonalStylistContainer = () => {
         />
       </StyledSectionContainer>
       <ContainerComponent>
-        <Box mb={15}>
+        <Box sx={boxSxStyles}>
           <LeftImageContentRightComponent
             data={{
               primaryTitle: "Be ",
@@ -47,7 +59,7 @@ const HomePersonalStylistContainer = () => {
             }}
           />
         </Box>
-        <Box mb={15}>
+        <Box sx={boxSxStyles}>
           <RightImageLeftContentComponent
             data={{
               primaryTitle: "Get ",
@@ -60,7 +72,7 @@ const HomePersonalStylistContainer = () => {
             }}
           />
         </Box>
-        <Box mb={15}>
+        <Box sx={boxSxStyles}>
           <LeftImageContentRightComponent
             data={{
               primaryTitle: "Never be scared to ",
@@ -73,7 +85,7 @@ const HomePersonalStylistContainer = () => {
             }}
           />
         </Box>
-        <Box mb={15}>
+        <Box sx={boxSxStyles}>
           <RightImageLeftContentComponent
             data={{
               primaryTitle: "Need Advice? Your ",
