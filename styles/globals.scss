@@ -14,3 +14,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.home_client_slider {
+  .slick-slide {
+    margin-right: 20px;
+    width: 250px !important;
+  }
+  .slick-track {
+    display: flex;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+  }
+}

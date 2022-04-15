@@ -1,15 +1,16 @@
 import { Fragment } from "react";
 import { NextPage } from "next";
 import HomeHerobannerContainer from "../src/containers/HomeHeroBanner/HomeHerobanner";
-import HomeYoutSecretContainer from "../src/containers/HomeYourSecrate/HomeYoutSecret";
+import HomeYourSecretContainer from "../src/containers/HomeYourSecrate/HomeYourSecret";
 import HomePersonalStylistContainer from "../src/containers/HomePersonalStylist/HomePersonalStylist";
-
+import HomeOurClientsSection from "../src/containers/HomeOurClients/HomeOurClients";
 const HomePage: NextPage = (props: any) => {
   return (
     <Fragment>
       <HomeHerobannerContainer />
-      <HomeYoutSecretContainer />
+      <HomeYourSecretContainer />
       <HomePersonalStylistContainer />
+      <HomeOurClientsSection />
     </Fragment>
   );
 };

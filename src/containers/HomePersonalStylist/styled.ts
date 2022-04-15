@@ -44,11 +44,13 @@ export const StyledLeftSideImage = styled(Image)(({ theme }) => ({
   objectFit: "cover",
   objectPosition: "100% 0%",
   borderTopRightRadius: 50,
+  borderBottomRightRadius: 50,
 }));
 export const StyledRightSideImage = styled(Image)(({ theme }) => ({
   objectFit: "cover",
   objectPosition: "100% 0%",
   borderTopLeftRadius: 50,
+  borderBottomLeftRadius: 50,
 }));
 
 export const StyledRightSideContentGridBox = styled(Box)(({ theme }) => ({

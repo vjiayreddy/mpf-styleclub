@@ -6,7 +6,7 @@ import {
   SxSectionContentStyles,
 } from "./styled";
 
-const HomeYoutSecretContainer = () => {
+const HomeYourSecretContainer = () => {
   return (
     <StyledSectionContainer>
       <SectionTypographyComponent
@@ -33,4 +33,4 @@ const HomeYoutSecretContainer = () => {
   );
 };
 
-export default HomeYoutSecretContainer;
+export default HomeYourSecretContainer;
