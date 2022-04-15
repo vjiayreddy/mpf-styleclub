@@ -41,12 +41,12 @@ const HomeHerobannerContainer = () => {
       </StyledHeroContent>
       <StyledHeroImage
         alt="hero-banner-image"
-        src="/assets/home_page_hero_image.png"
+        src="/assets/home_page_hero_image.webp"
         layout="fill"
         quality={100}
         objectFit="cover"
         placeholder="blur"
-        blurDataURL="/assets/home_page_hero_image.png"
+        blurDataURL="/assets/home_page_hero_image.webp"
       />
     </StyledHeroContainer>
   );
