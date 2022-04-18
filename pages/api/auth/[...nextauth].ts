@@ -29,9 +29,7 @@ export default NextAuth({
   events: {
     // async signIn(message) {},
     // async signOut(message) {},
-    async session(message) {
-      console.log(message);
-    },
+    async session(message) {},
   },
   pages: {
     signIn: "/login",
@@ -49,4 +47,5 @@ export default NextAuth({
       return session;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 });

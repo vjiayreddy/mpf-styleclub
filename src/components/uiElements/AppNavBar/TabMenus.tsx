@@ -7,7 +7,6 @@ const TabMenusComponent = () => {
     <StyledTabsList
       value={tabIndex}
       onChange={(event: React.SyntheticEvent, newValue: string) => {
-        console.log(newValue);
         setTabIndex(newValue);
       }}
       aria-label="menu-navigation-tabslist"
