@@ -16,7 +16,6 @@ import {
   StyledAppbarTabsBox,
   StyledAppbarIconsBox,
   StyledAppbarActionBox,
-  StyledDialogBoxContent,
 } from "./styled";
 
 import LogoComponent from "../Logo/Logo";
@@ -24,11 +23,7 @@ import Container from "@mui/material/Container";
 import TooltipComponent from "../Tooltip/Tooltip";
 import Button from "../Buttons/Button";
 import TabMenusComponent from "./TabMenus";
-import DialogModelComponent from "../DialogModel/DialogModel";
-import SigninForm from "../../../forms/Signin/Signin";
-
 const AppNavbarComponent = () => {
-  const [open, setOpen] = useState<boolean>(false);
   const { data: session } = useSession();
   const router = useRouter();
   return (
@@ -108,18 +103,6 @@ const AppNavbarComponent = () => {
           </ToolBar>
         </Container>
       </AppBar>
-      <DialogModelComponent
-        onClose={() => {
-          //setOpen(false);
-        }}
-        fullScreen={false}
-        open={open}
-        maxWidth="sm"
-      >
-        <StyledDialogBoxContent>
-          <SigninForm></SigninForm>
-        </StyledDialogBoxContent>
-      </DialogModelComponent>
     </Fragment>
   );
 };
