@@ -35,6 +35,10 @@ const StyledTab = styled(Tab)(({}) => ({
   minHeight: 62,
 }));
 
+const StyledDialogBoxContent = styled(Box)(({ theme }) => ({
+  padding: 20,
+}));
+
 export {
   StyledAppbarLogoBox,
   StyledAppbarTabsBox,
@@ -42,4 +46,5 @@ export {
   StyledAppbarActionBox,
   StyledTabsList,
   StyledTab,
+  StyledDialogBoxContent,
 };

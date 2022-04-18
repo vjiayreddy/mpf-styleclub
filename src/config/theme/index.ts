@@ -3,11 +3,13 @@ import { OverrideMuiButton } from "./button";
 import { OverrideMuiAppbar } from "./appbar";
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 import { GLOBAL_FONTS, APP_COLORS } from "./enums/enums";
+
 import {
   customTypographyVarients,
   customTypographyProps,
   EXTENDED_COLORS,
 } from "./interfaces/interfaces";
+import { OverrideMuiInputbase } from "./inputBase";
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides extends customTypographyProps {}
 }
@@ -115,51 +117,46 @@ const theme = createTheme({
         },
       },
     },
-    // MuiList: {
-    //   defaultProps: {
-    //     disablePadding: true,
-    //   },
-    //   styleOverrides: {
-    //     root: {
-    //       fontSize: 14,
-    //       padding: 0,
-    //     },
-    //   },
-    // },
-    // MuiListItemText: {
-    //   styleOverrides: {
-    //     primary: {
-    //       fontSize: 14,
-    //       marginTop: 0,
-    //       marginBottom: 0,
-    //       lineHeight: "14px",
-    //     },
-    //   },
-    // },
-    // MuiListItem: {
-    //   defaultProps: {
-    //     disableGutters: false,
-    //   },
-    //   styleOverrides: {
-    //     padding: `5px 0px`,
-    //     root: {
-    //       lineHeight: "14px",
-    //     },
-    //   },
-    // },
-    // MuiMenu: {
-    //   defaultProps: {
-    //     elevation: 0,
-    //   },
-    // },
-    // MuiCard: {
-    //   styleOverrides: {
-    //     root: {
-    //       border: `1px solid ${muiTheme.palette.grey[200]}`,
-    //     },
-    //   },
-    // },
-    // MuiInputBase: OverrideMuiInputbase(muiTheme),
+    MuiInputBase: OverrideMuiInputbase(muiTheme),
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: 5,
+        },
+      },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+        },
+      },
+    },
+    MuiInputLabel: {
+      defaultProps: {
+        variant: "standard",
+      },
+      styleOverrides: {
+        root: {
+          fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+          fontWeight: 700,
+          color: APP_COLORS.SECONDARY_COLOR,
+          marginBottom: 10,
+        },
+      },
+    },
+    MuiFormHelperText: {
+      defaultProps: {
+        variant: "standard",
+        margin: "dense",
+      },
+      styleOverrides:{
+        root:{
+          fontFamily:GLOBAL_FONTS.SECONDARY_FONT,
+          color:muiTheme.palette.grey[500]
+        }
+      }
+    },
   },
 });
 export default responsiveFontSizes(theme);

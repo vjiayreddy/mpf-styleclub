@@ -9,8 +9,8 @@ const HomePage: NextPage = (props: any) => {
     <Fragment>
       <HomeHerobannerContainer />
       <HomeYourSecretContainer />
-     <HomePersonalStylistContainer />
-      {/* <HomeOurClientsSection />  */}
+      <HomePersonalStylistContainer />
+      {/* <HomeOurClientsSection /> */}
     </Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Hidden from "@mui/material/Hidden";
 import IconButton from "@mui/material/IconButton";
@@ -7,12 +7,16 @@ import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CallIcon from "@mui/icons-material/Call";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import { ROUTES } from "../../../routes/Routes";
 
 import {
   StyledAppbarLogoBox,
   StyledAppbarTabsBox,
   StyledAppbarIconsBox,
   StyledAppbarActionBox,
+  StyledDialogBoxContent,
 } from "./styled";
 
 import LogoComponent from "../Logo/Logo";
@@ -20,8 +24,13 @@ import Container from "@mui/material/Container";
 import TooltipComponent from "../Tooltip/Tooltip";
 import Button from "../Buttons/Button";
 import TabMenusComponent from "./TabMenus";
+import DialogModelComponent from "../DialogModel/DialogModel";
+import SigninForm from "../../../forms/Signin/Signin";
 
 const AppNavbarComponent = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const { data: session } = useSession();
+  const router = useRouter();
   return (
     <Fragment>
       <AppBar
@@ -73,16 +82,44 @@ const AppNavbarComponent = () => {
             </StyledAppbarIconsBox>
             <StyledAppbarActionBox>
               <Box>
-                <Button
-                  title="SIGN IN/SING UP"
-                  onClick={() => {}}
-                  id="btn-signin-signup"
-                />
+                {session ? (
+                  <Button
+                    title="Logout"
+                    color="secondary"
+                    onClick={() =>
+                      signOut({
+                        redirect: true,
+                        callbackUrl: "/",
+                      })
+                    }
+                    id="btn-signin-signup"
+                  />
+                ) : (
+                  <Button
+                    title="SIGN IN/SING UP"
+                    onClick={() => {
+                      router.push(ROUTES.LOGIN);
+                    }}
+                    id="btn-signin-signup"
+                  />
+                )}
               </Box>
             </StyledAppbarActionBox>
           </ToolBar>
         </Container>
       </AppBar>
+      <DialogModelComponent
+        onClose={() => {
+          //setOpen(false);
+        }}
+        fullScreen={false}
+        open={open}
+        maxWidth="sm"
+      >
+        <StyledDialogBoxContent>
+          <SigninForm></SigninForm>
+        </StyledDialogBoxContent>
+      </DialogModelComponent>
     </Fragment>
   );
 };

@@ -3,32 +3,58 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material";
 import { SxProps } from "@mui/system";
-import { componentColors } from "../../../utils/types";
 
 interface LoadingButtonProps {
+  id: string;
+  label: string;
   iconSx?: SxProps;
-  btnColor?: componentColors;
+  loading?: boolean;
+  disablebg?: string;
+  disablecolor?: string;
   [x: string]: any;
+}
+
+interface StyledLoadingButtonProps {
+  disablebg?: string;
+  disablecolor?: string;
 }
 
 const StyledCircleProgress = styled(CircularProgress)(({ theme }) => ({
   color: theme.palette.common.white,
 }));
 
-export const LoadingButton: React.FC<LoadingButtonProps> = ({
+const StyledLoadingButton = styled(Button)<StyledLoadingButtonProps>(
+  ({ theme, disablebg, disablecolor }) => ({
+    "&.Mui-disabled": {
+      backgroundColor: disablebg,
+      color: disablecolor ? disablecolor : theme.palette.common.white,
+    },
+  })
+);
+
+export const LoadingButtonComponent: React.FC<LoadingButtonProps> = ({
+  id,
+  label,
   iconSx,
   btnColor,
+  loading,
+  disablebg,
+  disablecolor,
   ...props
 }) => {
   return (
-    <Button
+    <StyledLoadingButton
+      disablebg={disablebg}
+      disablecolor={disablecolor}
+      id={id}
       {...props}
-      color={btnColor}
-      startIcon={<StyledCircleProgress size={16} sx={iconSx} />}
+      startIcon={
+        loading ? <StyledCircleProgress size={16} sx={iconSx} /> : null
+      }
     >
-      Loading
-    </Button>
+      {label}
+    </StyledLoadingButton>
   );
 };
 
-export default LoadingButton;
+export default LoadingButtonComponent;

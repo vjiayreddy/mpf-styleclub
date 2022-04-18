@@ -1,5 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 
 interface ButtonProps {
   id: string;
@@ -7,6 +9,8 @@ interface ButtonProps {
   onClick: () => void;
   [x: string]: any;
 }
+
+const StyledLoadingBox = styled(Box)(({ theme }) => ({}));
 
 const ButtonComponent: React.FC<ButtonProps> = ({
   id,

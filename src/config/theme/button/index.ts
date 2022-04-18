@@ -15,12 +15,13 @@ export const OverrideMuiButton = (theme: Theme): Object => {
         height: 30,
       },
       sizeMedium: {
-        height: 35,
+        height: 40,
         minWidth: 100,
         fontSize: 13,
-        lineHeight:'9px',
+        lineHeight: "9px",
         color: theme.palette.common.white,
         fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+        textTransform: "none",
       },
     },
   };

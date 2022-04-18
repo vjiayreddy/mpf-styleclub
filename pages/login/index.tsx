@@ -1,41 +1,58 @@
-import React, { Fragment, useRef, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
+import {
+  signIn,
+  useSession,
+  SignInResponse,
+  getSession,
+} from "next-auth/react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import SigninForm from "../../src/forms/Signin/Signin";
+import { AUTH_STATE } from "../../src/utils/enums";
+import router from "next/router";
+import { ROUTES } from "../../src/routes/Routes";
 
 const LoginPage = () => {
-  const { status } = useSession();
-  const router = useRouter();
-  const [error, setError] = useState<string>(null);
-  const emailRef = useRef<HTMLInputElement>();
-  const passwordRef = useRef<HTMLInputElement>();
-
-  const loginHandler = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const { error } = await signIn("credentials", {
-      redirect: true,
-      username: "jsmith@example.com",
-      password: "1234",
+  const { data: session, status } = useSession();
+  const loginHandler = async (e: React.SyntheticEvent, data: any) => {
+    const response: SignInResponse = await signIn("credentials", {
+      redirect: false,
+      source: data.source,
+      password: data.password,
     });
-    if (error) setError(error);
+    if (response?.error) {
+      alert(response.error);
+    }
   };
 
-  if (status === "authenticated") {
-    return router.push("/");
+  const StyledMainBox = styled(Box)(({ theme }) => ({
+    width: "100%",
+    height: `calc(100vh - 65px)`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }));
+
+  const StyledSigninFormBox = styled(Box)(({ theme }) => ({
+    width: "350px",
+  }));
+
+  if (status === AUTH_STATE.AUTHENTICATED) {
+    router.push(ROUTES.DASHBOARD);
   }
 
-  console.log(error);
-
   return (
-    <Fragment>
-      {status === "unauthenticated" && (
-        <div>
-          <p>{status}</p>
-          <p>{error}</p>
-          <h3>Login</h3>
-          <button onClick={(e) => loginHandler(e)}>Login</button>
-        </div>
-      )}
-    </Fragment>
+    <StyledMainBox>
+      <StyledSigninFormBox>
+        {status === AUTH_STATE.UNAUTHENTICATED && (
+          <SigninForm
+            onSubmitForm={(data: any, e) => {
+              loginHandler(e, data);
+            }}
+          />
+        )}
+      </StyledSigninFormBox>
+    </StyledMainBox>
   );
 };
 
