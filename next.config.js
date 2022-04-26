@@ -17,7 +17,10 @@ module.exports = (phase) => {
     //   defaultLocale: "en",
     // },
     images: {
-      domains: ["mpf-public-data.s3.ap-south-1.amazonaws.com"],
+      domains: [
+        "mpf-public-data.s3.ap-south-1.amazonaws.com",
+        "assets.myntassets.com",
+      ],
     },
     env: envConfig,
   };

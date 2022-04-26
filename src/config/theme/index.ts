@@ -112,8 +112,10 @@ const theme = createTheme({
         root: {
           textTransform: "none",
           fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
-          fontSize: 16,
           color: APP_COLORS.SECONDARY_COLOR,
+          paddingLeft: `0px`,
+          paddingRight: 20,
+          minWidth: 50,
         },
       },
     },
@@ -150,12 +152,29 @@ const theme = createTheme({
         variant: "standard",
         margin: "dense",
       },
-      styleOverrides:{
-        root:{
-          fontFamily:GLOBAL_FONTS.SECONDARY_FONT,
-          color:muiTheme.palette.grey[500]
-        }
-      }
+      styleOverrides: {
+        root: {
+          fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+          color: muiTheme.palette.grey[500],
+        },
+      },
+    },
+    MuiChip: {
+      defaultProps: {
+        size: "small",
+      },
+      styleOverrides: {
+        label: {
+          fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+        },
+      },
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+        },
+      },
     },
   },
 });
