@@ -4,7 +4,7 @@ import {
   NormalizedCacheObject,
 } from "@apollo/client";
 const apolloClient: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-  uri: process.env.APOLLO_API,
+  uri: process.env.NEXT_PUBLIC_API_URL,
   cache: new InMemoryCache(),
 });
 

@@ -1,4 +1,6 @@
 import React, { Fragment, useMemo } from "react";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import { productCategories } from "../../../utils/mockData";
 import ImageIconTabs from "../../uiElements/ImageIconTabs/ImageIconTabs";
 import ChipsComponent from "../../uiElements/Chips/Chips";
@@ -8,6 +10,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import { styled } from "@mui/material/styles";
 import { NextRouter, useRouter } from "next/router";
 import { GetServerSideProps } from "next";
+import ProductCardComponent from "../../uiElements/ProductCard/ProductCard";
 
 const ProductsLayout = () => {
   const [value, setValue] = React.useState<undefined | number>(0);
@@ -24,7 +27,31 @@ const ProductsLayout = () => {
     <Fragment>
       <ImageIconTabs data={productCategories} />
       <ChipsComponent />
-      <Stack spacing={3}>
+
+      <Box mt={2}>
+        <Grid container spacing={2}>
+          <Grid item md={2}>
+            <ProductCardComponent />
+          </Grid>
+          <Grid item md={2}>
+            <ProductCardComponent />
+          </Grid>
+          <Grid item md={2}>
+            <ProductCardComponent />
+          </Grid>
+          <Grid item md={2}>
+            <ProductCardComponent />
+          </Grid>
+          <Grid item md={2}>
+            <ProductCardComponent />
+          </Grid>
+          <Grid item md={2}>
+            <ProductCardComponent />
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* <Stack spacing={3}>
         <Pagination
           color="secondary"
           size="medium"
@@ -47,7 +74,7 @@ const ProductsLayout = () => {
             <StyledPaginationItem selected={value} {...item} />
           )}
         />
-      </Stack>
+      </Stack> */}
     </Fragment>
   );
 };

@@ -9,8 +9,10 @@ interface BaseComponentProps {
 const BaseComponent: React.FC<BaseComponentProps> = ({ theme }) => {
   return (
     <>
-      <meta name="theme-color" content={theme.palette.primary.main} />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="manifest" href="/manifest.json" />
+      <link rel="apple-touch-icon" href="/icon.png" />
+      <meta name="theme-color" content={theme.palette.primary.main} />
       <link
         rel="preconnect"
         href="https://fonts.gstatic.com"
