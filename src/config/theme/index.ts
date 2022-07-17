@@ -258,6 +258,16 @@ const theme = createTheme({
         },
       },
     },
+    MuiCard: {
+      defaultProps: {
+        elevation: 0,
+      },
+      styleOverrides:{
+        root:{
+          backgroundColor:"transparent"
+        }
+      }
+    },
   },
 });
 export default theme;
