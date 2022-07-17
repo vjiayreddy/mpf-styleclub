@@ -20,5 +20,13 @@ export interface customTypographyVarients {
 }
 
 export interface EXTENDED_COLORS {
-  THRID_COLOR: string;
+  THIRD_COLOR: string;
+  BASE_BLUE: string;
+  BASE_GREEN: string;
+  BASE_YELLOW: string;
+  BASE_ORANGE: string;
+  BASE_RED: string;
+  BASE_BLACK: string;
+  BASE_BLACK_80: string;
+  BASE_BLACK_10: string;
 }

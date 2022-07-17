@@ -111,7 +111,7 @@ export const StyledShowcaseBorder = styled(Box)<ShowcaseBorder>(
   ({ theme, variant }) => ({
     position: "absolute",
     borderRadius: 50,
-    border: `2px solid ${theme.palette.THRID_COLOR}`,
+    border: `2px solid ${theme.palette.THIRD_COLOR}`,
     height: "100%",
     width: "100%",
     top: 40,
@@ -142,7 +142,7 @@ export const StyledNumberCircle = styled(Box)(({ theme }) => ({
   height: 40,
   width: 40,
   borderRadius: "100%",
-  backgroundColor: theme.palette.THRID_COLOR,
+  backgroundColor: theme.palette.THIRD_COLOR,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

@@ -1,11 +1,19 @@
 export enum APP_COLORS {
   PRIMARY_COLOR = "#c4a262",
   SECONDARY_COLOR = "#1a1a1a",
-  THRID_COLOR = "#FAEEE8",
+  THIRD_COLOR = "#FAEEE8",
+  BASE_BLUE = "#2945FF",
+  BASE_GREEN = "#15BC1C",
+  BASE_YELLOW = "#FFDD29",
+  BASE_ORANGE = "#FF8329",
+  BASE_RED = "#FF2929",
+  BASE_BLACK = "#000000",
+  BASE_BLACK_80 = "#212121",
+  BASE_BLACK_10 = "#eeeeee",
 }
 
 export enum GLOBAL_FONTS {
-  PRIMARY_FONT = "Playfair Display",
+  PRIMARY_FONT = "Inter",
   SECONDARY_FONT = "Lato",
   OPTIONAL_FONT = "Lora",
 }

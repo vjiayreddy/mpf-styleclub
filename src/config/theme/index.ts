@@ -55,6 +55,80 @@ const theme = createTheme({
       GLOBAL_FONTS.SECONDARY_FONT,
       GLOBAL_FONTS.OPTIONAL_FONT,
     ].join(","),
+
+    h1: {
+      fontSize: 96,
+      lineHeight: "110%",
+      fontWeight: 600,
+      letterSpacing: "-3%",
+    },
+    h2: {
+      fontSize: 85,
+      lineHeight: "120%",
+      fontWeight: 600,
+      letterSpacing: "-3%",
+    },
+    h3: {
+      fontSize: 64,
+      lineHeight: "120%",
+      fontWeight: 600,
+      letterSpacing: "-3%",
+    },
+    h4: {
+      fontSize: 53,
+      lineHeight: "120%",
+      fontWeight: 600,
+      letterSpacing: "-3%",
+    },
+    h5: {
+      fontSize: 32,
+      lineHeight: "120%",
+      fontWeight: 600,
+      letterSpacing: "-3%",
+    },
+    h6: {
+      fontSize: 26,
+      lineHeight: "120%",
+      fontWeight: 600,
+      letterSpacing: "-3%",
+    },
+    subtitle1: {
+      fontSize: 32,
+      lineHeight: "160%",
+      fontWeight: 400,
+      letterSpacing: "-3%",
+    },
+    subtitle2: {
+      fontSize: 26,
+      lineHeight: "160%",
+      fontWeight: 400,
+      letterSpacing: "-3%",
+    },
+    body1: {
+      fontSize: 21,
+      lineHeight: "160%",
+      fontWeight: 400,
+      letterSpacing: "-3%",
+    },
+    body2: {
+      fontSize: 18,
+      lineHeight: "100%",
+      fontWeight: 400,
+      letterSpacing: "-3%",
+    },
+    overline: {
+      fontSize: 18,
+      lineHeight: "100%",
+      fontWeight: 400,
+      letterSpacing: "-3%",
+    },
+    caption: {
+      fontSize: 12,
+      lineHeight: "100%",
+      fontWeight: 400,
+      letterSpacing: "-3%",
+    },
+
     heading_extra_large: {
       fontSize: 60,
       fontWeight: 200,
@@ -102,7 +176,15 @@ const theme = createTheme({
     secondary: {
       main: APP_COLORS.SECONDARY_COLOR,
     },
-    THRID_COLOR: APP_COLORS.THRID_COLOR,
+    THIRD_COLOR: APP_COLORS.THIRD_COLOR,
+    BASE_BLACK: APP_COLORS.BASE_BLACK,
+    BASE_BLUE: APP_COLORS.BASE_BLUE,
+    BASE_GREEN: APP_COLORS.BASE_GREEN,
+    BASE_RED: APP_COLORS.BASE_RED,
+    BASE_BLACK_10: APP_COLORS.BASE_BLACK_10,
+    BASE_BLACK_80: APP_COLORS.BASE_BLACK_80,
+    BASE_ORANGE: APP_COLORS.BASE_ORANGE,
+    BASE_YELLOW: APP_COLORS.BASE_YELLOW,
   },
   components: {
     MuiButton: OverrideMuiButton(muiTheme),
@@ -178,4 +260,4 @@ const theme = createTheme({
     },
   },
 });
-export default responsiveFontSizes(theme);
+export default theme;
