@@ -262,11 +262,11 @@ const theme = createTheme({
       defaultProps: {
         elevation: 0,
       },
-      styleOverrides:{
-        root:{
-          backgroundColor:"transparent"
-        }
-      }
+      styleOverrides: {
+        root: {
+          backgroundColor: "transparent",
+        },
+      },
     },
   },
 });

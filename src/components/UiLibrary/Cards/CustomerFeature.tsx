@@ -3,20 +3,20 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-
 import { styled } from "@mui/material/styles";
 import CardContent from "@mui/material/CardContent";
 import Image from "next/image";
+import LinkIconButton, { LinkIconButtonProps } from "../LinkIconButton";
 
 type ExtraProps = {
     component?: React.ElementType;
 };
 
-interface CustomerFeatureProps {
+interface CustomerFeatureProps extends LinkIconButtonProps {
     title: string;
     content: string;
     icon: string;
-
+    showButton?: boolean,
 }
 
 const StyledCardBox = styled(Box)(({ theme }) => ({
@@ -36,16 +36,17 @@ const StyledCardContent = styled(Typography)<ExtraProps>(({ theme }) => ({
     color: theme.palette.grey[700],
 }));
 
-const StyledCardButton = styled(Typography)<ExtraProps>(({ theme }) => ({
-    fontSize: 16,
-    lineHeight: "25px",
-    color: theme.palette.grey[700],
-}));
 
 const CustomerFeature: React.FC<CustomerFeatureProps> = ({
     title,
     content,
-    icon
+    icon,
+    btnId,
+    onClick,
+    btnSx,
+    label,
+    btnColor,
+    showButton = true
 }) => {
     return (
         <StyledCardBox>
@@ -60,7 +61,8 @@ const CustomerFeature: React.FC<CustomerFeatureProps> = ({
                                 <StyledCardContent variant="body2" component="p">
                                     {content}
                                 </StyledCardContent>
-                                <Box></Box>
+                                {showButton && <LinkIconButton btnColor={btnColor} btnId={btnId} onClick={onClick} btnSx={btnSx} label={label} />
+                                }
                             </Grid>
                         </Grid>
                         <Grid item>

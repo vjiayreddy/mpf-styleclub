@@ -23,6 +23,15 @@ export const OverrideMuiButton = (theme: Theme): Object => {
         fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
         textTransform: "none",
       },
+      textSizeSmall: {
+        fontSize: 16,
+        fontWeight: 600,
+        padding: 0,
+        minWidth: 0,
+      },
+      iconSizeSmall: {
+        width: 16,
+      },
     },
   };
 };

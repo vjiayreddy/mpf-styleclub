@@ -21,18 +21,16 @@ const ProductsPage = () => {
       <StyledBox>
         <Grid container spacing={3}>
           <Grid item md={6}>
-            <CustomerFeature icon="/assets/images/groom.webp" title="Engagement at scale" content="Muffin lemon drops toffee. Pudding tootsie roll brownie jelly beans. Croissant chocolate cake tootsie roll. Cupcake sugar" />
+            <CustomerFeature btnColor="info" onClick={() => { return; }} label="Learn More" btnId="card-button" icon="/assets/images/groom.webp" title="Engagement at scale" content="Muffin lemon drops toffee. Pudding tootsie roll brownie jelly beans. Croissant chocolate cake tootsie roll. Cupcake sugar" />
           </Grid>
           <Grid item md={6}>
-            <CustomerFeature icon="/assets/images/groom.webp" title="Connected with clients" content="Muffin lemon drops toffee. Pudding tootsie roll brownie jelly beans. Croissant chocolate cake tootsie roll. Cupcake sugar" />
+            <CustomerFeature btnColor="info" showButton={true} onClick={() => { return; }} label="Learn More" btnId="card-button" icon="/assets/images/groom.webp" title="Connected with clients" content="Muffin lemon drops toffee. Pudding tootsie roll brownie jelly beans. Croissant chocolate cake tootsie roll. Cupcake sugar" />
           </Grid>
           <Grid item md={6}>
-            <CustomerFeature icon="/assets/images/groom.webp" title="Engagement at scale" content="Muffin lemon drops toffee. Pudding tootsie roll brownie jelly beans. Croissant chocolate cake tootsie roll. Cupcake sugar" />
-
+            <CustomerFeature btnColor="info" onClick={() => { return; }} label="Learn More" btnId="card-button" icon="/assets/images/groom.webp" title="Engagement at scale" content="Muffin lemon drops toffee. Pudding tootsie roll brownie jelly beans. Croissant chocolate cake tootsie roll. Cupcake sugar" />
           </Grid>
           <Grid item md={6}>
-            <CustomerFeature icon="/assets/images/groom.webp" title="Engagement at scale" content="Muffin lemon drops toffee. Pudding tootsie roll brownie jelly beans. Croissant chocolate cake tootsie roll. Cupcake sugar" />
-
+            <CustomerFeature btnColor="info" onClick={() => { return; }} label="Learn More" btnId="card-button" icon="/assets/images/groom.webp" title="Engagement at scale" content="Muffin lemon drops toffee. Pudding tootsie roll brownie jelly beans. Croissant chocolate cake tootsie roll. Cupcake sugar" />
           </Grid>
         </Grid>
       </StyledBox>
