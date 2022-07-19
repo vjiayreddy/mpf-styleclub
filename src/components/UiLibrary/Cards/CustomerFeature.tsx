@@ -20,10 +20,7 @@ interface CustomerFeatureProps extends LinkIconButtonProps {
 }
 
 const StyledCardBox = styled(Box)(({ theme }) => ({
-    width: "100%",
-    borderRadius: 5,
-    padding: 10,
-    border: `1px solid ${theme.palette.divider}`,
+    ...theme.globalCardStyle
 }));
 
 const StyledCardTitle = styled(Typography)<ExtraProps>(() => ({
@@ -35,7 +32,6 @@ const StyledCardContent = styled(Typography)<ExtraProps>(({ theme }) => ({
     lineHeight: "25px",
     color: theme.palette.grey[700],
 }));
-
 
 const CustomerFeature: React.FC<CustomerFeatureProps> = ({
     title,

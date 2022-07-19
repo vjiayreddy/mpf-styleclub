@@ -28,7 +28,7 @@ interface TitleWithSubtileProps {
 
 const StyledTitle = styled(Typography)<ExtraProps>(() => ({}))
 const StyledSubTitle = styled(Typography)<ExtraProps>(() => ({}))
-const TitleWithSubtile: React.FC<TitleWithSubtileProps> = ({ title, subTitle, titleSx, subTitleSx, titleVariant = "h4", titleComponent = "h3", subTitleComponent = "p", titleAlign = "center", subTitleAlign = "center", subTitleVariant = "subtitle2" }) => {
+const TitleWithSubtile: React.FC<TitleWithSubtileProps> = ({ title, subTitle, titleSx, subTitleSx, titleVariant = "h5", titleComponent = "h3", subTitleComponent = "p", titleAlign = "center", subTitleAlign = "center", subTitleVariant = "body1" }) => {
   return (
     <>
       <Box>

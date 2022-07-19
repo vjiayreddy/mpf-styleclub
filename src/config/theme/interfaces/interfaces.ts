@@ -30,3 +30,11 @@ export interface EXTENDED_COLORS {
   BASE_BLACK_80: string;
   BASE_BLACK_10: string;
 }
+
+export interface CUSTOM_STYLE_CLASSES {
+  a?: {
+    fontFamily?: string;
+    fontSize?: string | number;
+  };
+  globalCardStyle: {};
+}

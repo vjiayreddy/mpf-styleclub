@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSizes } from "@mui/material";
+import { createTheme } from "@mui/material";
 import { OverrideMuiButton } from "./button";
 import { OverrideMuiAppbar } from "./appbar";
 import { TypographyOptions } from "@mui/material/styles/createTypography";
@@ -8,6 +8,7 @@ import {
   customTypographyVarients,
   customTypographyProps,
   EXTENDED_COLORS,
+  CUSTOM_STYLE_CLASSES,
 } from "./interfaces/interfaces";
 import { OverrideMuiInputbase } from "./inputBase";
 declare module "@mui/material/Typography" {
@@ -17,18 +18,8 @@ declare module "@mui/material/Typography" {
 declare module "@mui/material/styles" {
   interface Palette extends EXTENDED_COLORS {}
   interface PaletteOptions extends EXTENDED_COLORS {}
-  interface Theme {
-    a?: {
-      fontFamily?: string;
-      fontSize?: string | number;
-    };
-  }
-  interface ThemeOptions {
-    a?: {
-      fontFamily?: string;
-      fontSize?: string | number;
-    };
-  }
+  interface Theme extends CUSTOM_STYLE_CLASSES {}
+  interface ThemeOptions extends CUSTOM_STYLE_CLASSES {}
 }
 
 declare module "@mui/material/styles/createTypography" {
@@ -168,7 +159,6 @@ const theme = createTheme({
       fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
     },
   } as ExtendedTypographyOptions,
-
   palette: {
     primary: {
       main: APP_COLORS.PRIMARY_COLOR,
@@ -268,6 +258,12 @@ const theme = createTheme({
         },
       },
     },
+  },
+  globalCardStyle: {
+    width: "100%",
+    borderRadius: 5,
+    padding: 10,
+    border: `1px solid ${muiTheme.palette.divider}`,
   },
 });
 export default theme;
