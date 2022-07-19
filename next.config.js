@@ -1,5 +1,6 @@
 const withPWA = require("next-pwa");
 module.exports = withPWA({
+  reactStrictMode: false,
   images: {
     domains: [
       "mpf-public-data.s3.ap-south-1.amazonaws.com",
