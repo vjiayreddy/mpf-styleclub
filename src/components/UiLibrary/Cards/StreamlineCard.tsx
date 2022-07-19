@@ -28,7 +28,7 @@ const StyledCaptionLabel = styled(Typography)<{ component: React.ReactNode }>(
 );
 
 const StyledMainTitle = styled(Typography)<{ component: React.ReactNode }>(
-    ({ theme }) => ({
+    () => ({
         fontSize: 23,
     })
 );

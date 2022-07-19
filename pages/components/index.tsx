@@ -8,6 +8,8 @@ import CustomerFeatureCard from "../../src/components/UiLibrary/Cards/CustomerFe
 import CollaborateCard from "../../src/components/UiLibrary/Cards/CollaborateCard";
 import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
 import StreamlineCard from "../../src/components/UiLibrary/Cards/StreamlineCard";
+import RewardCard from "../../src/components/UiLibrary/Cards/RewardCard";
+
 
 const StyledBox = styled(Box)(() => ({
   margin: '0 auto',
@@ -66,6 +68,19 @@ const ProductsPage = () => {
           </Grid>
           <Grid item md={4}>
             <StreamlineCard />
+          </Grid>
+        </Grid>
+      </StyledBox>
+      <Box p={10}>
+        <TitleWithSubtile title="Here are some of the rewards from putting our customer first." subTitle={`Cupcake danish tiramisu powder soda ginger cake. Dessert carrot cake tartsweet marzipan for fruitcake.`} />
+      </Box>
+      <StyledBox>
+        <Grid container spacing={3} >
+          <Grid item xs={12} md={6}>
+            <RewardCard />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <RewardCard />
           </Grid>
         </Grid>
       </StyledBox>
