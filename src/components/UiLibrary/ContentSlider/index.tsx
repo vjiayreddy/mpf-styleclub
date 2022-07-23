@@ -11,15 +11,37 @@ const settings = {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    variableWidth: true
+    variableWidth: true,
+    lazyLoad: true,
 }
 
 const ContentSlider = () => {
     return (
-        <SlickSlider {...settings}>
-            {slides.map((slide) => <Box p={2} key={slide} component="div">
+        <SlickSlider style={{ minHeight: 300 }} {...settings}>
+            <Box p={2} component="div">
                 <SliderProductCard />
-            </Box>)}
+            </Box>
+            <Box p={2} component="div">
+                <SliderProductCard />
+            </Box>
+            <Box p={2} component="div">
+                <SliderProductCard />
+            </Box>
+            <Box p={2} component="div">
+                <SliderProductCard />
+            </Box>
+            <Box p={2} component="div">
+                <SliderProductCard />
+            </Box>
+            <Box p={2} component="div">
+                <SliderProductCard />
+            </Box>
+            <Box p={2} component="div">
+                <SliderProductCard />
+            </Box>
+            <Box p={2} component="div">
+                <SliderProductCard />
+            </Box>
         </SlickSlider>
     )
 }
