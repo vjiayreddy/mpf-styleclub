@@ -1,9 +1,13 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import MuiIconButton from '@mui/material/IconButton';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';import PhotoCamera from '@mui/icons-material/PhotoCamera';
-//import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
+interface IconButtonProps {
+    icon: React.ReactNode;
+    onClick: () => void;
+    [x: string]: any
+
+}
 
 const StyledIconButton = styled(MuiIconButton)(({ theme }) => ({
     "&.MuiIconButton-root": {
@@ -17,10 +21,14 @@ const StyledIconButton = styled(MuiIconButton)(({ theme }) => ({
 }))
 
 
-const IconButton = () => {
+const IconButton: React.FC<IconButtonProps> = ({
+    icon,
+    onClick,
+    ...props
+}) => {
     return (
-        <StyledIconButton edge="start" >
-            <KeyboardArrowLeftIcon fontSize="small" />
+        <StyledIconButton onClick={onClick} edge="start" {...props} >
+            {icon}
         </StyledIconButton>
     )
 }

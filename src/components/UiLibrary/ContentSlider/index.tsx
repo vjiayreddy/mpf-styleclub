@@ -4,15 +4,18 @@ import { styled } from "@mui/material/styles";
 import SlickSlider from "react-slick";
 import SliderProductCard from '../Cards/SliderProductCard';
 import IconButton from '../IconButton';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 
 const settings = {
     dots: false,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 2,
+    slidesToScroll:2,
     variableWidth: true,
     lazyLoad: true,
-    centerMode: true,
+    infinite:true
 
 }
 
@@ -23,7 +26,7 @@ const StyledContentSliderBox = styled(Box)(() => ({
     width: "100%"
 }))
 
-const StyledSilckSlider = styled(Box)(() => ({
+const StyledSlickSlider = styled(Box)(() => ({
     width: "90%",
     margin: '0 auto'
 }))
@@ -50,7 +53,7 @@ const ContentSlider = () => {
     }
     return (
         <StyledContentSliderBox>
-            <StyledSilckSlider>
+            <StyledSlickSlider>
                 <SlickSlider className="content-slider" ref={(c) => sliderRef = c}  {...settings}>
                     <Box p={1} component="div">
                         <SliderProductCard />
@@ -74,11 +77,11 @@ const ContentSlider = () => {
                         <SliderProductCard />
                     </Box>
                 </SlickSlider>
-            </StyledSilckSlider>
+            </StyledSlickSlider>
 
             <StyledArrowButtonsBox>
-                <IconButton />
-                <IconButton />
+                <IconButton onClick={onClickNext} icon={<KeyboardArrowLeftIcon fontSize='small' />} />
+                <IconButton onClick={onClickRight} icon={<KeyboardArrowRightIcon fontSize='small' />} />
             </StyledArrowButtonsBox>
         </StyledContentSliderBox>
 
