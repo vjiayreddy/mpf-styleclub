@@ -12,6 +12,7 @@ import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWit
 import StreamlineCard from "../../src/components/UiLibrary/Cards/StreamlineCard";
 import RewardCard from "../../src/components/UiLibrary/Cards/RewardCard";
 import ContentSlider from "../../src/components/UiLibrary/ContentSlider";
+import sliderData from '../../src/utils/sliderData.json';
 
 
 const StyledBox = styled(Box)(() => ({
@@ -20,14 +21,14 @@ const StyledBox = styled(Box)(() => ({
   paddingBottom: 50
 }))
 
-const ProductsPage = () => {
+const ProductsPage = (props: { sliderData }) => {
   return (
     <ContainerComponent>
       <Box p={10}>
         <TitleWithSubtile title="Streamline your design process." subTitle={`Cupcake danish tiramisu powder soda ginger cake. Dessert carrot cake tartsweet marzipan for fruitcake.`} />
       </Box>
       <Box p={10}>
-        <ContentSlider />
+        <ContentSlider data={sliderData} />
       </Box>
 
       <StyledBox>
@@ -95,5 +96,13 @@ const ProductsPage = () => {
     </ContainerComponent>
   )
 };
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      sliderData: sliderData
+    },
+  }
+}
 
 export default ProductsPage;

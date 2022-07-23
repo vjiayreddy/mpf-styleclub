@@ -30,22 +30,33 @@ const StyledProductPrice = styled(Typography)<{ component: React.ReactNode }>(({
 }))
 
 
-const SliderProductCard = () => {
+interface SliderProductCardProps {
+    imgUrl: string;
+    title: string;
+    price: number
+}
+
+
+const SliderProductCard: React.FC<SliderProductCardProps> = ({
+    imgUrl,
+    title,
+    price
+}) => {
     return (
         <Grid alignItems="flex-start" container direction='column'>
             <Grid item xs={12}>
                 <StyledImageBox>
-                    <Image loading='lazy' placeholder="blur" blurDataURL="/assets/images/girl.jpg" width={300} height={300} alt='product-image' src="/assets/images/girl.jpg" layout="intrinsic" />
+                    <Image loading='lazy' placeholder="blur" blurDataURL={imgUrl} width={300} height={300} alt={title} src={imgUrl} layout="intrinsic" />
                 </StyledImageBox>
             </Grid>
             <Grid item xs={12}>
                 <Box sx={{ width: "100%" }}>
                     <StyledContainerBox>
                         <StyledProductTitle display="block" variant="subtitle2" component="p" align='left'>
-                            Classic Dress
+                            {title}
                         </StyledProductTitle>
                         <StyledProductPrice display="block" variant="body2" component="p" align='left'>
-                           $252.00
+                            {price}
                         </StyledProductPrice>
                     </StyledContainerBox>
                 </Box>

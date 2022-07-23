@@ -8,15 +8,18 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 
+
+interface ContentSliderProps {
+    data: any[]
+}
+
 const settings = {
     dots: false,
+    infinite: true,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll:2,
-    variableWidth: true,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     lazyLoad: true,
-    infinite:true
-
 }
 
 
@@ -43,7 +46,9 @@ const StyledArrowButtonsBox = styled(Box)(() => ({
 }))
 
 
-const ContentSlider = () => {
+const ContentSlider: React.FC<ContentSliderProps> = ({
+    data
+}) => {
     let sliderRef: any;
     const onClickNext = () => {
         sliderRef.slickNext();
@@ -54,28 +59,12 @@ const ContentSlider = () => {
     return (
         <StyledContentSliderBox>
             <StyledSlickSlider>
-                <SlickSlider className="content-slider" ref={(c) => sliderRef = c}  {...settings}>
-                    <Box p={1} component="div">
-                        <SliderProductCard />
-                    </Box>
-                    <Box p={1} component="div">
-                        <SliderProductCard />
-                    </Box>
-                    <Box p={1} component="div">
-                        <SliderProductCard />
-                    </Box>
-                    <Box p={1} component="div">
-                        <SliderProductCard />
-                    </Box>
-                    <Box p={1} component="div">
-                        <SliderProductCard />
-                    </Box>
-                    <Box p={1} component="div">
-                        <SliderProductCard />
-                    </Box>
-                    <Box p={1} component="div">
-                        <SliderProductCard />
-                    </Box>
+                <SlickSlider beforeChange={(prev, next) => {
+                    console.log(prev, next)
+                }} className="content-slider" ref={(c) => sliderRef = c}  {...settings}>
+                    {data.map((product, index) => <Box key={index} p={1} component="div">
+                        <SliderProductCard price={product.price} title={product.productName} imgUrl={product.imgUrl} />
+                    </Box>)}
                 </SlickSlider>
             </StyledSlickSlider>
 
