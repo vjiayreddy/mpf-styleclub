@@ -4,11 +4,14 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material";
 
+
+// Components
 import CustomerFeatureCard from "../../src/components/UiLibrary/Cards/CustomerFeature";
 import CollaborateCard from "../../src/components/UiLibrary/Cards/CollaborateCard";
 import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
 import StreamlineCard from "../../src/components/UiLibrary/Cards/StreamlineCard";
 import RewardCard from "../../src/components/UiLibrary/Cards/RewardCard";
+import ContentSlider from "../../src/components/UiLibrary/ContentSlider";
 
 
 const StyledBox = styled(Box)(() => ({
@@ -23,6 +26,10 @@ const ProductsPage = () => {
       <Box p={10}>
         <TitleWithSubtile title="Streamline your design process." subTitle={`Cupcake danish tiramisu powder soda ginger cake. Dessert carrot cake tartsweet marzipan for fruitcake.`} />
       </Box>
+      <Box p={10}>
+        <ContentSlider />
+      </Box>
+
       <StyledBox>
         <Grid container spacing={3}>
           <Grid item md={6}>
@@ -84,6 +91,7 @@ const ProductsPage = () => {
           </Grid>
         </Grid>
       </StyledBox>
+
     </ContainerComponent>
   )
 };
