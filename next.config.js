@@ -5,7 +5,7 @@ module.exports = withPWA({
     domains: [
       "mpf-public-data.s3.ap-south-1.amazonaws.com",
       "assets.myntassets.com",
-      "images.unsplash.com"
+      "images.unsplash.com",
     ],
   },
   pwa: {

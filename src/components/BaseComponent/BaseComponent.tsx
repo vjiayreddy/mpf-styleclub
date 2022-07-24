@@ -1,5 +1,4 @@
 import { Theme } from "@mui/material";
-import Script from "next/script";
 import React from "react";
 
 interface BaseComponentProps {
@@ -23,6 +22,7 @@ const BaseComponent: React.FC<BaseComponentProps> = ({ theme }) => {
       <link rel="apple-touch-icon" href="/icon.png" />
       <link rel="preload" href="/fonts/Inter-SemiBold.ttf" as="font" crossOrigin="anonymous" />
       <link rel="preload" href="/fonts/Inter-Regular.ttf" as="font" crossOrigin="anonymous" />
+      <link rel="preload" href="/fonts/slick.woff" as="font" crossOrigin="anonymous" />
       <link
         rel="stylesheet"
         type="text/css"
@@ -33,7 +33,6 @@ const BaseComponent: React.FC<BaseComponentProps> = ({ theme }) => {
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
-
     </>
   );
 };
