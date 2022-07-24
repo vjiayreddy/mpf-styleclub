@@ -43,7 +43,7 @@ const StreamlineCard = () => {
                     placeholder="blur"
                     blurDataURL="/assets/images/girl.jpg"
                     alt="girl"
-                    layout="intrinsic"
+                   // layout="intrinsic"
                     width={324}
                     height={300}
                     src="/assets/images/girl.jpg"

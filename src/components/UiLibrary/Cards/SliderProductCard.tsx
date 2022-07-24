@@ -46,7 +46,7 @@ const SliderProductCard: React.FC<SliderProductCardProps> = ({
         <Grid alignItems="flex-start" container direction='column'>
             <Grid item xs={12}>
                 <StyledImageBox>
-                    <Image loading='lazy' placeholder="blur" blurDataURL={imgUrl} width={300} height={300} alt={title} src={imgUrl} layout="intrinsic" />
+                    <Image loading='lazy' placeholder="blur" blurDataURL={imgUrl} width={300} height={300} alt={title} src={imgUrl} />
                 </StyledImageBox>
             </Grid>
             <Grid item xs={12}>

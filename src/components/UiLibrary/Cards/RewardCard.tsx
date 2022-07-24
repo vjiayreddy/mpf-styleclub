@@ -55,7 +55,7 @@ const RewardCard = () => {
                                     src="/assets/images/girl.jpg"
                                     width={167}
                                     height={167}
-                                    layout="fixed"
+                                // layout="fixed"
                                 />
                             </StyledCardImage>
                         </Grid>
