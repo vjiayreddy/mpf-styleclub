@@ -27,9 +27,9 @@ const ProductsPage = (props: { sliderData }) => {
       <Box p={10}>
         <TitleWithSubtile title="Streamline your design process." subTitle={`Cupcake danish tiramisu powder soda ginger cake. Dessert carrot cake tartsweet marzipan for fruitcake.`} />
       </Box>
-      <Box p={10}>
+      {/* <Box p={10}>
         <ContentSlider data={sliderData} />
-      </Box>
+      </Box> */}
 
       <StyledBox>
         <Grid container spacing={3}>
