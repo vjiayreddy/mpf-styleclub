@@ -73,6 +73,7 @@ const CustomerFeature: React.FC<CustomerFeatureProps> = ({
                 blurDataURL={icon}
                 placeholder="blur"
                 loading="lazy"
+                layout="fixed"
                 src={icon}
                 alt="mpf_styleclub_groom"
                 width={175}
