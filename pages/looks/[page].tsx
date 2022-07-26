@@ -75,7 +75,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const client = apolloClient;
-    console.log('getStaticProps..........');
     try {
         const { data, errors } = await client.query({
             query: GET_PRODUCTS,
@@ -100,11 +99,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             }
         }
     }
-    catch {
-        return {
-            notFound: true
-        }
-    }
+    catch { }
 }
 
 export default ProductsPage;
