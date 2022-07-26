@@ -99,7 +99,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             }
         }
     }
-    catch { }
+    catch {
+        return {
+            notFound: true
+        }
+    }
 }
 
 export default ProductsPage;
