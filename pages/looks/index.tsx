@@ -36,14 +36,6 @@ query productFilter($params: ProductFilter!, $page: Int, $limit: Int) {
 
 
 const ProductsPage = (props) => {
-
-
-    // Apollo
-
-
-
-    console.log(props);
-
     const router = useRouter();
     if (router.isFallback) {
         return <ContainerComponent>
@@ -74,39 +66,30 @@ const ProductsPage = (props) => {
 // }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const client = apolloClient;
     try {
-        const { data, errors } = await client.query({
+        const { data } = await apolloClient.query({
             query: GET_PRODUCTS,
             variables: {
+                limit: 10,
+                page: 1,
                 params: {
                     occasionId: "5fc1b4515d81df3fcc445dff"
-                },
-                limit: 10,
-                page: 1
+                }
             }
         })
-        if (errors) {
-            return {
-                notFound: true
-            }
-        }
-
         return {
             revalidate: 60,
             props: {
                 looks: data.productsFilter.products,
             }
         }
-
     }
-    catch {
+    catch (error) {
         return {
-            props: {
-                looks: []
-            }
+            notFound: true
         }
     }
+
 }
 
 export default ProductsPage;
