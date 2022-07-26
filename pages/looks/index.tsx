@@ -48,7 +48,7 @@ const ProductsPage = (props) => {
         }}>Load Data</Button>
         <Grid container>
             {props.looks?.map((product) => <Grid key={product._id} item md={4}>
-                <SliderProductCard title={product.title} imgUrl={'/assets/images/girl.jpg'} price={product.price} />
+                <SliderProductCard title={product.title} imgUrl={product.images[0] ? product.images[0] : '/assets/images/girl.jpg'} price={product.price} />
             </Grid>)}
         </Grid>
     </ContainerComponent>;
