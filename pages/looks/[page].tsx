@@ -78,7 +78,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
         const { data, errors } = await client.query({
             query: GET_PRODUCTS,
-            errorPolicy: "all",
             variables: {
                 params: {
                     occasionId: "5fc1b4515d81df3fcc445dff"
