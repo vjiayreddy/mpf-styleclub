@@ -67,53 +67,30 @@ const ProductsPage = (props) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
-    const client = apolloClient;
-    const { data } = await client.query({
-        query: GET_PRODUCTS,
-        variables: {
-            limit: 10,
-            page: 1,
-            params: {
-                occasionId: "5fc1b4515d81df3fcc445dff"
+    try {
+        const { data } = await apolloClient.query({
+            query: GET_PRODUCTS,
+            variables: {
+                limit: 10,
+                page: 1,
+                params: {
+                    occasionId: "5fc1b4515d81df3fcc445dff"
+                }
             }
-        }
-    })
-
-    if (data) {
+        })
         return {
+            revalidate: 60,
             props: {
                 looks: data.productsFilter.products,
             }
         }
     }
-
-    return {
-        notFound: true
+    catch (error) {
+        console.log("error", error);
+        return {
+            notFound: true
+        }
     }
-
-    // try {
-    //     const { data } = await apolloClient.query({
-    //         query: GET_PRODUCTS,
-    //         variables: {
-    //             limit: 10,
-    //             page: 1,
-    //             params: {
-    //                 occasionId: "5fc1b4515d81df3fcc445dff"
-    //             }
-    //         }
-    //     })
-    //     return {
-    //         revalidate: 60,
-    //         props: {
-    //             looks: data.productsFilter.products,
-    //         }
-    //     }
-    // }
-    // catch (error) {
-    //     return {
-    //         notFound: true
-    //     }
-    // }
 
 }
 
