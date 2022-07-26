@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         const { data } = await apolloClient.query({
             query: GET_PRODUCTS,
             variables: {
-                limit: 30,
+                limit: 100,
                 page: 1,
                 params: {
                     occasionId: "5fc1b4515d81df3fcc445dff"
