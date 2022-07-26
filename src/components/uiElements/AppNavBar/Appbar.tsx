@@ -10,6 +10,8 @@ import CallIcon from "@mui/icons-material/Call";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { ROUTES } from "../../../routes/Routes";
+import { cartItemsVar } from '../../../apollo/config';
+import { useReactiveVar } from "@apollo/client";
 
 import {
   StyledAppbarLogoBox,
@@ -26,6 +28,9 @@ import TabMenusComponent from "./TabMenus";
 const AppNavbarComponent = () => {
   const { data: session } = useSession();
   const router = useRouter();
+  const cartItems = useReactiveVar(cartItemsVar);
+
+  console.log(cartItems)
   return (
     <Fragment>
       <AppBar
@@ -100,6 +105,10 @@ const AppNavbarComponent = () => {
                 )}
               </Box>
             </StyledAppbarActionBox>
+            {cartItems && <Box>
+              {cartItems}
+            </Box>}
+
           </ToolBar>
         </Container>
       </AppBar>
