@@ -87,19 +87,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 page: Number(params.page)
             }
         })
-        if (errors || !data) {
+        if (errors) {
             return {
                 notFound: true
             }
         }
+
         return {
             revalidate: 60,
             props: {
                 looks: data.productsFilter.products,
             }
         }
+
     }
     catch {
+        console.log('calling catch')
         return {
             notFound: true
         }
