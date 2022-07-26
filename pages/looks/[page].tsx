@@ -63,14 +63,14 @@ const ProductsPage = (props) => {
 
 
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//     return {
-//         paths: [{
-//             params: { page: "1" }
-//         }],
-//         fallback: true
-//     }
-// }
+export const getStaticPaths: GetStaticPaths = async () => {
+    return {
+        paths: [{
+            params: { page: "1" }
+        }],
+        fallback: true
+    }
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const client = apolloClient;
