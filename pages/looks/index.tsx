@@ -56,14 +56,6 @@ const ProductsPage = (props) => {
 
 
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//     return {
-//         paths: [{
-//             params: { page: "1" }
-//         }],
-//         fallback: true
-//     }
-// }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
@@ -71,7 +63,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         const { data } = await apolloClient.query({
             query: GET_PRODUCTS,
             variables: {
-                limit: 10,
+                limit: 30,
                 page: 1,
                 params: {
                     occasionId: "5fc1b4515d81df3fcc445dff"
