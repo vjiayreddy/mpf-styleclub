@@ -42,6 +42,7 @@ const ProductsPage = (props) => {
 
 
 
+    console.log(props);
 
     const router = useRouter();
     if (router.isFallback) {
@@ -74,62 +75,38 @@ const ProductsPage = (props) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const client = apolloClient;
-    const response = await client.query({
-        query: GET_PRODUCTS,
-        variables: {
-            params: {
-                occasionId: "5fc1b4515d81df3fcc445dff"
-            },
-            limit: 10,
-            page: Number(params.page)
+    try {
+        const { data, errors } = await client.query({
+            query: GET_PRODUCTS,
+            variables: {
+                params: {
+                    occasionId: "5fc1b4515d81df3fcc445dff"
+                },
+                limit: 10,
+                page: 1
+            }
+        })
+        if (errors) {
+            return {
+                notFound: true
+            }
         }
-    })
 
-
-    if (response.error) {
         return {
-            notFound: true
+            revalidate: 60,
+            props: {
+                looks: data.productsFilter.products,
+            }
+        }
+
+    }
+    catch {
+        return {
+            props: {
+                looks: []
+            }
         }
     }
-    return {
-        revalidate: 60,
-        props: {
-            looks: response.data.productsFilter?.products,
-        }
-    }
-
-
-    // try {
-    //     const { data, errors } = await client.query({
-    //         query: GET_PRODUCTS,
-    //         variables: {
-    //             params: {
-    //                 occasionId: "5fc1b4515d81df3fcc445dff"
-    //             },
-    //             limit: 10,
-    //             page: Number(params.page)
-    //         }
-    //     })
-    //     if (errors) {
-    //         return {
-    //             notFound: true
-    //         }
-    //     }
-
-    //     return {
-    //         revalidate: 60,
-    //         props: {
-    //             looks: data.productsFilter.products,
-    //         }
-    //     }
-
-    // }
-    // catch {
-    //     console.log('calling catch')
-    //     return {
-    //         notFound: true
-    //     }
-    // }
 }
 
 export default ProductsPage;
