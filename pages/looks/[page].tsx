@@ -42,7 +42,6 @@ const ProductsPage = (props) => {
 
 
 
-    console.log(props)
 
     const router = useRouter();
     if (router.isFallback) {
@@ -75,37 +74,63 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const client = apolloClient;
-    try {
-        const { data, errors } = await client.query({
-            query: GET_PRODUCTS,
-            variables: {
-                params: {
-                    occasionId: "5fc1b4515d81df3fcc445dff"
-                },
-                limit: 10,
-                page: Number(params.page)
-            }
-        })
-        if (errors) {
-            return {
-                notFound: true
-            }
+    const response = await client.query({
+        query: GET_PRODUCTS,
+        variables: {
+            params: {
+                occasionId: "5fc1b4515d81df3fcc445dff"
+            },
+            limit: 10,
+            page: Number(params.page)
         }
+    })
 
-        return {
-            revalidate: 60,
-            props: {
-                looks: data.productsFilter.products,
-            }
-        }
+    console.log(JSON.stringify(response));
 
-    }
-    catch {
-        console.log('calling catch')
+    if (response.error) {
         return {
             notFound: true
         }
     }
+    return {
+        revalidate: 60,
+        props: {
+            looks: response.data.productsFilter?.products,
+        }
+    }
+
+
+    // try {
+    //     const { data, errors } = await client.query({
+    //         query: GET_PRODUCTS,
+    //         variables: {
+    //             params: {
+    //                 occasionId: "5fc1b4515d81df3fcc445dff"
+    //             },
+    //             limit: 10,
+    //             page: Number(params.page)
+    //         }
+    //     })
+    //     if (errors) {
+    //         return {
+    //             notFound: true
+    //         }
+    //     }
+
+    //     return {
+    //         revalidate: 60,
+    //         props: {
+    //             looks: data.productsFilter.products,
+    //         }
+    //     }
+
+    // }
+    // catch {
+    //     console.log('calling catch')
+    //     return {
+    //         notFound: true
+    //     }
+    // }
 }
 
 export default ProductsPage;
