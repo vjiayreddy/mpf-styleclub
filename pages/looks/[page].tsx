@@ -102,10 +102,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
     catch {
         return {
-            redirect: {
-                destination: '/',
-                permanent: false
-            }
+            notFound: true
         }
     }
 }
