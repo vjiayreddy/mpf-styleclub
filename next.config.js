@@ -3,6 +3,13 @@ module.exports = withPWA({
   webpack: (config) => {
     return config;
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  serverRuntimeConfig: {
+    mySecret: "secret",
+    secondSecret: process.env.NEXTAUTH_SECRET,
+  },
   reactStrictMode: false,
   images: {
     domains: [
