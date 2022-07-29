@@ -60,7 +60,7 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     h3: {
-      fontSize: 64,
+      fontSize: 60,
       lineHeight: "120%",
       fontWeight: 600,
       letterSpacing: "-3%",
@@ -177,7 +177,47 @@ const theme = createTheme({
     BASE_YELLOW: APP_COLORS.BASE_YELLOW,
   },
   components: {
-    MuiButton: OverrideMuiButton(muiTheme),
+    MuiButton: {
+      defaultProps: {
+        size: "medium",
+        color: "primary",
+        variant: "contained",
+        disableElevation: true,
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+          letterSpacing: 2,
+          minHeight: 46,
+        },
+        containedSecondary: {
+          backgroundColor: APP_COLORS.SECONDARY_COLOR,
+        },
+        sizeSmall: {
+          textTransform: "none",
+          borderRadius: 0,
+          height: 30,
+        },
+        sizeMedium: {
+          height: 40,
+          minWidth: 100,
+          fontSize: 13,
+          lineHeight: "9px",
+          color: muiTheme.palette.common.white,
+          fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+          textTransform: "none",
+        },
+        textSizeSmall: {
+          fontSize: 16,
+          fontWeight: 600,
+          padding: 0,
+          minWidth: 0,
+        },
+        iconSizeSmall: {
+          width: 16,
+        },
+      },
+    },
     MuiAppBar: OverrideMuiAppbar(muiTheme),
     MuiTab: {
       styleOverrides: {

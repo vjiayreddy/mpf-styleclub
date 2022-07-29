@@ -37,7 +37,7 @@ const AppNavbarComponent = () => {
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Container disableGutters maxWidth="lg">
+        <Container  maxWidth="xl">
           <ToolBar disableGutters>
             <StyledAppbarLogoBox>
               <LogoComponent />
