@@ -29,15 +29,13 @@ const AppNavbarComponent = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const cartItems = useReactiveVar(cartItemsVar);
-
-  console.log(cartItems)
   return (
     <Fragment>
       <AppBar
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Container  maxWidth="xl">
+        <Container maxWidth="xl">
           <ToolBar disableGutters>
             <StyledAppbarLogoBox>
               <LogoComponent />
