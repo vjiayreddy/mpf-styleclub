@@ -1,7 +1,11 @@
 import React from "react";
 import HeroBanner from "../../src/components/UiLibrary/Banners/HeroBanner";
+import LeftImageContentCard from "../../src/components/UiLibrary/Cards/LeftImageContentCard";
 import OfferCard from "../../src/components/UiLibrary/Cards/OfferCard";
+import RightImageContentCard from "../../src/components/UiLibrary/Cards/RigghtImageContent";
 import ProductService from "../../src/components/UiLibrary/Services/ProductService";
+
+
 
 
 
@@ -20,6 +24,10 @@ const Home = () => {
             />
             <ProductService />
             <OfferCard />
+            <LeftImageContentCard />
+            <RightImageContentCard />
+            <LeftImageContentCard />
+            <RightImageContentCard />
         </>
     );
 };
