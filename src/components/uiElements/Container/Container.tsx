@@ -10,7 +10,7 @@ interface ContainerComponentProps {
 
 const ContainerComponent: React.FC<ContainerComponentProps> = ({
   children,
-  width = "lg",
+  width = "xl",
   ...props
 }) => {
   return (

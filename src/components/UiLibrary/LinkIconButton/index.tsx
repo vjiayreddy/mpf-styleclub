@@ -18,6 +18,7 @@ export interface LinkIconButtonProps {
     onClick: () => void;
     btnColor?: colors;
     btnSx?: SxProps;
+    shoIcon?: boolean
 }
 
 const LinkIconButton: React.FC<LinkIconButtonProps> = ({
@@ -26,6 +27,7 @@ const LinkIconButton: React.FC<LinkIconButtonProps> = ({
     onClick,
     btnColor,
     btnSx,
+    shoIcon = true
 }) => {
     return (
         <Button
@@ -35,7 +37,7 @@ const LinkIconButton: React.FC<LinkIconButtonProps> = ({
             size="small"
             variant="text"
             color={btnColor}
-            endIcon={<ArrowForwardIcon />}
+            endIcon={shoIcon ? <ArrowForwardIcon /> : null}
         >
             {label}
         </Button>

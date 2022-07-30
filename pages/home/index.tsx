@@ -1,5 +1,9 @@
 import React from "react";
 import HeroBanner from "../../src/components/UiLibrary/Banners/HeroBanner";
+import OfferCard from "../../src/components/UiLibrary/Cards/OfferCard";
+import ProductService from "../../src/components/UiLibrary/Services/ProductService";
+
+
 
 const Home = () => {
     return (
@@ -14,6 +18,8 @@ const Home = () => {
                 bannerSecondaryTitle="Shop"
                 bannerBtnLbl="SHOP NOW"
             />
+            <ProductService />
+            <OfferCard />
         </>
     );
 };

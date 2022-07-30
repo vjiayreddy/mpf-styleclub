@@ -72,49 +72,49 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     h5: {
-      fontSize: 32,
+      fontSize: 42,
       lineHeight: "120%",
       fontWeight: 600,
       letterSpacing: "-3%",
     },
     h6: {
-      fontSize: 26,
+      fontSize: 24,
       lineHeight: "120%",
       fontWeight: 600,
       letterSpacing: "-3%",
     },
     subtitle1: {
-      fontSize: 32,
+      fontSize: 20,
       lineHeight: "160%",
-      fontWeight: 400,
+      fontWeight: 600,
       letterSpacing: "-3%",
     },
     subtitle2: {
-      fontSize: 26,
+      fontSize: 18,
       lineHeight: "160%",
       fontWeight: 400,
       letterSpacing: "-3%",
     },
     body1: {
-      fontSize: 21,
+      fontSize: 16,
       lineHeight: "160%",
       fontWeight: 400,
       letterSpacing: "-3%",
     },
     body2: {
-      fontSize: 18,
+      fontSize: 14,
       lineHeight: "100%",
       fontWeight: 400,
       letterSpacing: "-3%",
     },
     overline: {
-      fontSize: 18,
+      fontSize: 12,
       lineHeight: "100%",
       fontWeight: 400,
       letterSpacing: "-3%",
     },
     caption: {
-      fontSize: 12,
+      fontSize: 10,
       lineHeight: "100%",
       fontWeight: 400,
       letterSpacing: "-3%",
@@ -187,10 +187,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 0,
-          letterSpacing: 2,
           minHeight: 46,
         },
         containedSecondary: {
+          letterSpacing: 2,
           backgroundColor: APP_COLORS.SECONDARY_COLOR,
         },
         sizeSmall: {
