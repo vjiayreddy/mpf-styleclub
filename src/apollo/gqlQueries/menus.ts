@@ -4,6 +4,7 @@ export const GET_ALL_OCCASIONS = gql`
     getAllOccasions {
       _id
       name
+      label
     }
   }
 `;

@@ -9,7 +9,13 @@ import MenuList from "@mui/material/MenuList";
 
 import OccasionsMenu from "./OccasionsMenu";
 
-const TabMenus = () => {
+
+interface TabMenusProps {
+  navMenus?: any[];
+}
+
+
+const TabMenus: React.FC<TabMenusProps> = ({ navMenus }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [tabIndex, setTabIndex] = useState<string | boolean>(false);
@@ -48,6 +54,11 @@ const TabMenus = () => {
     prevOpen.current = open;
   }, [open]);
 
+
+
+
+
+
   return (
     <>
       <StyledTabsList
@@ -71,7 +82,7 @@ const TabMenus = () => {
         <StyledTab value="3" label="StyleClub" />
       </StyledTabsList>
 
-      <OccasionsMenu open={open} handleClose={handleClose} anchorEl={anchorRef.current} onKeyDown={handleListKeyDown} />
+      <OccasionsMenu menus={navMenus} open={open} handleClose={handleClose} anchorEl={anchorRef.current} onKeyDown={handleListKeyDown} />
 
 
     </>

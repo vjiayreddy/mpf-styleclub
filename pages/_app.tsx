@@ -40,7 +40,7 @@ function MyApp(props) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <ApolloProvider client={apolloClient}>
-            <ApplayoutComponent>
+            <ApplayoutComponent navMenus={props.navMenu}>
               <Component {...appProps} />
             </ApplayoutComponent>
           </ApolloProvider>
@@ -58,16 +58,12 @@ MyApp.getInitialProps = async (context) => {
       query: GET_ALL_OCCASIONS
     })
     return {
-      props: {
-        menus: data?.getAllOccasions ? data?.getAllOccasions : []
-      }
+      navMenu: data?.getAllOccasions ? data?.getAllOccasions : []
     }
   }
   catch (error) {
     return {
-      props: {
-        menus: []
-      }
+      navMenu: []
     }
   }
 }

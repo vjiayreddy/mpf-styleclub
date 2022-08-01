@@ -1,19 +1,21 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import AppNavbarComponent from "../uiElements/AppNavBar/Appbar";
 import { RenderMainContent } from "./styled";
-interface appLayoutProps {
+interface DefaultLayoutProps {
   children?: React.ReactNode;
+  navMenus?: any[];
 }
 
-const DefaultLayoutComponent: React.FunctionComponent<appLayoutProps> = ({
+const DefaultLayout: React.FunctionComponent<DefaultLayoutProps> = ({
   children,
+  navMenus
 }) => {
   return (
     <Fragment>
-      <AppNavbarComponent />
+      <AppNavbarComponent navMenus={navMenus} />
       <RenderMainContent>{children}</RenderMainContent>
     </Fragment>
   );
 };
 
-export default DefaultLayoutComponent;
+export default DefaultLayout;

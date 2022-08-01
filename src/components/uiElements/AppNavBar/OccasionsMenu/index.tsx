@@ -16,6 +16,7 @@ interface OccasionsMenuProps {
   open: boolean;
   handleClose: (event: Event | React.SyntheticEvent) => void;
   onKeyDown?: React.KeyboardEventHandler<HTMLUListElement>;
+  menus: any[]
 }
 
 const StyledMenuPaper = styled(Paper)(() => ({
@@ -43,6 +44,7 @@ const OccasionsMenu: React.FC<OccasionsMenuProps> = ({
   open,
   handleClose,
   onKeyDown,
+  menus
 }) => {
   return (
     <Popper
@@ -70,35 +72,40 @@ const OccasionsMenu: React.FC<OccasionsMenuProps> = ({
                 onKeyDown={onKeyDown}
               >
                 <Grid container spacing={3}>
-                  <Grid item md={4}>
-                    <StyledMenuListHeader variant="body2" component="p">Western Ware</StyledMenuListHeader>
-                    {westernWare.map((menu, index) => (
-                      <StyledMenuItem key={index} onClick={handleClose}>
-                        {menu}
-                      </StyledMenuItem>
-                    ))}
-                  </Grid>
-                  <Grid item md={4}>
-                    <StyledMenuListHeader variant="body2" component="p">Ethnic Ware</StyledMenuListHeader>
+                  {menus.length > 0 ? <>
+                    <Grid item md={4}>
+                      <StyledMenuListHeader variant="body2" component="p">Western Ware</StyledMenuListHeader>
+                      {menus.map((menu) => (
+                        <StyledMenuItem key={menu._id} onClick={handleClose}>
+                          {menu.label}
+                        </StyledMenuItem>
+                      ))}
+                    </Grid>
+                    <Grid item md={4}>
+                      <StyledMenuListHeader variant="body2" component="p">Ethnic Ware</StyledMenuListHeader>
 
-                    {ethnicWare.map((menu, index) => (
-                      <StyledMenuItem key={index} onClick={handleClose}>
-                        {menu}
-                      </StyledMenuItem>
-                    ))}
+                      {ethnicWare.map((menu, index) => (
+                        <StyledMenuItem key={index} onClick={handleClose}>
+                          {menu}
+                        </StyledMenuItem>
+                      ))}
 
-                  </Grid>
-                  <Grid item md={4}>
-                    <Image
-                      placeholder="blur"
-                      blurDataURL="/assets/images/portrait_banner.webp"
-                      loading="lazy"
-                      alt="styleclub-fashion"
-                      width={200}
-                      height={200}
-                      src="/assets/images/portrait_banner.webp"
-                    />
-                  </Grid>
+                    </Grid>
+                    <Grid item md={4}>
+                      <Image
+                        placeholder="blur"
+                        blurDataURL="/assets/images/portrait_banner.webp"
+                        loading="lazy"
+                        alt="styleclub-fashion"
+                        width={200}
+                        height={200}
+                        src="/assets/images/portrait_banner.webp"
+                      />
+                    </Grid>
+                  </> : <Grid item xs={12}>
+                    No Menu Data
+                  </Grid>}
+
                 </Grid>
               </MenuList>
             </ClickAwayListener>

@@ -35,11 +35,11 @@ import Button from "../Buttons/Button";
 import TabMenusComponent from "./TabMenus";
 
 interface AppNavbarComponentProps {
-  menus?: any[]
+  navMenus?: any[]
 }
 
 
-const AppNavbarComponent: React.FC<AppNavbarComponentProps> = ({ }) => {
+const AppNavbarComponent: React.FC<AppNavbarComponentProps> = ({ navMenus }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
   const { data: session } = useSession();
@@ -94,7 +94,7 @@ const AppNavbarComponent: React.FC<AppNavbarComponentProps> = ({ }) => {
               <LogoComponent />
             </StyledAppbarLogoBox>
             <StyledAppbarTabsBox>
-              <TabMenusComponent />
+              <TabMenusComponent navMenus={navMenus} />
             </StyledAppbarTabsBox>
           </ToolBar>
         </Container>
