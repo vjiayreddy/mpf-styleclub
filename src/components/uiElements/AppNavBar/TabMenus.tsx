@@ -1,29 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { StyledTabsList, StyledTab } from "./styled";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import Tab from "@mui/material/Tab";
-import Popper from "@mui/material/Popper";
-import MenuItem from "@mui/material/MenuItem";
-import MenuList from "@mui/material/MenuList";
-
 import OccasionsMenu from "./OccasionsMenu";
-
-
 interface TabMenusProps {
   navMenus?: any[];
 }
-
-
 const TabMenus: React.FC<TabMenusProps> = ({ navMenus }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [tabIndex, setTabIndex] = useState<string | boolean>(false);
-
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
-
   const handleClose = (event: Event | React.SyntheticEvent) => {
     if (
       anchorRef.current &&
@@ -31,7 +18,6 @@ const TabMenus: React.FC<TabMenusProps> = ({ navMenus }) => {
     ) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -43,27 +29,18 @@ const TabMenus: React.FC<TabMenusProps> = ({ navMenus }) => {
       setOpen(false);
     }
   }
-
-  // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();
     }
-
     prevOpen.current = open;
   }, [open]);
-
-
-
-
-
-
   return (
     <>
       <StyledTabsList
         value={tabIndex}
-        onChange={(event: React.SyntheticEvent, newValue: string) => {
+        onChange={(_event: React.SyntheticEvent, newValue: string) => {
           setTabIndex(newValue);
         }}
         aria-label="main-menu-navigation"
@@ -81,10 +58,13 @@ const TabMenus: React.FC<TabMenusProps> = ({ navMenus }) => {
         <StyledTab value="2" label="Accessories" />
         <StyledTab value="3" label="StyleClub" />
       </StyledTabsList>
-
-      <OccasionsMenu menus={navMenus} open={open} handleClose={handleClose} anchorEl={anchorRef.current} onKeyDown={handleListKeyDown} />
-
-
+      <OccasionsMenu
+        menus={navMenus}
+        open={open}
+        handleClose={handleClose}
+        anchorEl={anchorRef.current}
+        onKeyDown={handleListKeyDown}
+      />
     </>
   );
 };
