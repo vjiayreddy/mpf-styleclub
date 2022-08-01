@@ -1,4 +1,5 @@
 import React from "react";
+import { NextPage } from "next";
 import HeroBanner from "../../src/components/UiLibrary/Banners/HeroBanner";
 import LeftImageContentCard from "../../src/components/UiLibrary/Cards/LeftImageContentCard";
 import OfferCard from "../../src/components/UiLibrary/Cards/OfferCard";
@@ -9,7 +10,7 @@ import ProductService from "../../src/components/UiLibrary/Services/ProductServi
 
 
 
-const Home = () => {
+const Home: NextPage = () => {
     return (
         <>
             <HeroBanner
@@ -31,5 +32,9 @@ const Home = () => {
         </>
     );
 };
+
+
+
+
 
 export default Home;

@@ -57,7 +57,7 @@ const ProductsPage = (props) => {
 
 
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async (ctx) => {
 
     try {
         const { data } = await apolloClient.query({

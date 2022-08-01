@@ -34,7 +34,12 @@ import MuiButton from "@mui/material/Button";
 import Button from "../Buttons/Button";
 import TabMenusComponent from "./TabMenus";
 
-const AppNavbarComponent = () => {
+interface AppNavbarComponentProps {
+  menus?: any[]
+}
+
+
+const AppNavbarComponent: React.FC<AppNavbarComponentProps> = ({ }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
   const { data: session } = useSession();
@@ -77,9 +82,6 @@ const AppNavbarComponent = () => {
   }, [open]);
 
 
-
-
-
   return (
     <Fragment>
       <AppBar
@@ -94,119 +96,9 @@ const AppNavbarComponent = () => {
             <StyledAppbarTabsBox>
               <TabMenusComponent />
             </StyledAppbarTabsBox>
-
-
-
-            {/* <MuiButton
-              ref={anchorRef}
-              id="composition-button"
-              aria-controls={open ? 'composition-menu' : undefined}
-              aria-expanded={open ? 'true' : undefined}
-              aria-haspopup="true"
-              onClick={handleToggle}
-            >
-              Dashboard
-            </MuiButton> */}
-
-            {/* <StyledAppbarIconsBox>
-              <Box>
-                <TooltipComponent
-                  title="search"
-                  component={
-                    <IconButton>
-                      <SearchIcon color="secondary" />
-                    </IconButton>
-                  }
-                />
-              </Box>
-              <Box>
-                <TooltipComponent
-                  title="dail"
-                  component={
-                    <IconButton>
-                      <CallIcon color="secondary" />
-                    </IconButton>
-                  }
-                />
-              </Box>
-              <Box>
-                <TooltipComponent
-                  title="cart"
-                  component={
-                    <IconButton>
-                      <ShoppingCartIcon color="secondary" />
-                    </IconButton>
-                  }
-                />
-              </Box>
-            </StyledAppbarIconsBox>
-            <StyledAppbarActionBox>
-              <Box>
-                {session ? (
-                  <Button
-                    title="Logout"
-                    color="secondary"
-                    onClick={() =>
-                      signOut({
-                        redirect: true,
-                        callbackUrl: "/",
-                      })
-                    }
-                    id="btn-signin-signup"
-                  />
-                ) : (
-                  <Button
-                    title="SIGN IN/SING UP"
-                    onClick={() => {
-                      router.push(ROUTES.LOGIN);
-                    }}
-                    id="btn-signin-signup"
-                  />
-                )}
-              </Box>
-            </StyledAppbarActionBox>
-            {cartItems && <Box>
-              {cartItems}
-            </Box>} */}
-
           </ToolBar>
         </Container>
       </AppBar>
-
-
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        placement="bottom-start"
-        transition
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom-start' ? 'left top' : 'left bottom',
-            }}
-          >
-            <StyledMenuPaper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="composition-menu"
-                  aria-labelledby="composition-button"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </StyledMenuPaper>
-          </Grow>
-        )}
-      </Popper>
-
     </Fragment>
   );
 };

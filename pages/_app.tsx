@@ -1,5 +1,3 @@
-import { ApolloProvider } from "@apollo/client";
-import apolloClient from "../src/apollo/config";
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,7 +10,15 @@ import useNetworkStatus from "../src/utils/useNetworkStatus";
 import { SessionProvider } from "next-auth/react";
 import ApplayoutComponent from "../src/components/Layouts/DefaultLayout";
 
+// Apollo
+import apolloClient from "../src/apollo/config";
+import { ApolloProvider } from "@apollo/client";
+import { GET_ALL_OCCASIONS } from "../src/apollo/gqlQueries/menus";
+
+
+
 function MyApp(props) {
+  console.log(props);
   const { networkStatus } = useNetworkStatus();
   const {
     Component,
@@ -42,6 +48,28 @@ function MyApp(props) {
       </CacheProvider>
     </SessionProvider>
   );
+}
+
+
+
+export async function getServerSideProps(context) {
+  try {
+    const { data } = await apolloClient.query({
+      query: GET_ALL_OCCASIONS
+    })
+    return {
+      props: {
+        menus: data?.getAllOccasions ? data?.getAllOccasions : []
+      }
+    }
+  }
+  catch (error) {
+    return {
+      props: {
+        menus: []
+      }
+    }
+  }
 }
 
 export default MyApp;
