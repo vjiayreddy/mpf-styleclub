@@ -1,5 +1,7 @@
+import React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 
@@ -10,7 +12,9 @@ const StyledAppbarLogoBox = styled(Box)(({ theme }) => ({
 }));
 const StyledAppbarTabsBox = styled(Box)(({ theme }) => ({
   flexGrow: 1,
-  color: "gray",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 const StyledAppbarIconsBox = styled(Box)(() => ({
   display: "flex",
@@ -31,13 +35,15 @@ const StyledTabsList = styled(Tabs)(({ theme }) => ({
     display: "none",
   },
 }));
-const StyledTab = styled(Tab)(({}) => ({
+const StyledTab = styled(Tab)<{ ref?: React.Ref<HTMLDivElement> }>(() => ({
   minHeight: 62,
 }));
 
 const StyledDialogBoxContent = styled(Box)(({ theme }) => ({
   padding: 20,
 }));
+
+const StyledMenuPaper = styled(Paper)(() => ({}));
 
 export {
   StyledAppbarLogoBox,
@@ -47,4 +53,5 @@ export {
   StyledTabsList,
   StyledTab,
   StyledDialogBoxContent,
+  StyledMenuPaper,
 };
