@@ -52,7 +52,7 @@ function MyApp(props) {
 
 
 
-export async function getServerSideProps(context) {
+MyApp.getInitialProps = async (context) => {
   try {
     const { data } = await apolloClient.query({
       query: GET_ALL_OCCASIONS
