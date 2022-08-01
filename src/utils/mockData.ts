@@ -114,3 +114,17 @@ export const productCategories = [
       "https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_210,c_limit,fl_progressive/assets/images/2275365/2019/9/10/4f24f563-c764-4f27-9fc5-9ad3dcf167621568108715062-Roadster-Men-White-Solid-Round-Neck-T-shirt-1641568108713591-1.jpg",
   },
 ];
+
+export const westernWare: string[] = [
+  "Formal Ware",
+  "Semi Formal Ware",
+  "Party ware",
+  "Casual Ware",
+];
+export const ethnicWare: string[] = [
+  "Wedding Ware",
+  "Festival Ware",
+  "Engagement Ware",
+  "Sangeet Ware",
+  "Haldi Ware",
+];

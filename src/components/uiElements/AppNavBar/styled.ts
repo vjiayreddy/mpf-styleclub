@@ -43,7 +43,9 @@ const StyledDialogBoxContent = styled(Box)(({ theme }) => ({
   padding: 20,
 }));
 
-const StyledMenuPaper = styled(Paper)(() => ({}));
+const StyledMenuPaper = styled(Paper)((theme) => ({
+  width:"70%"
+}));
 
 export {
   StyledAppbarLogoBox,
