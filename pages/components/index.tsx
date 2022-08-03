@@ -13,7 +13,7 @@ import StreamlineCard from "../../src/components/UiLibrary/Cards/StreamlineCard"
 import RewardCard from "../../src/components/UiLibrary/Cards/RewardCard";
 import ContentSlider from "../../src/components/UiLibrary/ContentSlider";
 import sliderData from '../../src/utils/sliderData.json';
-
+import LoadingButton from "../../src/components/UiLibrary/LoadingButton";
 
 const StyledBox = styled(Box)(() => ({
   margin: '0 auto',
@@ -25,6 +25,7 @@ const ProductsPage = (props: { sliderData }) => {
   return (
     <ContainerComponent>
       <Box p={10}>
+        <LoadingButton loading={true} color="secondary" id="loading-button" label="Loading" />
         <TitleWithSubtile title="Streamline your design process." subTitle={`Cupcake danish tiramisu powder soda ginger cake. Dessert carrot cake tartsweet marzipan for fruitcake.`} />
       </Box>
       <StyledBox>

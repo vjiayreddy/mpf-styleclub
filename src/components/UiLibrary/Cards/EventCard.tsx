@@ -35,6 +35,9 @@ const EventCard = () => {
                     <Grid container alignItems="center" justifyContent="center" md={4}>
                         <Grid item xs={12}>
                             <Image
+                                loading="lazy"
+                                placeholder="blur"
+                                blurDataURL="/assets/images/event-1.webp"
                                 width={500}
                                 height={600}
                                 src="/assets/images/event-1.webp"
@@ -64,6 +67,9 @@ const EventCard = () => {
                     </Grid>
                     <Grid container alignItems="center" justifyContent="center" md={4}>
                         <Image
+                            loading="lazy"
+                            placeholder="blur"
+                            blurDataURL="/assets/images/event-2.webp"
                             width={500}
                             height={600}
                             src="/assets/images/event-2.webp"
