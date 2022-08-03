@@ -30,6 +30,9 @@ function MyApp(props) {
     ...pageProps,
     networkStatus,
   };
+
+  
+
   return (
     <SessionProvider session={session}>
       <CacheProvider value={emotionCache}>

@@ -5,6 +5,8 @@ import LeftImageContentCard from "../../src/components/UiLibrary/Cards/LeftImage
 import OfferCard from "../../src/components/UiLibrary/Cards/OfferCard";
 import RightImageContentCard from "../../src/components/UiLibrary/Cards/RigghtImageContent";
 import ProductService from "../../src/components/UiLibrary/Services/ProductService";
+import EventCard from "../../src/components/UiLibrary/Cards/EventCard";
+
 
 
 
@@ -29,6 +31,7 @@ const Home: NextPage = () => {
             <RightImageContentCard />
             <LeftImageContentCard />
             <RightImageContentCard />
+            <EventCard />
         </>
     );
 };
