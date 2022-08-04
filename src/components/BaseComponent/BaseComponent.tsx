@@ -23,7 +23,7 @@ const BaseComponent: React.FC<BaseComponentProps> = ({ theme }) => {
       <link rel="preload" href="/fonts/Inter-SemiBold.ttf" as="font" crossOrigin="anonymous" />
       <link rel="preload" href="/fonts/Inter-Regular.ttf" as="font" crossOrigin="anonymous" />
       <link rel="preload" href="/fonts/slick.woff" as="font" crossOrigin="anonymous" />
-      {/* <link
+      <link
         rel="stylesheet"
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
@@ -32,7 +32,7 @@ const BaseComponent: React.FC<BaseComponentProps> = ({ theme }) => {
         rel="stylesheet"
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-      /> */}
+      />
     </>
   );
 };

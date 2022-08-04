@@ -1,61 +1,74 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import { Typography } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import Image from "next/image";
 
-const drawerWidth = 335;
+const StyledProfileName = styled(Typography)<{ component: any }>(
+  ({ theme }) => ({
+    color: theme.palette.common.white,
+    fontWeight: 400,
+  })
+);
+
+const StyledSpan = styled("span")(({ theme }) => ({
+  color: theme.palette.primary.main,
+}));
+
+const StyledProfileBanner = styled(Box)(({ theme }) => ({
+  height: 450,
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+}));
+const StyledProfileBannerContent = styled(Box)(({ theme }) => ({
+  flex: 4,
+  backgroundColor: theme.palette.secondary.main,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
 
 const Personalizations = () => {
   return (
-    <Box sx={{ display: "flex" }}>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Typography>Styleclub</Typography>
-      </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-      >
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </Box>
+    <Box>
+      <StyledProfileBanner>
+        <StyledProfileBannerContent>
+          <Grid
+            container
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Grid item>
+              <Image
+                alt="user-profile-avatar"
+                blurDataURL="/assets/clients/2.jpg"
+                placeholder="blur"
+                width={120}
+                style={{ borderRadius: 100 }}
+                height={120}
+                src="/assets/clients/2.jpg"
+              />
+            </Grid>
+            <Grid item>
+              <Box p={3}>
+                <StyledProfileName
+                  textAlign="center"
+                  variant="h5"
+                  component="h6"
+                >
+                  <StyledSpan>Firoz</StyledSpan> Calvin.
+                </StyledProfileName>
+                <Typography textAlign="center" variant="body1" component="p">
+                  Style Club Member
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </StyledProfileBannerContent>
+      </StyledProfileBanner>
     </Box>
   );
 };

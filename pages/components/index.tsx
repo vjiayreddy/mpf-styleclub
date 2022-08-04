@@ -25,6 +25,7 @@ const ProductsPage = (props: { sliderData }) => {
   return (
     <ContainerComponent>
       <Box p={10}>
+        <ContentSlider data={sliderData} />
         <LoadingButton loading={true} color="secondary" id="loading-button" label="Loading" />
         <TitleWithSubtile title="Streamline your design process." subTitle={`Cupcake danish tiramisu powder soda ginger cake. Dessert carrot cake tartsweet marzipan for fruitcake.`} />
       </Box>

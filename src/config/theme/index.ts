@@ -1,3 +1,4 @@
+import { border } from "./../../../node_modules/@mui/system/index.d";
 import { createTheme } from "@mui/material";
 import { OverrideMuiButton } from "./button";
 import { OverrideMuiAppbar } from "./appbar";
@@ -78,13 +79,13 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     h6: {
-      fontSize: 24,
+      fontSize: 32,
       lineHeight: "120%",
       fontWeight: 600,
       letterSpacing: "-3%",
     },
     subtitle1: {
-      fontSize: 20,
+      fontSize: 28,
       lineHeight: "160%",
       fontWeight: 600,
       letterSpacing: "-3%",
@@ -299,6 +300,36 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "transparent",
+        },
+      },
+    },
+    MuiAccordion: {
+      defaultProps: {
+        elevation: 0,
+        square: true,
+        disableGutters: true,
+      },
+      styleOverrides: {
+        root: {
+          padding: 0,
+          ":before": {
+            backgroundColor: "transparent",
+          },
+        },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          borderBottom: `1px solid ${muiTheme.palette.grey[300]}`,
+          padding: 0,
+        },
+      },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          padding: 0,
         },
       },
     },
