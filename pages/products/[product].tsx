@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ContainerComponent from "../../src/components/uiElements/Container/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { NextRouter, useRouter } from "next/router";
 import { styled } from "@mui/material/styles";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
@@ -9,7 +10,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
 import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
-import { GetStaticProps, GetStaticPropsContext } from "next";
+import { GetServerSideProps, GetStaticProps, GetStaticPropsContext } from "next";
 import apolloClient from "../../src/apollo/config";
 import { GET_PRODUCTS_BY_FILTER } from "../../src/apollo/gqlQueries/products";
 import {
@@ -36,7 +37,13 @@ const StyledProductGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const ProductsPage = (props: any) => {
-  const { products } = props;
+  const { products } = props.initialData;
+  const router: NextRouter = useRouter();
+
+  useEffect(() => {
+    console.log(router);
+  }, [router]);
+
   return (
     <ContainerComponent>
       <StyledMainBox>
@@ -65,7 +72,11 @@ const ProductsPage = (props: any) => {
               <Box p={3}>
                 <Pagination
                   count={10}
+                  page={1}
                   color="secondary"
+                  onChange={(_, page: number) => {
+
+                  }}
                   renderItem={(item) => (
                     <PaginationItem
                       components={{
@@ -85,9 +96,9 @@ const ProductsPage = (props: any) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
-) => {
+
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const client = apolloClient;
   try {
     const { data, error } = await client.query<
@@ -117,8 +128,12 @@ export const getStaticProps: GetStaticProps = async (
     }
     return {
       props: {
-        products: data.productsFilter.products as [Product],
-        totalProducts: data.productsFilter.totalItemCount,
+        initialData: {
+          products: data.productsFilter.products as [Product],
+          totalProducts: data.productsFilter.totalItemCount,
+          page: 1,
+          limit: 25,
+        },
       },
     };
   } catch (error) {
@@ -127,5 +142,8 @@ export const getStaticProps: GetStaticProps = async (
     };
   }
 };
+
+
+
 
 export default ProductsPage;
