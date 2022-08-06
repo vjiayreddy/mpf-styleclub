@@ -8,11 +8,15 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Typography from "@mui/material/Typography";
+import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
+import { GetStaticProps, GetStaticPropsContext } from "next";
+import apolloClient from "../../src/apollo/config";
+import { GET_PRODUCTS_BY_FILTER } from "../../src/apollo/gqlQueries/products";
+import {
+  ProductFilterResponse,
+  ProductFilterVariables,
+  Product,
+} from "../../src/apollo/interfaces";
 
 const StyledMainBox = styled(Box)(() => ({
   display: "flex",
@@ -31,89 +35,14 @@ const StyledProductGrid = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(4),
 }));
 
-const StyledSummaryLabel = styled(Typography)<{ component: any }>(
-  ({ theme }) => ({
-    fontWeight: 700,
-  })
-);
-const ProductsPage = () => {
+const ProductsPage = (props: any) => {
+  const { products } = props;
   return (
     <ContainerComponent>
       <StyledMainBox>
         <StyledGridContainer container>
           <StyledSideFilterBox item md={3}>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <StyledSummaryLabel variant="subtitle2" component="p">
-                  Fabric
-                </StyledSummaryLabel>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <StyledSummaryLabel variant="subtitle2" component="p">
-                  Fabric
-                </StyledSummaryLabel>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel3a-content"
-                id="panel3a-header"
-              >
-                <StyledSummaryLabel variant="subtitle2" component="p">
-                  Patterns
-                </StyledSummaryLabel>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel4a-content"
-                id="panel4a-header"
-              >
-                <StyledSummaryLabel variant="subtitle2" component="p">
-                  Fabric
-                </StyledSummaryLabel>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
+            <SideFilterAccordion title="Fabric" component={<div>Fabric</div>} />
           </StyledSideFilterBox>
           <StyledProductGrid direction="column" container item md={9}>
             <Grid
@@ -122,11 +51,15 @@ const ProductsPage = () => {
               container
               spacing={2}
             >
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18].map((item, index) => (
-                <Grid key={index} item md={3}>
-                  <ProductCard />
-                </Grid>
-              ))}
+              {products && (
+                <>
+                  {products.map((item, index) => (
+                    <Grid key={index} item md={3}>
+                      <ProductCard imgUrl={item.images[0]} title={item.title} />
+                    </Grid>
+                  ))}
+                </>
+              )}
             </Grid>
             <Grid item container alignItems="center" justifyContent="center">
               <Box p={3}>
@@ -150,6 +83,49 @@ const ProductsPage = () => {
       </StyledMainBox>
     </ContainerComponent>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
+  const client = apolloClient;
+  try {
+    const { data, error } = await client.query<
+      ProductFilterResponse,
+      ProductFilterVariables
+    >({
+      query: GET_PRODUCTS_BY_FILTER,
+      variables: {
+        limit: 25,
+        page: 1,
+        params: {
+          filter: {
+            endPrice: 4499,
+            startPrice: 2000,
+          },
+          occasionId: "5fc2677bfa7ff20df01ab8ce",
+          catIds: ["5da7220571762c2a58b27a65"],
+          sortBy: "popularity",
+        },
+      },
+    });
+
+    if (!data && error) {
+      return {
+        notFound: true,
+      };
+    }
+    return {
+      props: {
+        products: data.productsFilter.products as [Product],
+        totalProducts: data.productsFilter.totalItemCount,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export default ProductsPage;

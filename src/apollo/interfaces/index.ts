@@ -6,3 +6,38 @@ export interface lead {
   lastName: string;
   countryCode: string;
 }
+
+export type sideFilterType = {
+  colorIds?: [string];
+  endPrice?: number;
+  fabricIds?: [string];
+  occasionIds?: [string];
+  patternIds?: [string];
+  startPrice?: number;
+  typeIds?: [string];
+};
+export interface ProductFilterVariables {
+  limit: number;
+  page: number;
+  params: {
+    filter?: sideFilterType;
+    catIds: [string];
+    occasionId: string;
+    isAccessory?: boolean;
+    searchTerm?: string;
+    sortBy?: any;
+  };
+}
+
+export type Product = {
+  _id: string;
+  name: string;
+  title: string;
+  images: [string];
+};
+export interface ProductFilterResponse {
+  productsFilter: {
+    products: [Product];
+    totalItemCount: number;
+  };
+}

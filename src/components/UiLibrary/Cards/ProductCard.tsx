@@ -1,17 +1,29 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
 import Image from "next/image";
 
-const ProductCard = () => {
+interface ProductCardProps {
+  imgUrl: string;
+  title: string;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ imgUrl, title }) => {
   return (
     <Box>
       <Image
-        src="/assets/clients/1.jpg"
+        src={imgUrl}
         width={200}
         height={250}
         placeholder="blur"
-        blurDataURL="/assets/clients/1.jpg"
+        blurDataURL={imgUrl}
       />
+      <Box p={2}>
+        <Typography variant="body1" component="p">
+          {title}
+        </Typography>
+      </Box>
     </Box>
   );
 };
