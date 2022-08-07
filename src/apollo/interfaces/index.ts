@@ -16,17 +16,20 @@ export type sideFilterType = {
   startPrice?: number;
   typeIds?: [string];
 };
+
+export type productFilterParams = {
+  filter?: sideFilterType;
+  catIds?: [string];
+  occasionId?: string;
+  isAccessory?: boolean;
+  searchTerm?: string;
+  sortBy?: any;
+};
+
 export interface ProductFilterVariables {
   limit: number;
   page: number;
-  params: {
-    filter?: sideFilterType;
-    catIds: [string];
-    occasionId: string;
-    isAccessory?: boolean;
-    searchTerm?: string;
-    sortBy?: any;
-  };
+  params?: productFilterParams;
 }
 
 export type Product = {

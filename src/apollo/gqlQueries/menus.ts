@@ -5,6 +5,7 @@ export const GET_ALL_OCCASIONS = gql`
       _id
       name
       label
+      catIds
     }
   }
 `;
