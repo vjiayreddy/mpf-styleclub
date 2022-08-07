@@ -18,7 +18,6 @@ import { GET_ALL_OCCASIONS } from "../src/apollo/gqlQueries/menus";
 
 
 function MyApp(props) {
-  console.log(props);
   const { networkStatus } = useNetworkStatus();
   const {
     Component,
@@ -31,7 +30,7 @@ function MyApp(props) {
     networkStatus,
   };
 
-  
+
 
   return (
     <SessionProvider session={session}>

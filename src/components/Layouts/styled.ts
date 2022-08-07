@@ -6,7 +6,9 @@ interface RenderMainContentProps {
 
 export const RenderMainContent = styled("main")<RenderMainContentProps>(
   ({ theme, open }) => ({
-    flexGrow: 1,
+    display:'flex',
+    flexDirection:'column',
+    minHeight: `calc(100vh)`,
     paddingTop: 60,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
