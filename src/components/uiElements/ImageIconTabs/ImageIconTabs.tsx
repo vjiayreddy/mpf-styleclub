@@ -44,7 +44,7 @@ const ImageIconTabs: React.FC<ImageIconTabsProps> = ({ data }) => {
                     ? `3px solid ${theme.palette.primary.main}`
                     : "none",
               }}
-              alt={item.alt}
+              alt={item.name}
               iconHeight={70}
               iconWidth={60}
               image={item.image}

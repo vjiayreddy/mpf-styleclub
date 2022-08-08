@@ -8,14 +8,13 @@ import "../styles/globals.scss";
 const clientSideEmotionCache = createEmotionCache();
 import useNetworkStatus from "../src/utils/useNetworkStatus";
 import { SessionProvider } from "next-auth/react";
-import ApplayoutComponent from "../src/components/Layouts/DefaultLayout";
+import AppLayoutComponent from "../src/components/Layouts/DefaultLayout";
 
 // Apollo
 import apolloClient from "../src/apollo/config";
 import { ApolloProvider } from "@apollo/client";
-import { GET_ALL_OCCASIONS } from "../src/apollo/gqlQueries/menus";
-
-
+import { GET_ALL_OCCASIONS } from "../src/apollo/gqlQueries";
+import { useEffect } from "react";
 
 function MyApp(props) {
   const { networkStatus } = useNetworkStatus();
@@ -30,7 +29,13 @@ function MyApp(props) {
     networkStatus,
   };
 
-
+  useEffect(() => {
+    if (networkStatus === false) {
+      alert("Network offline");
+    } else if (networkStatus === true) {
+      alert("Network online");
+    }
+  }, [networkStatus]);
 
   return (
     <SessionProvider session={session}>
@@ -42,9 +47,9 @@ function MyApp(props) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <ApolloProvider client={apolloClient}>
-            <ApplayoutComponent navMenus={props.navMenu}>
+            <AppLayoutComponent navMenus={props.navMenu}>
               <Component {...appProps} />
-            </ApplayoutComponent>
+            </AppLayoutComponent>
           </ApolloProvider>
         </ThemeProvider>
       </CacheProvider>
@@ -52,22 +57,19 @@ function MyApp(props) {
   );
 }
 
-
-
 MyApp.getInitialProps = async (context) => {
   try {
     const { data } = await apolloClient.query({
-      query: GET_ALL_OCCASIONS
-    })
+      query: GET_ALL_OCCASIONS,
+    });
     return {
-      navMenu: data?.getAllOccasions ? data?.getAllOccasions : []
-    }
-  }
-  catch (error) {
+      navMenu: data?.getAllOccasions ? data?.getAllOccasions : [],
+    };
+  } catch (error) {
     return {
-      navMenu: []
-    }
+      navMenu: [],
+    };
   }
-}
+};
 
 export default MyApp;
