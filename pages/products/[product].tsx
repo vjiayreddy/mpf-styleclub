@@ -32,7 +32,6 @@ import {
   getOccasionCategoryIndex,
   getCategoryIdByParams,
 } from "../../src/services";
-import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
 
 const StyledMainBox = styled(Box)(() => ({
   display: "flex",
@@ -50,6 +49,10 @@ const StyledSideFilterBox = styled(Grid)(({ theme }) => ({
 const StyledProductGrid = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(4),
 }));
+
+// Component
+import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
+import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
 
 const ProductsPage = (props: any) => {
   const { products, sideFilters } = props.initialData;
@@ -93,7 +96,7 @@ const ProductsPage = (props: any) => {
                 container
                 spacing={2}
               >
-                {products && (
+                {products.length > 0 ? (
                   <>
                     {products.map((item, index) => (
                       <Grid key={index} item md={3}>
@@ -104,6 +107,13 @@ const ProductsPage = (props: any) => {
                       </Grid>
                     ))}
                   </>
+                ) : (
+                  <InfoCard
+                    btnName="Try Again"
+                    title="No Result Found"
+                    content={`We couldn't find what you searched for.Ty searching again.`}
+                    onClickBtn={() => {}}
+                  />
                 )}
               </Grid>
               <Grid item container alignItems="center" justifyContent="center">
