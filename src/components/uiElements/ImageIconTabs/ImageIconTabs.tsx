@@ -23,16 +23,18 @@ const StyledTab = styled(Tab)(({ theme }) => ({
 
 interface ImageIconTabsProps {
   data: any[];
+  tabIndex: number | boolean;
+  onTabChange: (e: React.SyntheticEvent, value: number) => void;
 }
 
-const ImageIconTabs: React.FC<ImageIconTabsProps> = ({ data }) => {
-  const [tabIndex, setTabIndex] = React.useState<boolean | number>(0);
+const ImageIconTabs: React.FC<ImageIconTabsProps> = ({
+  data,
+  tabIndex,
+  onTabChange,
+}) => {
   const theme = useTheme();
   return (
-    <StyledTabs
-      onChange={(e: React.SyntheticEvent, value: number) => setTabIndex(value)}
-      value={tabIndex}
-    >
+    <StyledTabs onChange={onTabChange} value={tabIndex}>
       {data.map((item, index) => (
         <StyledTab
           key={index}

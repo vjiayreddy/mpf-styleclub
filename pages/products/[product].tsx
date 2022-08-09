@@ -60,7 +60,19 @@ const ProductsPage = (props: any) => {
     <>
       {sideFilters && (
         <Box p={0}>
-          <ImageIconTabs data={sideFilters.categories} />
+          <ImageIconTabs
+            tabIndex={0}
+            onTabChange={(_, value) => {
+              router.push({
+                pathname: `${ROUTES.PRODUCTS}/${router.query.product}`,
+                query: {
+                  p: router.query.p,
+                  category: sideFilters.categories[value]?.name,
+                },
+              });
+            }}
+            data={sideFilters.categories}
+          />
         </Box>
       )}
       <ContainerComponent>
@@ -100,6 +112,7 @@ const ProductsPage = (props: any) => {
                         pathname: `${ROUTES.PRODUCTS}/${router.query.product}`,
                         query: {
                           p: page,
+                          category: router.query?.category,
                         },
                       });
                     }}
