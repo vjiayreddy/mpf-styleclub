@@ -76,7 +76,7 @@ const ProductsPage = (props: any) => {
                 },
               });
             }}
-            data={sideFilters.categories}
+            data={sideFilters?.categories || []}
           />
         </Box>
       )}
