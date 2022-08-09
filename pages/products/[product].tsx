@@ -22,15 +22,16 @@ import { ROUTES } from "../../src/routes/Routes";
 import {
   GET_PRODUCTS_BY_FILTER,
   GET_ALL_OCCASIONS,
+  GET_CATEGORY_CONFIG,
+  GET_OCCASION_CONFIG,
 } from "../../src/apollo/gqlQueries";
 import ServerError from "../../src/components/UiLibrary/Errors/ServerError";
 import {
   getOccasionIdByProductName,
   getOccasionFilters,
-  getOccasionCategoryIndex
+  getOccasionCategoryIndex,
+  getCategoryIdByParams,
 } from "../../src/services";
-import { GET_OCCASION_CONFIG } from "../../src/apollo/gqlQueries/products";
-import TabImageIconComponent from "../../src/components/uiElements/TabImageIcon/TabImageIcon";
 import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
 
 const StyledMainBox = styled(Box)(() => ({
@@ -62,12 +63,15 @@ const ProductsPage = (props: any) => {
       {sideFilters && (
         <Box p={0}>
           <ImageIconTabs
-            tabIndex={getOccasionCategoryIndex(sideFilters.categories, router.query?.category as string)}
+            tabIndex={getOccasionCategoryIndex(
+              sideFilters.categories,
+              router.query?.category as string
+            )}
             onTabChange={(_, value) => {
               router.push({
                 pathname: `${ROUTES.PRODUCTS}/${router.query.product}`,
                 query: {
-                  p: Number(router.query.p) | 1,
+                  p: 1,
                   category: sideFilters.categories[value]?.name,
                 },
               });
@@ -153,6 +157,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         query.product as string,
         getAllOccasions
       );
+
       if (matchedOccasion) {
         filterParams = matchedOccasion;
         const { data: occasionConfig } = await client.query({
@@ -165,6 +170,26 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         if (occasionConfig) {
           const { getOccasionConfig } = occasionConfig;
           occasionFilters = getOccasionFilters(getOccasionConfig);
+        }
+
+        if (query.category) {
+          const categoryIndex = getOccasionCategoryIndex(
+            occasionFilters["categories"],
+            query.category as string
+          );
+          const { data: dataCategoryConfig } = await client.query({
+            query: GET_CATEGORY_CONFIG,
+            variables: {
+              catId: occasionFilters["categories"][categoryIndex]["_id"],
+            },
+          });
+
+          if (dataCategoryConfig) {
+            filterParams = getCategoryIdByParams(
+              matchedOccasion.occasionId,
+              occasionFilters["categories"][categoryIndex]["_id"]
+            );
+          }
         }
 
         const { data, error } = await client.query<
@@ -206,6 +231,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
   } catch (error) {
+    console.log(error);
+
     return {
       props: {
         serverError: true,

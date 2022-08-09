@@ -73,3 +73,78 @@ export const GET_OCCASION_CONFIG = gql`
     }
   }
 `;
+export const GET_CATEGORY_CONFIG = gql`
+  query getCategoryConfig($catId: String!) {
+    getCategoryConfig(catId: $catId) {
+      sideFilters {
+        isPriceRangeFilterEnabled
+        isDynamicFiltersEnabled
+        dynamicFilterMasters {
+          label
+          master_name
+          isEnabled
+          filters {
+            _id
+            name
+            catId
+            image
+          }
+        }
+        colorFilters {
+          _id
+          color
+          colorname
+        }
+        patternFilters {
+          _id
+          name
+        }
+        fabricFilters {
+          _id
+          name
+        }
+        minPrice
+        maxPrice
+      }
+      faqs {
+        question
+        answer
+      }
+      topFilters {
+        isPatternFilterEnabled
+        isTypeFilterEnabled
+        isDynamicFiltersEnabled
+        dynamicFilterMasters {
+          label
+          master_name
+          isEnabled
+          filters {
+            _id
+            name
+            catId
+            image
+          }
+        }
+        patternFilters {
+          _id
+          name
+          image
+        }
+        typeFilters {
+          _id
+          name
+          image
+        }
+      }
+      category {
+        seo {
+          title
+          content_description
+          meta_description
+          h1_tag
+          h2_tag
+        }
+      }
+    }
+  }
+`;

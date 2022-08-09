@@ -10,7 +10,20 @@ export const getOccasionIdByProductName = (
     occasionId: findProduct ? findProduct._id : null,
     catIds: findProduct ? findProduct.catIds : [],
     filter: {
-      endPrice: 4999,
+      endPrice: 10000,
+      startPrice: 2000,
+    },
+    sortBy: "popularity",
+  };
+  return params;
+};
+
+export const getCategoryIdByParams = (occasionId: any, occasionCatId: string) => {
+  const params: productFilterParams = {
+    occasionId: occasionId,
+    catIds: [occasionCatId],
+    filter: {
+      endPrice: 75000,
       startPrice: 2000,
     },
     sortBy: "popularity",
@@ -29,6 +42,9 @@ export const getOccasionCategoryIndex = (
   occasionCategories: any,
   category: string
 ): number | boolean => {
-  const index: number = _.findIndex(occasionCategories, ((item: any) => item.name === category));
+  const index: number = _.findIndex(
+    occasionCategories,
+    (item: any) => item.name === category
+  );
   return index != -1 ? index : false;
 };
