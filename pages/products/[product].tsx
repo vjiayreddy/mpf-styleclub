@@ -27,6 +27,7 @@ import ServerError from "../../src/components/UiLibrary/Errors/ServerError";
 import {
   getOccasionIdByProductName,
   getOccasionFilters,
+  getOccasionCategoryIndex
 } from "../../src/services";
 import { GET_OCCASION_CONFIG } from "../../src/apollo/gqlQueries/products";
 import TabImageIconComponent from "../../src/components/uiElements/TabImageIcon/TabImageIcon";
@@ -61,12 +62,12 @@ const ProductsPage = (props: any) => {
       {sideFilters && (
         <Box p={0}>
           <ImageIconTabs
-            tabIndex={0}
+            tabIndex={getOccasionCategoryIndex(sideFilters.categories, router.query?.category as string)}
             onTabChange={(_, value) => {
               router.push({
                 pathname: `${ROUTES.PRODUCTS}/${router.query.product}`,
                 query: {
-                  p: router.query.p,
+                  p: Number(router.query.p) | 1,
                   category: sideFilters.categories[value]?.name,
                 },
               });

@@ -24,3 +24,11 @@ export const getOccasionFilters = (getOccasionConfig: any) => {
     sideFilters: getOccasionConfig.sideFilters,
   };
 };
+
+export const getOccasionCategoryIndex = (
+  occasionCategories: any,
+  category: string
+): number | boolean => {
+  const index: number = _.findIndex(occasionCategories, ((item: any) => item.name === category));
+  return index != -1 ? index : false;
+};
