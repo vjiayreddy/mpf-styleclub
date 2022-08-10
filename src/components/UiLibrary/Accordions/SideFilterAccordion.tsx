@@ -20,7 +20,7 @@ const SideFilterAccordion: React.FC<SideFilterAccordionProps> = ({
     component,
 }) => {
     return (
-        <Accordion>
+        <Accordion defaultExpanded={true}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={`${title}-content`}

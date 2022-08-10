@@ -12,6 +12,7 @@ import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
 import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
 import { GetServerSideProps } from "next";
 import apolloClient from "../../src/apollo/config";
+import { useForm } from "react-hook-form";
 import {
   ProductFilterResponse,
   ProductFilterVariables,
@@ -53,10 +54,13 @@ const StyledProductGrid = styled(Grid)(({ theme }) => ({
 // Component
 import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
 import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
+import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
 
 const ProductsPage = (props: any) => {
   const { products, sideFilters } = props.initialData;
   const router: NextRouter = useRouter();
+  const { control } = useForm();
+  console.log(sideFilters);
 
   if (props?.serverError) {
     return <ServerError />;
@@ -87,7 +91,46 @@ const ProductsPage = (props: any) => {
         <StyledMainBox>
           <StyledGridContainer container>
             <StyledSideFilterBox item md={3}>
-              <SideFilterAccordion title="Fabric" component={<div></div>} />
+              {sideFilters && (
+                <>
+                  <SideFilterAccordion
+                    title="Fabric"
+                    component={
+                      <div>
+                        <CheckBoxGroup
+                          control={control}
+                          name="Fabric"
+                          options={sideFilters.sideFilters.fabricFilters}
+                        />
+                      </div>
+                    }
+                  />
+                  <SideFilterAccordion
+                    title="Colors"
+                    component={
+                      <div>
+                        <CheckBoxGroup
+                          control={control}
+                          name="Colors"
+                          options={sideFilters.sideFilters.colorFilters}
+                        />
+                      </div>
+                    }
+                  />
+                  <SideFilterAccordion
+                    title="Patterns"
+                    component={
+                      <div>
+                        <CheckBoxGroup
+                          control={control}
+                          name="Colors"
+                          options={sideFilters.sideFilters.patternFilters}
+                        />
+                      </div>
+                    }
+                  />
+                </>
+              )}
             </StyledSideFilterBox>
             <StyledProductGrid direction="column" container item md={9}>
               <Grid
@@ -112,7 +155,7 @@ const ProductsPage = (props: any) => {
                     btnName="Try Again"
                     title="No Result Found"
                     content={`We couldn't find what you searched for.Ty searching again.`}
-                    onClickBtn={() => {}}
+                    onClickBtn={() => { }}
                   />
                 )}
               </Grid>
