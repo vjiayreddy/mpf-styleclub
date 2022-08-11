@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Control, FieldValues, useController } from "react-hook-form";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -8,6 +8,7 @@ interface CheckBoxGroupProps {
   options: any[];
   checkBoxIcon?: React.ReactNode;
   checkBoxCheckedIcon?: React.ReactNode;
+  onGetSelectedValues: (values: any) => void;
   id?: string;
   label?: string;
   labelTag?: string;
@@ -25,6 +26,7 @@ interface CheckBoxGroupProps {
 const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({
   id,
   labelSx,
+  onGetSelectedValues,
   options,
   labelTagSx,
   adornment,
@@ -39,13 +41,23 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({
   fieldType = "text",
   ...props
 }) => {
-  const { getValues } = useForm()
+  const [checkedValues, setCheckedValues] = useState(null);
+
   useController({
     name,
     control,
     rules,
     defaultValue,
   });
+
+  const handleSelect = (checkedName) => {
+    const newNames = checkedValues?.includes(checkedName)
+      ? checkedValues?.filter((name) => name !== checkedName)
+      : [...(checkedValues ?? []), checkedName];
+    setCheckedValues(newNames);
+    onGetSelectedValues(newNames);
+    return newNames;
+  };
 
   return (
     <React.Fragment>
@@ -60,9 +72,9 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({
               render={() => {
                 return (
                   <Checkbox
-                    onChange={() => {
-                      console.log(getValues())
-                    }}
+                    onChange={() =>
+                      handleSelect(option.name || option.colorname)
+                    }
                   />
                 );
               }}

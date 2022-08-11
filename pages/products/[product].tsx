@@ -64,6 +64,22 @@ const ProductsPage = (props: any) => {
   if (props?.serverError) {
     return <ServerError />;
   }
+
+  const handleRouter = (filterName: string, values: any) => {
+    const { query } = router;
+    const queryParams = { ...query };
+    delete queryParams?.product;
+    delete queryParams?.p;
+    router.push({
+      pathname: `${ROUTES.PRODUCTS}/${query.product}`,
+      query: {
+        p: 1,
+        ...queryParams,
+        [filterName]: values?.join(","),
+      },
+    });
+  };
+
   return (
     <>
       {sideFilters && (
@@ -97,6 +113,9 @@ const ProductsPage = (props: any) => {
                     component={
                       <div>
                         <CheckBoxGroup
+                          onGetSelectedValues={(values) => {
+                            handleRouter("fabric", values);
+                          }}
                           control={control}
                           name="Fabric"
                           options={sideFilters.sideFilters.fabricFilters}
@@ -109,6 +128,9 @@ const ProductsPage = (props: any) => {
                     component={
                       <div>
                         <CheckBoxGroup
+                          onGetSelectedValues={(values) => {
+                            handleRouter("colors", values);
+                          }}
                           control={control}
                           name="Colors"
                           options={sideFilters.sideFilters.colorFilters}
@@ -121,8 +143,11 @@ const ProductsPage = (props: any) => {
                     component={
                       <div>
                         <CheckBoxGroup
+                          onGetSelectedValues={(values) => {
+                            handleRouter("patterns", values);
+                          }}
                           control={control}
-                          name="Colors"
+                          name="patterns"
                           options={sideFilters.sideFilters.patternFilters}
                         />
                       </div>
@@ -154,7 +179,7 @@ const ProductsPage = (props: any) => {
                     btnName="Try Again"
                     title="No Result Found"
                     content={`We couldn't find what you searched for.Ty searching again.`}
-                    onClickBtn={() => {}}
+                    onClickBtn={() => { }}
                   />
                 )}
               </Grid>
