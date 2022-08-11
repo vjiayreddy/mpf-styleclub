@@ -7,32 +7,32 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 
 interface SideFilterAccordionProps {
-    title: string;
-    component: React.ReactNode;
+  title: string;
+  component: React.ReactNode;
 }
 
 const StyledSummaryLabel = styled(Typography)<{ component: any }>(() => ({
-    fontWeight: 700,
+  fontWeight: 700,
 }));
 
 const SideFilterAccordion: React.FC<SideFilterAccordionProps> = ({
-    title,
-    component,
+  title,
+  component,
 }) => {
-    return (
-        <Accordion defaultExpanded={false}>
-            <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls={`${title}-content`}
-                id={`${title}-header`}
-            >
-                <StyledSummaryLabel variant="subtitle2" component="p">
-                    {title}
-                </StyledSummaryLabel>
-            </AccordionSummary>
-            <AccordionDetails>{component}</AccordionDetails>
-        </Accordion>
-    );
+  return (
+    <Accordion defaultExpanded={false}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls={`${title}-content`}
+        id={`${title}-header`}
+      >
+        <StyledSummaryLabel variant="subtitle2" component="p">
+          {title}
+        </StyledSummaryLabel>
+      </AccordionSummary>
+      <AccordionDetails>{component}</AccordionDetails>
+    </Accordion>
+  );
 };
 
 export default SideFilterAccordion;

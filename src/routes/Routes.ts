@@ -2,7 +2,8 @@ import { NextRouter } from "next/router";
 export const ROUTES = {
   DASHBOARD: "/",
   LOGIN: "/login",
-  PRODUCTS: "/products",
+  //PRODUCTS: "/products",
+   PRODUCTS: "/occasions",
 };
 
 export const checkIsActiveMenuRoute = (

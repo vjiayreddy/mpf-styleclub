@@ -10,7 +10,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
 import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
-import { GetServerSideProps } from "next";
+import {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticPathsContext,
+  GetStaticProps,
+} from "next";
 import apolloClient from "../../src/apollo/config";
 import { useForm } from "react-hook-form";
 import {
@@ -56,7 +61,7 @@ import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIc
 import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
 import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
 
-const ProductsPage = (props: any) => {
+const OccasionPage = (props: any) => {
   const { products, sideFilters } = props.initialData;
   const router: NextRouter = useRouter();
   const { control } = useForm();
@@ -90,7 +95,7 @@ const ProductsPage = (props: any) => {
         <StyledMainBox>
           <StyledGridContainer container>
             <StyledSideFilterBox item md={3}>
-              {sideFilters && (
+              {/* {sideFilters && (
                 <>
                   <SideFilterAccordion
                     title="Fabric"
@@ -129,7 +134,7 @@ const ProductsPage = (props: any) => {
                     }
                   />
                 </>
-              )}
+              )} */}
             </StyledSideFilterBox>
             <StyledProductGrid direction="column" container item md={9}>
               <Grid
@@ -154,7 +159,7 @@ const ProductsPage = (props: any) => {
                     btnName="Try Again"
                     title="No Result Found"
                     content={`We couldn't find what you searched for.Ty searching again.`}
-                    onClickBtn={() => {}}
+                    onClickBtn={() => { }}
                   />
                 )}
               </Grid>
@@ -193,9 +198,35 @@ const ProductsPage = (props: any) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getStaticPaths: GetStaticPaths = async (
+  staticProps: GetStaticPathsContext
+) => {
+  let paths = [];
   const client = apolloClient;
-  const { query } = ctx;
+  const { data: dataOccasion, error } = await client.query({
+    query: GET_ALL_OCCASIONS,
+  });
+
+  if (dataOccasion && !error) {
+    const { getAllOccasions } = dataOccasion;
+    getAllOccasions.map((occasion, index) => {
+      paths.push({
+        params: {
+          product: occasion.name,
+          p: 1,
+        },
+      });
+    });
+  }
+  return {
+    paths: paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const client = apolloClient;
+  const { params } = ctx;
   let filterParams = {};
   let occasionFilters = {};
   try {
@@ -206,43 +237,43 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (dataOccasion) {
       const { getAllOccasions } = dataOccasion;
       const matchedOccasion = getOccasionIdByProductName(
-        query.product as string,
+        params.product as string,
         getAllOccasions
       );
 
       if (matchedOccasion) {
         filterParams = matchedOccasion;
-        const { data: occasionConfig } = await client.query({
-          query: GET_OCCASION_CONFIG,
-          variables: {
-            occasionId: matchedOccasion.occasionId,
-          },
-        });
+        // const { data: occasionConfig } = await client.query({
+        //   query: GET_OCCASION_CONFIG,
+        //   variables: {
+        //     occasionId: matchedOccasion.occasionId,
+        //   },
+        // });
 
-        if (occasionConfig) {
-          const { getOccasionConfig } = occasionConfig;
-          occasionFilters = getOccasionFilters(getOccasionConfig);
-        }
+        // if (occasionConfig) {
+        //   const { getOccasionConfig } = occasionConfig;
+        //   occasionFilters = getOccasionFilters(getOccasionConfig);
+        // }
 
-        if (query.category) {
-          const categoryIndex = getOccasionCategoryIndex(
-            occasionFilters["categories"],
-            query.category as string
-          );
-          const { data: dataCategoryConfig } = await client.query({
-            query: GET_CATEGORY_CONFIG,
-            variables: {
-              catId: occasionFilters["categories"][categoryIndex]["_id"],
-            },
-          });
+        // if (query.category) {
+        //   const categoryIndex = getOccasionCategoryIndex(
+        //     occasionFilters["categories"],
+        //     query.category as string
+        //   );
+        //   const { data: dataCategoryConfig } = await client.query({
+        //     query: GET_CATEGORY_CONFIG,
+        //     variables: {
+        //       catId: occasionFilters["categories"][categoryIndex]["_id"],
+        //     },
+        //   });
 
-          if (dataCategoryConfig) {
-            filterParams = getCategoryIdByParams(
-              matchedOccasion.occasionId,
-              occasionFilters["categories"][categoryIndex]["_id"]
-            );
-          }
-        }
+        //   if (dataCategoryConfig) {
+        //     filterParams = getCategoryIdByParams(
+        //       matchedOccasion.occasionId,
+        //       occasionFilters["categories"][categoryIndex]["_id"]
+        //     );
+        //   }
+        // }
 
         const { data, error } = await client.query<
           ProductFilterResponse,
@@ -251,7 +282,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           query: GET_PRODUCTS_BY_FILTER,
           variables: {
             limit: 25,
-            page: Number(query.p) | 1,
+            page: Number(params.p) | 1,
             params: filterParams as productFilterParams,
           },
         });
@@ -273,7 +304,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
             initialData: {
               products: data.productsFilter.products as [Product],
               totalProducts: data.productsFilter.totalItemCount,
-              page: Number(query?.p) | 1,
+              page: Number(params?.p) | 1,
               limit: 25,
               occasions: dataOccasion,
               sideFilters: occasionFilters,
@@ -297,4 +328,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 };
 
-export default ProductsPage;
+export default OccasionPage;
