@@ -194,6 +194,7 @@ const ProductsPage = (props: any) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  ctx.res.setHeader("Cache-Control", "s-maxage=20, stale-while-revalidate=60");
   const client = apolloClient;
   const { query } = ctx;
   let filterParams = {};

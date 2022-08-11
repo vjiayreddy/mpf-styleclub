@@ -202,6 +202,7 @@ export const getStaticPaths: GetStaticPaths = async (
   staticProps: GetStaticPathsContext
 ) => {
   let paths = [];
+  console.log(staticProps);
   const client = apolloClient;
   const { data: dataOccasion, error } = await client.query({
     query: GET_ALL_OCCASIONS,
@@ -243,12 +244,12 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
       if (matchedOccasion) {
         filterParams = matchedOccasion;
-        // const { data: occasionConfig } = await client.query({
-        //   query: GET_OCCASION_CONFIG,
-        //   variables: {
-        //     occasionId: matchedOccasion.occasionId,
-        //   },
-        // });
+        const { data: occasionConfig } = await client.query({
+          query: GET_OCCASION_CONFIG,
+          variables: {
+            occasionId: matchedOccasion.occasionId,
+          },
+        });
 
         // if (occasionConfig) {
         //   const { getOccasionConfig } = occasionConfig;
