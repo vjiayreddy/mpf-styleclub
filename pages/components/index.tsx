@@ -69,13 +69,6 @@ const ProductsPage = (props: { sliderData }) => {
   return (
     <ContainerComponent>
       <Box p={10}>
-        <CheckBoxGroup
-          defaultValue={"red"}
-          control={control}
-          options={checkBoxData}
-          name="fabric"
-        />
-
         <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
           <FormLabel component="legend">Fabric</FormLabel>
           {checkBoxData.map((option, index) => (
