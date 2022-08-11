@@ -18,7 +18,10 @@ export const getOccasionIdByProductName = (
   return params;
 };
 
-export const getCategoryIdByParams = (occasionId: any, occasionCatId: string) => {
+export const getCategoryIdByParams = (
+  occasionId: any,
+  occasionCatId: string
+) => {
   const params: productFilterParams = {
     occasionId: occasionId,
     catIds: [occasionCatId],
@@ -47,4 +50,41 @@ export const getOccasionCategoryIndex = (
     (item: any) => item.name === category
   );
   return index != -1 ? index : false;
+};
+
+export const getFilteredFabricIds = (query: any, filterParams: any) => {
+  let fabricIds: string[] = [];
+  const sleetedFabrics = query?.fabric?.split(",") || [];
+  const fabricFilters = filterParams.sideFilters?.fabricFilters || [];
+  if (sleetedFabrics.length > 0) {
+    sleetedFabrics.forEach((element) => {
+      const fabricItem = _.find(fabricFilters, (item) => item.name === element);
+      if (fabricItem) {
+        fabricIds.push(fabricItem._id);
+      }
+    });
+  }
+  return fabricIds;
+};
+
+export const getFilteredPatternIds = (query: any, filterParams: any) => {
+  let patternIds: string[] = [];
+  const selectedFabrics = query?.patterns?.split(",") || [];
+  const patternFilters = filterParams.sideFilters?.patternFilters || [];
+  if (selectedFabrics.length > 0) {
+    selectedFabrics.forEach((element) => {
+      const fabricItem = _.find(
+        patternFilters,
+        (item) => item.name === element
+      );
+      if (fabricItem) {
+        if (_.isArray(fabricItem._id)) {
+          patternIds.push(...fabricItem._id);
+        } else {
+          patternIds.push(fabricItem._id);
+        }
+      }
+    });
+  }
+  return patternIds;
 };

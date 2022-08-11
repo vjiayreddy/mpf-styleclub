@@ -32,6 +32,8 @@ import {
   getOccasionFilters,
   getOccasionCategoryIndex,
   getCategoryIdByParams,
+  getFilteredFabricIds,
+  getFilteredPatternIds,
 } from "../../src/services";
 
 const StyledMainBox = styled(Box)(() => ({
@@ -179,7 +181,7 @@ const ProductsPage = (props: any) => {
                     btnName="Try Again"
                     title="No Result Found"
                     content={`We couldn't find what you searched for.Ty searching again.`}
-                    onClickBtn={() => { }}
+                    onClickBtn={() => {}}
                   />
                 )}
               </Grid>
@@ -225,7 +227,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   );
   const client = apolloClient;
   const { query } = ctx;
-  let filterParams = {};
+  let filterParams: productFilterParams = {};
   let occasionFilters = {};
   try {
     const { data: dataOccasion } = await client.query({
@@ -251,6 +253,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         if (occasionConfig) {
           const { getOccasionConfig } = occasionConfig;
           occasionFilters = getOccasionFilters(getOccasionConfig);
+          filterParams.filter.fabricIds = getFilteredFabricIds(
+            query,
+            occasionFilters
+          );
+          filterParams.filter.patternIds = getFilteredPatternIds(
+            query,
+            occasionFilters
+          );
         }
 
         if (query.category) {
@@ -312,8 +322,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
   } catch (error) {
-    console.log(error);
-
     return {
       props: {
         serverError: true,

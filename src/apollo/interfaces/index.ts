@@ -10,9 +10,9 @@ export interface lead {
 export type sideFilterType = {
   colorIds?: [string];
   endPrice?: number;
-  fabricIds?: [string];
+  fabricIds?: string[];
   occasionIds?: [string];
-  patternIds?: [string];
+  patternIds?: string[];
   startPrice?: number;
   typeIds?: [string];
 };
