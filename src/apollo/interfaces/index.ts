@@ -8,7 +8,7 @@ export interface lead {
 }
 
 export type sideFilterType = {
-  colorIds?: [string];
+  colorIds?: string[];
   endPrice?: number;
   fabricIds?: string[];
   occasionIds?: [string];

@@ -88,3 +88,29 @@ export const getFilteredPatternIds = (query: any, filterParams: any) => {
   }
   return patternIds;
 };
+
+export const getFilteredColorIds = (query: any, filterParams: any) => {
+  let colorIds: string[] = [];
+  const selectedColors = query?.colors?.split(",") || [];
+  const colorFilters = filterParams.sideFilters?.colorFilters || [];
+  if (selectedColors.length > 0) {
+    selectedColors.forEach((element) => {
+      const colorItem = _.find(
+        colorFilters,
+        (item) => item.colorname === element
+      );
+      if (colorItem) {
+        if (_.isArray(colorItem._id)) {
+          colorIds.push(...colorItem._id);
+        } else {
+          colorIds.push(colorItem._id);
+        }
+      }
+    });
+  }
+  return colorIds;
+};
+
+export const getSelectedFiltersByParam = (query: any, param: string) => {
+  return query?.[param] ? query?.[param].split(",") : [];
+};

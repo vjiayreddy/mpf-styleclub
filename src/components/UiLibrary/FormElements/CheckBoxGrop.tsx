@@ -3,6 +3,7 @@ import { Control, FieldValues, useController } from "react-hook-form";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Controller, useForm } from "react-hook-form";
+import router from "next/router";
 
 interface CheckBoxGroupProps {
   options: any[];
@@ -17,7 +18,7 @@ interface CheckBoxGroupProps {
   adornment?: React.ReactNode | string;
   name: string;
   control: Control<FieldValues, object>;
-  defaultValue?: any;
+  defaultValues?: any;
   rules?: any;
   fieldType?: string;
   [x: string]: any;
@@ -35,19 +36,16 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({
   labelTag,
   name,
   control,
-  defaultValue = "",
+  defaultValues,
   rules = {},
-  iconLeft,
-  fieldType = "text",
   ...props
 }) => {
-  const [checkedValues, setCheckedValues] = useState(null);
+  const [checkedValues, setCheckedValues] = useState([]);
 
   useController({
     name,
     control,
     rules,
-    defaultValue,
   });
 
   const handleSelect = (checkedName) => {
@@ -59,6 +57,13 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({
     return newNames;
   };
 
+  useEffect(() => {
+    if (defaultValues) {
+      setCheckedValues(defaultValues);
+    }
+  }, [defaultValues]);
+
+
   return (
     <React.Fragment>
       {options.map((option, index) => (
@@ -67,11 +72,13 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({
           label={option.name || option.colorname}
           control={
             <Controller
-              defaultValue={defaultValue}
               name={name}
               render={() => {
                 return (
                   <Checkbox
+                    checked={checkedValues.includes(
+                      option.name || option.colorname
+                    )}
                     onChange={() =>
                       handleSelect(option.name || option.colorname)
                     }

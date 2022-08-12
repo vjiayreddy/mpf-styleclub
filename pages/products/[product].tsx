@@ -34,6 +34,8 @@ import {
   getCategoryIdByParams,
   getFilteredFabricIds,
   getFilteredPatternIds,
+  getFilteredColorIds,
+  getSelectedFiltersByParam,
 } from "../../src/services";
 
 const StyledMainBox = styled(Box)(() => ({
@@ -58,6 +60,7 @@ import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIc
 import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
 import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
 
+// Client side render
 const ProductsPage = (props: any) => {
   const { products, sideFilters } = props.initialData;
   const router: NextRouter = useRouter();
@@ -115,6 +118,7 @@ const ProductsPage = (props: any) => {
                     component={
                       <div>
                         <CheckBoxGroup
+                          defaultValues={props?.selectedFabrics || []}
                           onGetSelectedValues={(values) => {
                             handleRouter("fabric", values);
                           }}
@@ -130,6 +134,7 @@ const ProductsPage = (props: any) => {
                     component={
                       <div>
                         <CheckBoxGroup
+                          defaultValues={props?.selectedColors || []}
                           onGetSelectedValues={(values) => {
                             handleRouter("colors", values);
                           }}
@@ -145,6 +150,7 @@ const ProductsPage = (props: any) => {
                     component={
                       <div>
                         <CheckBoxGroup
+                          defaultValues={props?.selectedPatterns || []}
                           onGetSelectedValues={(values) => {
                             handleRouter("patterns", values);
                           }}
@@ -220,6 +226,7 @@ const ProductsPage = (props: any) => {
   );
 };
 
+// Server side render
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   ctx.res.setHeader(
     "Cache-Control",
@@ -261,6 +268,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
             query,
             occasionFilters
           );
+          filterParams.filter.colorIds = getFilteredColorIds(
+            query,
+            occasionFilters
+          );
         }
 
         if (query.category) {
@@ -280,6 +291,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
               matchedOccasion.occasionId,
               occasionFilters["categories"][categoryIndex]["_id"]
             );
+            console.log(dataCategoryConfig);
           }
         }
 
@@ -317,6 +329,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
               occasions: dataOccasion,
               sideFilters: occasionFilters,
             },
+            selectedFabrics: getSelectedFiltersByParam(query, "fabric"),
+            selectedColors: getSelectedFiltersByParam(query, "colors"),
+            selectedPatterns: getSelectedFiltersByParam(query, "patterns"),
           },
         };
       }
