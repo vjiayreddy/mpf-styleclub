@@ -32,7 +32,7 @@ const EventCard = () => {
         <ContainerComponent>
             <StyledEventBox>
                 <Grid container alignItems="stretch">
-                    <Grid container alignItems="center" justifyContent="center" md={4}>
+                    <Grid item container alignItems="center" justifyContent="center" md={4}>
                         <Grid item xs={12}>
                             <Image
                                 loading="lazy"
@@ -47,6 +47,7 @@ const EventCard = () => {
                     </Grid>
                     <Grid
                         container
+                        item
                         alignItems="center"
                         justifyContent="center"
                         flexDirection="column"
@@ -65,7 +66,7 @@ const EventCard = () => {
                             <LinkIconButton label="Learn More" onClick={() => { }} />
                         </Box>
                     </Grid>
-                    <Grid container alignItems="center" justifyContent="center" md={4}>
+                    <Grid item container alignItems="center" justifyContent="center" md={4}>
                         <Image
                             loading="lazy"
                             placeholder="blur"

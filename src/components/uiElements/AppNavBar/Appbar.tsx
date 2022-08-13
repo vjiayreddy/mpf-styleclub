@@ -4,7 +4,7 @@ import ToolBar from "@mui/material/Toolbar";
 
 import { StyledAppbarLogoBox, StyledAppbarTabsBox } from "./styled";
 
-import LogoComponent from "../Logo/Logo";
+import LogoComponent from "../../UiLibrary/Logo/Logo";
 import Container from "@mui/material/Container";
 import TabMenusComponent from "./TabMenus";
 

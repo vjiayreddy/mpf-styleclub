@@ -20,6 +20,7 @@ export const GQL_USER_LOGIN = gql`
 `;
 
 export const userLogin = async (parms: userParms) => {
+  console.log(parms);
   const client: ApolloClient<NormalizedCacheObject> = apolloClient;
   const response: ApolloQueryResult<any> = await client.query({
     query: GQL_USER_LOGIN,

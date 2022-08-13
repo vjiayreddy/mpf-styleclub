@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import AppNavbarComponent from "../uiElements/AppNavBar/Appbar";
+import AppNavbarComponent from "../UiLibrary/AppBar";
 import { RenderMainContent } from "./styled";
 interface DefaultLayoutProps {
   children?: React.ReactNode;

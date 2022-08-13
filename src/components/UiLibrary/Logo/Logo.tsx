@@ -12,7 +12,7 @@ const StyledImageBox = styled(Box)(() => ({
 const LogoComponent = () => {
   return (
     <StyledImageBox>
-      {/* <img width={150} alt="app-logo" src={LOGO} /> */}
+      <img width={100} alt="app-logo" src={LOGO} />
     </StyledImageBox>
   );
 };

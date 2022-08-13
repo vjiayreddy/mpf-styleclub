@@ -291,7 +291,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
               matchedOccasion.occasionId,
               occasionFilters["categories"][categoryIndex]["_id"]
             );
-            console.log(dataCategoryConfig);
           }
         }
 

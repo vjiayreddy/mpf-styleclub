@@ -22,13 +22,13 @@ const ProductService = () => {
         <ContainerComponent>
             <StyledProductServiceBox>
                 <Grid container spacing={3}>
-                    <Grid md={4} lg={4} xl={4}>
+                    <Grid item md={4} lg={4} xl={4}>
                         <ServiceCard title='Free Shipping' subTitle='On all orders over $75.00' />
                     </Grid>
-                    <Grid md={4} lg={4} xl={4}>
+                    <Grid item md={4} lg={4} xl={4}>
                         <ServiceCard boxSx={StyledServiceCard} title='Support' subTitle='24/7 Dedicated Support' />
                     </Grid>
-                    <Grid md={4} lg={4} xl={4}>
+                    <Grid item md={4} lg={4} xl={4}>
                         <ServiceCard title='Free Returns' subTitle='On all orders over $75.00' component={<Image width={250} height={25} layout="fixed" src="/assets/images/payments.webp" />} />
                     </Grid>
                 </Grid>

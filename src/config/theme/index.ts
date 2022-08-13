@@ -333,6 +333,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiPopper: {
+      defaultProps: {
+        sx: {
+          zIndex: 1200,
+        },
+      },
+    },
   },
   globalCardStyle: {
     width: "100%",
