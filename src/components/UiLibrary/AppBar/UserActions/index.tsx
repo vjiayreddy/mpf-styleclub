@@ -44,6 +44,8 @@ const UserActions: React.FC<UserActionsProps> = ({ session }) => {
   const handleClickUserIcon = () => {
     if (status === AUTH_STATE.UNAUTHENTICATED) {
       router.push(ROUTES.LOGIN);
+    } else {
+      setOpen(!open);
     }
   };
 
@@ -79,9 +81,7 @@ const UserActions: React.FC<UserActionsProps> = ({ session }) => {
             aria-expanded={open ? "true" : undefined}
             aria-controls={open ? "user-action-menu" : undefined}
             ref={anchorRef}
-            onClick={() => {
-              setOpen(!open);
-            }}
+            onClick={handleClickUserIcon}
           >
             {status === AUTH_STATE.LOADING ? (
               <>

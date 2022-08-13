@@ -1,6 +1,5 @@
 import React from "react";
 import Popper from "@mui/material/Popper";
-import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
@@ -10,6 +9,7 @@ import Grow from "@mui/material/Grow";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
+import { signOut } from "next-auth/react";
 
 interface UserActionMenuProps {
   anchorEl?: any;
@@ -93,7 +93,12 @@ const UserActionMenu: React.FC<UserActionMenuProps> = ({
                     <StyledMenuItem onClick={handleClose}>
                       Subscriptions
                     </StyledMenuItem>
-                    <StyledMenuItem onClick={handleClose}>
+                    <StyledMenuItem
+                      onClick={() => {
+                        signOut();
+                        handleClose(event);
+                      }}
+                    >
                       Logout
                     </StyledMenuItem>
                   </Grid>
