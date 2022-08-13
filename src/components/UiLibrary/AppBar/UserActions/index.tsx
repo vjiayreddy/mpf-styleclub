@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import Grid from "@mui/material/Grid";
 import LocalMallIcon from "@mui/icons-material/LocalMallOutlined";
+import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import SearchIcon from "@mui/icons-material/Search";
@@ -12,14 +13,19 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import { ROUTES } from "../../../../routes/Routes";
 import UserActionMenu from "../UserMenu";
+import Drawer from "@mui/material/Drawer";
+import { styled } from "@mui/material/styles";
+import CartItemCard from "../../Cards/CartItemCard";
 
 interface UserActionsProps {
   session: any;
 }
 
+
 const UserActions: React.FC<UserActionsProps> = ({ session }) => {
   const { status } = useSession();
   const [open, setOpen] = React.useState(false);
+  const [showDrawer, setShowDrawer] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
   const prevOpen = React.useRef(open);
   const router = useRouter();
@@ -58,6 +64,13 @@ const UserActions: React.FC<UserActionsProps> = ({ session }) => {
     }
   }
 
+  const StyledCartBox = styled(Box)(() => ({
+    width: 350,
+    paddingTop: 100,
+    paddingLeft: 20,
+    paddingRight: 20,
+  }));
+
   return (
     <>
       <Grid spacing={3} container alignItems="center">
@@ -67,7 +80,9 @@ const UserActions: React.FC<UserActionsProps> = ({ session }) => {
         <Grid item>
           <UIIconButton
             size="small"
-            onClick={handleClickUserIcon}
+            onClick={() => {
+              setShowDrawer(true);
+            }}
             icon={
               <Badge badgeContent={4} color="secondary">
                 <LocalMallIcon />
@@ -110,6 +125,18 @@ const UserActions: React.FC<UserActionsProps> = ({ session }) => {
         handleClose={handleClose}
         open={open}
       ></UserActionMenu>
+      <Drawer
+        anchor="right"
+        open={showDrawer}
+        onClose={() => setShowDrawer(false)}
+      >
+        <StyledCartBox>
+          <CartItemCard />
+          <CartItemCard />
+          <CartItemCard />
+          <CartItemCard />
+        </StyledCartBox>
+      </Drawer>
     </>
   );
 };
