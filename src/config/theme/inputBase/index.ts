@@ -1,7 +1,7 @@
 import { GLOBAL_FONTS } from "./../enums/enums";
 import { Theme } from "@mui/system";
 
-export const OverrideMuiInputbase = (muiTheme: Theme): any => {
+export const OverrideMuiInputBase = (muiTheme: Theme): any => {
   return {
     defaultProps: {
       size: "medium",
@@ -9,9 +9,9 @@ export const OverrideMuiInputbase = (muiTheme: Theme): any => {
     },
     styleOverrides: {
       root: {
-        height: 45,
+        height: 40,
         border: `1px solid ${muiTheme.palette.grey[300]}`,
-        borderRadius:5,
+        borderRadius:0,
       },
       input: {
         padding: 10,

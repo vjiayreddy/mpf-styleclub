@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+    <title>Icon/Filled/Caret/Right</title>
+    <g fill-rule="evenodd">
+        <g>
+            <polygon transform="translate(8.5 8) scale(-1 1) translate(-8.5 -8)" points="11.508 0 13 1.2168 6.6332 8 13 14.783 11.508 16 4 8"/>
+        </g>
+    </g>
+</svg>

@@ -1,6 +1,6 @@
 import { Theme } from "@mui/system";
 
-export const OverrideMuiAppbar = (muiTheme: Theme): any => {
+export const OverrideMuiAppBar = (muiTheme: Theme): any => {
   return {
     defaultProps: {
       position: "fixed",

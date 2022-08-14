@@ -1,8 +1,9 @@
 import { NextRouter } from "next/router";
 export const ROUTES = {
-  DASHBOARD: "/",
+  HOME: "/",
   LOGIN: "/login",
   PRODUCTS: "/products",
+  REGISTER: "/register",
   //PRODUCTS: "/occasions",
 };
 

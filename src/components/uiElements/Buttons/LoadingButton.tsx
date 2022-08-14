@@ -9,43 +9,40 @@ interface LoadingButtonProps {
   label: string;
   iconSx?: SxProps;
   loading?: boolean;
-  disablebg?: string;
-  disablecolor?: string;
+  disableBg?: string;
+  disableColor?: string;
   [x: string]: any;
 }
 
-interface StyledLoadingButtonProps {
-  disablebg?: string;
-  disablecolor?: string;
-}
+// interface StyledLoadingButtonProps {
+//   disableBg?: string;
+//   disableColor?: string;
+// }
 
 const StyledCircleProgress = styled(CircularProgress)(({ theme }) => ({
   color: theme.palette.common.white,
 }));
 
-const StyledLoadingButton = styled(Button)<StyledLoadingButtonProps>(
-  ({ theme, disablebg, disablecolor }) => ({
-    "&.Mui-disabled": {
-      backgroundColor: disablebg,
-      color: disablecolor ? disablecolor : theme.palette.common.white,
-    },
-  })
-);
+const StyledLoadingButton = styled(Button)(({ theme }) => ({
+  // "&.Mui-disabled": {
+  //   backgroundColor: disableBg,
+  //   color: disableColor ? disableColor : theme.palette.common.white,
+  // },
+}));
 
 export const LoadingButtonComponent: React.FC<LoadingButtonProps> = ({
   id,
   label,
   iconSx,
-  btnColor,
   loading,
-  disablebg,
-  disablecolor,
+  disableBg,
+  disableColor,
   ...props
 }) => {
   return (
     <StyledLoadingButton
-      disablebg={disablebg}
-      disablecolor={disablecolor}
+      // disableBg={disableBg}
+      // disableColor={disableColor}
       id={id}
       {...props}
       startIcon={

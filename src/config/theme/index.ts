@@ -1,7 +1,7 @@
 import { border } from "./../../../node_modules/@mui/system/index.d";
 import { createTheme } from "@mui/material";
 import { OverrideMuiButton } from "./button";
-import { OverrideMuiAppbar } from "./appbar";
+import { OverrideMuiAppBar } from "./appbar";
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 import { GLOBAL_FONTS, APP_COLORS } from "./enums/enums";
 
@@ -11,7 +11,7 @@ import {
   EXTENDED_COLORS,
   CUSTOM_STYLE_CLASSES,
 } from "./interfaces/interfaces";
-import { OverrideMuiInputbase } from "./inputBase";
+import { OverrideMuiInputBase } from "./inputBase";
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides extends customTypographyProps {}
 }
@@ -219,7 +219,7 @@ const theme = createTheme({
         },
       },
     },
-    MuiAppBar: OverrideMuiAppbar(muiTheme),
+    MuiAppBar: OverrideMuiAppBar(muiTheme),
     MuiTab: {
       styleOverrides: {
         root: {
@@ -236,7 +236,7 @@ const theme = createTheme({
         },
       },
     },
-    MuiInputBase: OverrideMuiInputbase(muiTheme),
+    MuiInputBase: OverrideMuiInputBase(muiTheme),
     MuiPaper: {
       styleOverrides: {
         root: {
@@ -259,6 +259,7 @@ const theme = createTheme({
         root: {
           fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
           fontWeight: 700,
+          fontSize:14,
           color: APP_COLORS.SECONDARY_COLOR,
           marginBottom: 10,
         },

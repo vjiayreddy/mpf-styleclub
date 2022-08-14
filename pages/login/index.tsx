@@ -1,20 +1,14 @@
-import React, { useState } from "react";
-import {
-  signIn,
-  useSession,
-  SignInResponse,
-  getSession,
-} from "next-auth/react";
+import React from "react";
+import { signIn, useSession, SignInResponse } from "next-auth/react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import SigninForm from "../../src/forms/Signin/Signin";
+import SigningForm from "../../src/forms/Signin/Signin";
 import { AUTH_STATE } from "../../src/utils/enums";
 import router from "next/router";
-import { ROUTES } from "../../src/routes/Routes";
 
 const LoginPage = () => {
   const { data: session, status } = useSession();
-  const loginHandler = async (e: React.SyntheticEvent, data: any) => {
+  const loginHandler = async (_: React.SyntheticEvent, data: any) => {
     const response: SignInResponse = await signIn("credentials", {
       redirect: false,
       source: data.source,
@@ -24,8 +18,7 @@ const LoginPage = () => {
       alert(response.error);
     }
   };
-
-  const StyledMainBox = styled(Box)(({ theme }) => ({
+  const StyledMainBox = styled(Box)(() => ({
     width: "100%",
     height: `calc(100vh - 65px)`,
     display: "flex",
@@ -33,25 +26,29 @@ const LoginPage = () => {
     justifyContent: "center",
   }));
 
-  const StyledSigninFormBox = styled(Box)(({ theme }) => ({
+  const StyledSigningFormBox = styled(Box)(() => ({
     width: "350px",
   }));
 
-  if (status === AUTH_STATE.AUTHENTICATED) {
-    router.push(ROUTES.DASHBOARD);
+  if (status === AUTH_STATE.LOADING) {
+    return <div>Loading...</div>;
+  }
+
+  if (session && status === AUTH_STATE.AUTHENTICATED) {
+    return router.back();
   }
 
   return (
     <StyledMainBox>
-      <StyledSigninFormBox>
+      <StyledSigningFormBox>
         {status === AUTH_STATE.UNAUTHENTICATED && (
-          <SigninForm
+          <SigningForm
             onSubmitForm={(data: any, e) => {
               loginHandler(e, data);
             }}
           />
         )}
-      </StyledSigninFormBox>
+      </StyledSigningFormBox>
     </StyledMainBox>
   );
 };

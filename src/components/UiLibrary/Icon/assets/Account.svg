@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon/Navigation/Fill/Account</title>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/Navigation/Fill/Account" fill="currentColor" fill-rule="nonzero">
+            <g id="account">
+                <circle id="Oval" cx="12" cy="7" r="7"></circle>
+                <path d="M18.333,13.387 C16.705,15 14.468,16 12,16 C9.532,16 7.295,15 5.667,13.387 C2.291,15.267 0,18.869 0,23 L0,24 L24,24 L24,23 C24,18.869 21.709,15.267 18.333,13.387 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

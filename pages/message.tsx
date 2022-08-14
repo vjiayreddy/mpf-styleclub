@@ -1,5 +1,5 @@
 import React from "react";
-import AuthProtectedRoute from "../src/apollo/hoc/AuthProtected/AuthProtected";
+import AuthProtectedRoute from "../src/apollo/hoc/AuthProtected/AuthProtectedRoute";
 
 const MessagePage = (props) => {
   const { session } = props;

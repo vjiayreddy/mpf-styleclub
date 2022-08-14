@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import InputBase from "@mui/material/InputBase";
 import InputLabel from "@mui/material/InputLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 import { Control, FieldValues, useController } from "react-hook-form";
+import InputAdornment from "@mui/material/InputAdornment";
 
 interface FormTextFieldProps {
   id: string;
@@ -10,6 +11,7 @@ interface FormTextFieldProps {
   labelTag?: string;
   iconLeft?: React.ReactNode;
   clearable?: boolean;
+  hintMessage?: string;
   adornment?: React.ReactNode | string;
   name: string;
   control: Control<FieldValues, object>;
@@ -28,6 +30,7 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
   label,
   labelTag,
   name,
+  hintMessage,
   control,
   defaultValue = "",
   rules = {},
@@ -51,7 +54,12 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
   return (
     <React.Fragment>
       {label && (
-        <InputLabel htmlFor={label} color="primary" variant="standard">
+        <InputLabel
+          sx={labelSx}
+          htmlFor={label}
+          color="primary"
+          variant="standard"
+        >
           {label}
         </InputLabel>
       )}
@@ -63,11 +71,11 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
         error={fieldState.invalid}
         data-testid={label}
         type={showSecret ? "text" : "password"}
-        // startAdornment={
-        //   <InputAdornment position="start">
-        //     {iconLeft && <Fragment>{iconLeft}</Fragment>}
-        //   </InputAdornment>
-        // }
+        startAdornment={
+          <InputAdornment position="start">
+            {iconLeft && <Fragment>{iconLeft}</Fragment>}
+          </InputAdornment>
+        }
         // endAdornment={
         //   <InputAdornment position="end">
         //     {clearable && field.value && field.value.length > 0 ? (
@@ -86,10 +94,10 @@ const FormTextField: React.FC<FormTextFieldProps> = ({
         //     )}
         //   </InputAdornment>
         // }
-        {...field}
-        {...props}
+        // {...field}
+        // {...props}
       />
-      {/* {hintMessage && <FormHelperText>{hintMessage}</FormHelperText>} */}
+      {hintMessage && <FormHelperText>{hintMessage}</FormHelperText>}
       {fieldState.invalid && <p id={`${id}-message`}>Error</p>}
     </React.Fragment>
   );

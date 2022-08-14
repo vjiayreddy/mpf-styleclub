@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon/Navigation/Fill/Overflow</title>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Combined-Shape-2" fill="currentColor" transform="translate(9.000000, 1.000000)">
+            <path d="M3,16 C4.65685425,16 6,17.3431458 6,19 C6,20.6568542 4.65685425,22 3,22 C1.34314575,22 0,20.6568542 0,19 C0,17.3431458 1.34314575,16 3,16 Z M3,8 C4.65685425,8 6,9.34314575 6,11 C6,12.6568542 4.65685425,14 3,14 C1.34314575,14 0,12.6568542 0,11 C0,9.34314575 1.34314575,8 3,8 Z M3,0 C4.65685425,-1.01453063e-16 6,1.34314575 6,3 C6,4.65685425 4.65685425,6 3,6 C1.34314575,6 0,4.65685425 0,3 C0,1.34314575 1.34314575,1.01453063e-16 3,0 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>
