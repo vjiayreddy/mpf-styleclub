@@ -6,10 +6,12 @@ import Grid from "@mui/material/Grid";
 import FormTextField from "../../components/UiLibrary/Form/FormTextField";
 import { useForm } from "react-hook-form";
 import LoadingButtonComponent from "../../components/uiElements/Buttons/LoadingButton";
+import { useRouter } from "next/router";
+import { ROUTES } from "../../routes/Routes";
 
 const StyledFormBox = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.grey[200]}`,
-  padding: 20,
+  padding: 30,
   borderRadius: 10,
 }));
 
@@ -23,6 +25,7 @@ const SigningForm: React.FC<SignInFormProps> = ({
   isFormSubmit,
 }) => {
   const { control, handleSubmit } = useForm();
+  const router = useRouter();
   const handleLogin = (data: any, e: React.SyntheticEvent) => {
     onSubmitForm(data, e);
   };
@@ -61,8 +64,20 @@ const SigningForm: React.FC<SignInFormProps> = ({
                 loading={isFormSubmit}
                 color="secondary"
                 onClick={handleSubmit(handleLogin)}
-                label="Sign In"
+                label="SIGN IN"
                 id="btn-sign-in"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <LoadingButtonComponent
+                fullWidth={true}
+                loading={isFormSubmit}
+                color="primary"
+                onClick={() => {
+                  router.push(ROUTES.REGISTER);
+                }}
+                label="SIGN UP"
+                id="btn-sign-up"
               />
             </Grid>
           </Grid>

@@ -10,11 +10,13 @@ import useNetworkStatus from "../src/utils/useNetworkStatus";
 import { SessionProvider } from "next-auth/react";
 import AppLayoutComponent from "../src/components/Layouts/DefaultLayout";
 
+import _ from "lodash";
 // Apollo
 import apolloClient from "../src/apollo/config";
 import { ApolloProvider } from "@apollo/client";
 import { GET_ALL_OCCASIONS } from "../src/apollo/gqlQueries";
 import { useEffect } from "react";
+import ToasterMessage from "../src/components/UiLibrary/Notifications/ToasterMessage";
 
 function MyApp(props) {
   const { networkStatus } = useNetworkStatus();
@@ -46,6 +48,7 @@ function MyApp(props) {
         </Head>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <ToasterMessage />
           <ApolloProvider client={apolloClient}>
             <AppLayoutComponent navMenus={props.navMenu}>
               <Component {...appProps} />
@@ -57,7 +60,7 @@ function MyApp(props) {
   );
 }
 
-MyApp.getInitialProps = async (context) => {
+MyApp.getInitialProps = async () => {
   try {
     const { data } = await apolloClient.query({
       query: GET_ALL_OCCASIONS,

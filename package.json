@@ -35,6 +35,7 @@
     "react-otp-input": "^2.4.0",
     "react-phone-input-2": "^2.15.1",
     "react-slick": "^0.28.1",
+    "react-toastify": "^9.0.8",
     "usehooks-ts": "^2.4.2"
   },
   "devDependencies": {

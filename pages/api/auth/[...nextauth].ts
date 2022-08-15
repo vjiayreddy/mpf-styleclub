@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { userLogin } from "./../../../src/apollo/queries/useLogin";
+import { userLogin } from "../../../src/apollo/hooks/useLogin";
 import jwt_decode from "jwt-decode";
 import { ERRORS } from "../../../src/utils/enums";
 

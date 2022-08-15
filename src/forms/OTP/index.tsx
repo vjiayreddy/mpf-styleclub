@@ -51,6 +51,10 @@ const StyledSpanLabel = styled("span")(({ theme }) => ({
 const OtpForm: React.FC<OtpFormProps> = ({ source }) => {
   const [OTP, setOTP] = useState("");
   const handleChange = (otp) => setOTP(otp);
+  const handleSubmit = () => {
+    console.log(OTP);
+  };
+
   return (
     <StyledMainBox>
       <Box>
@@ -69,6 +73,7 @@ const OtpForm: React.FC<OtpFormProps> = ({ source }) => {
           value={OTP}
           onChange={handleChange}
           numInputs={6}
+          hasErrored={true}
           isInputNum={true}
           inputStyle={StyledOtpInput}
           separator={<span style={{ fontWeight: 800 }}> - </span>}
@@ -93,7 +98,7 @@ const OtpForm: React.FC<OtpFormProps> = ({ source }) => {
         <LoadingButtonComponent
           color="secondary"
           id="btn-verify-otp"
-          onClick={() => {}}
+          onClick={handleSubmit}
           label="VERIFY & PROCEED"
           loading={true}
         />

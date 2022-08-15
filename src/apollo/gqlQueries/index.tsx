@@ -148,3 +148,50 @@ export const GET_CATEGORY_CONFIG = gql`
     }
   }
 `;
+
+// User Related GQL Queries
+
+export const GQL_USER_LOGIN = gql`
+  query userLogin($source: String!, $password: String!) {
+    login(source: $source, password: $password) {
+      token
+      user {
+        isMobileVerified
+      }
+    }
+  }
+`;
+
+export const POST_USER_REGISTRATION = gql`
+  mutation RegisterUser(
+    $email: String!
+    $phone: String!
+    $password: String!
+    $countryCode: String!
+    $firstName: String!
+    $lastName: String!
+    $fullName: String!
+    $redirectTo: String!
+  ) {
+    registerUser(
+      email: $email
+      phone: $phone
+      countryCode: $countryCode
+      password: $password
+      firstName: $firstName
+      lastName: $lastName
+      fullName: $fullName
+      redirectTo: $redirectTo
+    ) {
+      _id
+      firstName
+      lastName
+      fullName
+      phone
+      email
+      countryCode
+      isEmailVerified
+      isMobileVerified
+    }
+  }
+`;

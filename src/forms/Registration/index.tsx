@@ -10,21 +10,35 @@ import _ from "lodash";
 import { isPhoneNumberValid, validateEmail } from "../../utils/validations";
 import LoadingButtonComponent from "../../components/uiElements/Buttons/LoadingButton";
 
+export type UserRegistrationPayload = {
+  email: string;
+  phone: string;
+  countryCode: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  redirect: string;
+};
+interface RegistrationFormProps {
+  onSubmit: (data: UserRegistrationPayload) => void;
+}
+
 const StyledFormBox = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.grey[200]}`,
   padding: 20,
   borderRadius: 10,
 }));
 
-const RegistrationForm = () => {
+const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit }) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onFormSubmit = (data: any) => {
-    console.log(data);
+  const onFormSubmit = (data: UserRegistrationPayload) => {
+    onSubmit(data);
   };
 
   return (

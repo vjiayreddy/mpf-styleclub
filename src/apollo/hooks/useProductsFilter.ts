@@ -1,8 +1,8 @@
 import {
   ProductFilterResponse,
   ProductFilterVariables,
-} from "./../interfaces/index";
-import { GET_PRODUCTS_BY_FILTER } from "./../gqlQueries/products";
+} from "../interfaces/index";
+import { GET_PRODUCTS_BY_FILTER } from "../gqlQueries/products";
 import { useLazyQuery } from "@apollo/client";
 
 export const useProductsFilter = () => {

@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { lead } from "./../interfaces/index";
+import { lead } from "../interfaces/index";
 interface LeadsQueryResponse {
   getAllLeads: {
     leads: lead[];

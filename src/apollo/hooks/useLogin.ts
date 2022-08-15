@@ -1,26 +1,15 @@
 import {
   ApolloClient,
   ApolloQueryResult,
-  gql,
   NormalizedCacheObject,
 } from "@apollo/client";
 import apolloClient from "../config";
+import { GQL_USER_LOGIN } from "../gqlQueries";
 
 type userParams = {
   source: string;
   password: string;
 };
-
-export const GQL_USER_LOGIN = gql`
-  query userLogin($source: String!, $password: String!) {
-    login(source: $source, password: $password) {
-      token
-      user {
-        isMobileVerified
-      }
-    }
-  }
-`;
 
 export const userLogin = async (params: userParams) => {
   const client: ApolloClient<NormalizedCacheObject> = apolloClient;
@@ -31,9 +20,5 @@ export const userLogin = async (params: userParams) => {
       password: params.password,
     } as userParams,
   });
-
-
-  console.log(response);
-
   return response;
 };

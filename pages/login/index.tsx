@@ -38,8 +38,9 @@ const LoginPage = () => {
     width: "100%",
     height: `calc(100vh - 65px)`,
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
+    paddingTop: 100,
   }));
 
   const StyledSigningFormBox = styled(Box)(() => ({
