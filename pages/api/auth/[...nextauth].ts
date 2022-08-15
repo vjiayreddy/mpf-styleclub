@@ -1,4 +1,3 @@
-import { user } from "./../../../src/utils/types";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { userLogin } from "./../../../src/apollo/queries/useLogin";
@@ -41,7 +40,7 @@ export default NextAuth({
       if (user) token.id = user.id;
       return token;
     },
-    signIn: async ({ user, credentials }) => {
+    signIn: async ({ user }) => {
       const decodeData = jwt_decode(user.name);
       if (decodeData["isMobileVerified"]) {
         return true;

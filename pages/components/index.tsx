@@ -3,9 +3,6 @@ import ContainerComponent from "../../src/components/uiElements/Container/Contai
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import {useSession} from "next-auth/react";
 
 // Components
 import CustomerFeatureCard from "../../src/components/UiLibrary/Cards/CustomerFeature";
@@ -16,7 +13,6 @@ import RewardCard from "../../src/components/UiLibrary/Cards/RewardCard";
 import ContentSlider from "../../src/components/UiLibrary/ContentSlider";
 import sliderData from "../../src/utils/sliderData.json";
 import LoadingButton from "../../src/components/UiLibrary/LoadingButton";
-import OtpForm from "../../src/forms/OTP";
 
 const StyledBox = styled(Box)(() => ({
   margin: "0 auto",
@@ -24,29 +20,7 @@ const StyledBox = styled(Box)(() => ({
   paddingBottom: 50,
 }));
 
-const checkBoxData = [
-  {
-    label: "Red",
-    value: "red",
-  },
-  {
-    label: "Black",
-    value: "black",
-  },
-  {
-    label: "Yellow",
-    value: "yellow",
-  },
-  {
-    label: "green",
-    value: "green",
-  },
-];
-
 const ProductsPage = (props: { sliderData }) => {
-
-  const {data:session} = useSession();
-  console.log(session);
   return (
     <ContainerComponent>
       <Box p={10}>
@@ -182,11 +156,6 @@ const ProductsPage = (props: { sliderData }) => {
           </Grid>
         </Grid>
       </StyledBox>
-      <Dialog open={true} onClose={() => {}}>
-        <DialogContent>
-          <OtpForm />
-        </DialogContent>
-      </Dialog>
     </ContainerComponent>
   );
 };
