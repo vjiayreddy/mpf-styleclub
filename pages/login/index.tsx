@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { signIn, useSession, SignInResponse } from "next-auth/react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import SigningForm from "../../src/forms/Signin/Signin";
-import { AUTH_STATE } from "../../src/utils/enums";
+import { AUTH_STATE, ERRORS } from "../../src/utils/enums";
 import router from "next/router";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import OtpForm from "../../src/forms/OTP";
+
+type loginPayload = {
+  source: string;
+};
 
 const LoginPage = () => {
   const { data: session, status } = useSession();
+  const [open, setOpen] = useState<boolean>(false);
+  const [_formValues, setFormValues] = useState<loginPayload>({
+    source: "",
+  });
+
+  // Login Handler
   const loginHandler = async (_: React.SyntheticEvent, data: any) => {
     const response: SignInResponse = await signIn("credentials", {
       redirect: false,
@@ -15,7 +28,10 @@ const LoginPage = () => {
       password: data.password,
     });
     if (response?.error) {
-      alert(response.error);
+      if (response.error === ERRORS.MOBILE_NOT_VERIFIED) {
+        return setOpen(true);
+      }
+      alert(response?.error);
     }
   };
   const StyledMainBox = styled(Box)(() => ({
@@ -44,11 +60,22 @@ const LoginPage = () => {
         {status === AUTH_STATE.UNAUTHENTICATED && (
           <SigningForm
             onSubmitForm={(data: any, e) => {
+              setFormValues({ source: data.source });
               loginHandler(e, data);
             }}
           />
         )}
       </StyledSigningFormBox>
+      <Dialog
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+      >
+        <DialogContent>
+          <OtpForm source={_formValues.source} />
+        </DialogContent>
+      </Dialog>
     </StyledMainBox>
   );
 };

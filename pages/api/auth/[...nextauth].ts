@@ -1,7 +1,9 @@
+import { user } from "./../../../src/utils/types";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { userLogin } from "./../../../src/apollo/queries/useLogin";
 import jwt_decode from "jwt-decode";
+import { ERRORS } from "../../../src/utils/enums";
 
 export default NextAuth({
   session: {
@@ -13,24 +15,24 @@ export default NextAuth({
       name: "Credentials",
       credentials: {},
       async authorize(credentials) {
-        const { data, error }: any = await userLogin({
-          source: credentials["source"],
-          password: credentials["password"],
-        });
-        if (!data && error) {
+        try {
+          const { data, error }: any = await userLogin({
+            source: credentials["source"],
+            password: credentials["password"],
+          });
+          if (!data && error) {
+            throw new Error(error);
+          }
+          return {
+            name: data.login.token,
+          };
+        } catch (error) {
           throw new Error(error);
         }
-        return {
-          name: data.login.token,
-        };
       },
     }),
   ],
-  events: {
-    // async signIn(message) {},
-    // async signOut(message) {},
-    async session(message) {},
-  },
+  events: {},
   pages: {
     signIn: "/login",
   },
@@ -39,10 +41,18 @@ export default NextAuth({
       if (user) token.id = user.id;
       return token;
     },
+    signIn: async ({ user, credentials }) => {
+      const decodeData = jwt_decode(user.name);
+      if (decodeData["isMobileVerified"]) {
+        return true;
+      } else {
+        throw new Error(ERRORS.MOBILE_NOT_VERIFIED);
+      }
+    },
     session: async ({ session }) => {
       const token = session.user.name;
-      const user = jwt_decode(token);
-      session.user = user;
+      const _user = jwt_decode(token);
+      session.user = _user;
       session.user["token"] = token;
       return session;
     },

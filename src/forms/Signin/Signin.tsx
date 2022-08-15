@@ -6,7 +6,6 @@ import Grid from "@mui/material/Grid";
 import FormTextField from "../../components/UiLibrary/Form/FormTextField";
 import { useForm } from "react-hook-form";
 import LoadingButtonComponent from "../../components/uiElements/Buttons/LoadingButton";
-import { useTheme } from "@mui/material";
 
 const StyledFormBox = styled(Box)(({ theme }) => ({
   border: `1px solid ${theme.palette.grey[200]}`,
@@ -14,30 +13,19 @@ const StyledFormBox = styled(Box)(({ theme }) => ({
   borderRadius: 10,
 }));
 
-const StyledFormTitle = styled(Typography)(({ theme }) => ({
-  display: "block",
-  fontWeight: 700,
-  fontSize: 35,
-}));
-const StyledFormSubtitle = styled(Typography)(() => ({
-  display: "block",
-}));
-
 interface SignInFormProps {
   onSubmitForm: (data: any, e: React.SyntheticEvent) => void;
   isFormSubmit?: boolean;
 }
 
-const SigninForm: React.FC<SignInFormProps> = ({
+const SigningForm: React.FC<SignInFormProps> = ({
   onSubmitForm,
   isFormSubmit,
 }) => {
   const { control, handleSubmit } = useForm();
-  const theme = useTheme();
   const handleLogin = (data: any, e: React.SyntheticEvent) => {
     onSubmitForm(data, e);
   };
-
   return (
     <>
       <Box pb={5}>
@@ -83,4 +71,4 @@ const SigninForm: React.FC<SignInFormProps> = ({
     </>
   );
 };
-export default SigninForm;
+export default SigningForm;

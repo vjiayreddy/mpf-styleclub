@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ContainerComponent from "../../src/components/uiElements/Container/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material";
-import FormLabel from "@mui/material/FormLabel";
-import FormControl from "@mui/material/FormControl";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { useForm, Controller } from "react-hook-form";
-import CircleChecked from "@mui/icons-material/CheckCircleOutline";
-import CircleCheckedFilled from "@mui/icons-material/CheckCircle";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import {useSession} from "next-auth/react";
 
 // Components
 import CustomerFeatureCard from "../../src/components/UiLibrary/Cards/CustomerFeature";
@@ -21,7 +16,7 @@ import RewardCard from "../../src/components/UiLibrary/Cards/RewardCard";
 import ContentSlider from "../../src/components/UiLibrary/ContentSlider";
 import sliderData from "../../src/utils/sliderData.json";
 import LoadingButton from "../../src/components/UiLibrary/LoadingButton";
-import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
+import OtpForm from "../../src/forms/OTP";
 
 const StyledBox = styled(Box)(() => ({
   margin: "0 auto",
@@ -49,53 +44,11 @@ const checkBoxData = [
 ];
 
 const ProductsPage = (props: { sliderData }) => {
-  const { control, setValue, getValues } = useForm();
-  const [selectedItems, setSelectedItems] = useState<any>(["red", "black"]);
 
-  const handleSelect = (value: any) => {
-    const isPresent = selectedItems.indexOf(value);
-    if (isPresent !== -1) {
-      const remaining = selectedItems.filter((item: any) => item !== value);
-      setSelectedItems(remaining);
-    } else {
-      setSelectedItems((prevItems: any) => [...prevItems, value]);
-    }
-  };
-
-  useEffect(() => {
-    setValue("Fabric", selectedItems);
-  }, [selectedItems]);
-
+  const {data:session} = useSession();
+  console.log(session);
   return (
     <ContainerComponent>
-      <Box p={10}>
-        <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
-          <FormLabel component="legend">Fabric</FormLabel>
-          {checkBoxData.map((option, index) => (
-            <FormControlLabel
-              key={index}
-              label={option.label}
-              control={
-                <Controller
-                  render={(props) => {
-                    return (
-                      <Checkbox
-                        icon={<CircleChecked />}
-                        checkedIcon={<CircleCheckedFilled />}
-                        checked={selectedItems.includes(option.value)}
-                        onChange={() => handleSelect(option.value)}
-                      />
-                    );
-                  }}
-                  name="Fabric"
-                  control={control}
-                />
-              }
-            />
-          ))}
-        </FormControl>
-      </Box>
-
       <Box p={10}>
         <ContentSlider data={sliderData} />
         <LoadingButton
@@ -229,6 +182,11 @@ const ProductsPage = (props: { sliderData }) => {
           </Grid>
         </Grid>
       </StyledBox>
+      <Dialog open={true} onClose={() => {}}>
+        <DialogContent>
+          <OtpForm />
+        </DialogContent>
+      </Dialog>
     </ContainerComponent>
   );
 };

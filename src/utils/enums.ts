@@ -28,4 +28,9 @@ enum IconEnum {
   RemindersOutlined = "RemindersOutlined",
   Search = "Search",
 }
+
+export enum ERRORS {
+  MOBILE_NOT_VERIFIED = "MOBILE_NOT_VERIFIED",
+}
+
 export default IconEnum;
