@@ -148,6 +148,7 @@ const OccasionPage = (props: any) => {
                     {products.map((item, index) => (
                       <Grid key={index} item md={3}>
                         <ProductCard
+                          price={item.price}
                           imgUrl={item.images[0]}
                           title={item.title}
                         />
@@ -159,7 +160,7 @@ const OccasionPage = (props: any) => {
                     btnName="Try Again"
                     title="No Result Found"
                     content={`We couldn't find what you searched for.Ty searching again.`}
-                    onClickBtn={() => { }}
+                    onClickBtn={() => {}}
                   />
                 )}
               </Grid>
