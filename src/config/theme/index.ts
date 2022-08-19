@@ -55,16 +55,14 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     h2: {
-      fontSize: 85,
-      lineHeight: "120%",
-      fontWeight: 600,
-      letterSpacing: "-3%",
+      fontSize: 44,
+      lineHeight: 1.2,
+      fontWeight: 500,
     },
     h3: {
-      fontSize: 60,
-      lineHeight: "120%",
-      fontWeight: 600,
-      letterSpacing: "-3%",
+      fontSize: 36,
+      lineHeight: 1,
+      fontWeight: 500,
     },
     h4: {
       fontSize: 53,
@@ -109,10 +107,8 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     overline: {
-      fontSize: 12,
-      lineHeight: "100%",
-      fontWeight: 400,
-      letterSpacing: "-3%",
+      fontSize: 13,
+      display: "block",
     },
     caption: {
       fontSize: 10,

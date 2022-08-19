@@ -34,12 +34,12 @@ const AppNavbarComponent: React.FC<AppNavbarComponentProps> = ({
             <StyledAppBarLogoBox>
               <LogoComponent />
             </StyledAppBarLogoBox>
-            <StyledAppBarTabsBox>
+            {/* <StyledAppBarTabsBox>
               <TabMenusComponent navMenus={navMenus} />
-            </StyledAppBarTabsBox>
-            <StyledAppBarIconsBox>
+            </StyledAppBarTabsBox> */}
+            {/* <StyledAppBarIconsBox>
               <UserActions session={session} />
-            </StyledAppBarIconsBox>
+            </StyledAppBarIconsBox> */}
           </ToolBar>
         </Container>
       </AppBar>

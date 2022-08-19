@@ -8,7 +8,7 @@ interface DefaultLayoutProps {
 
 const DefaultLayout: React.FunctionComponent<DefaultLayoutProps> = ({
   children,
-  navMenus
+  navMenus,
 }) => {
   return (
     <Fragment>

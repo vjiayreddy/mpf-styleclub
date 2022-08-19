@@ -6,11 +6,13 @@ import OfferCard from "../src/components/UiLibrary/Cards/OfferCard";
 import RightImageContentCard from "../src/components/UiLibrary/Cards/RigghtImageContent";
 import ProductService from "../src/components/UiLibrary/Services/ProductService";
 import EventCard from "../src/components/UiLibrary/Cards/EventCard";
+import HomeSliderBanner from "../src/components/UiLibrary/Banners/HomeSliderBanner";
 
 const Home: NextPage = () => {
   return (
     <>
-      <HeroBanner
+      <HomeSliderBanner />
+      {/* <HeroBanner
         onClickButton={() => {
           return;
         }}
@@ -19,14 +21,14 @@ const Home: NextPage = () => {
         bannerPrimaryTitle="Blazer Collections,"
         bannerSecondaryTitle="Shop"
         bannerBtnLbl="SHOP NOW"
-      />
-      <ProductService />
+      /> */}
+      {/* <ProductService />
       <OfferCard />
       <LeftImageContentCard />
       <RightImageContentCard />
       <LeftImageContentCard />
       <RightImageContentCard />
-      <EventCard />
+      <EventCard /> */}
     </>
   );
 };
