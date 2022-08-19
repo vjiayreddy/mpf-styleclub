@@ -7,11 +7,14 @@ import RightImageContentCard from "../src/components/UiLibrary/Cards/RigghtImage
 import ProductService from "../src/components/UiLibrary/Services/ProductService";
 import EventCard from "../src/components/UiLibrary/Cards/EventCard";
 import HomeSliderBanner from "../src/components/UiLibrary/Banners/HomeSliderBanner";
+import ProductServiceV2 from "../src/components/UiLibrary/Services/ProductServiceV2";
+
 
 const Home: NextPage = () => {
   return (
     <>
       <HomeSliderBanner />
+      <ProductServiceV2 />
       {/* <HeroBanner
         onClickButton={() => {
           return;

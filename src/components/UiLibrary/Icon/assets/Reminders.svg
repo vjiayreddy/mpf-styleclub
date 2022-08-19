@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Icon/Navigation/Fill/Reminders</title>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Icons" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
         <g id="Icon/Navigation/Fill/Reminders" fill="currentColor" fill-rule="nonzero">
             <g id="bell" transform="translate(1.000000, 0.000000)">
                 <path d="M19,10 L19,8 C19,3.581722 15.418278,0 11,0 C6.581722,0 3,3.581722 3,8 L3,10 C2.95035707,11.2330421 2.38989647,12.3898299 1.453,13.193 C0.62019621,13.9026289 0.0985838647,14.9103136 0,16 C0,18.5 4.112,20 11,20 C17.888,20 22,18.5 22,16 C21.9014161,14.9103136 21.3798038,13.9026289 20.547,13.193 C19.6101035,12.3898299 19.0496429,11.2330421 19,10 L19,10 Z" id="Path"></path>

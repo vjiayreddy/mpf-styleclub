@@ -7,12 +7,14 @@ import {
   StyledAppBarLogoBox,
   StyledAppBarTabsBox,
   StyledAppBarIconsBox,
+  StyledSpanLabel,
 } from "./styled";
 
 import LogoComponent from "../Logo/Logo";
 import Container from "@mui/material/Container";
 import TabMenusComponent from "./TabMenus";
 import UserActions from "./UserActions";
+import { Typography } from "@mui/material";
 
 interface AppNavbarComponentProps {
   navMenus?: any[];
@@ -32,14 +34,17 @@ const AppNavbarComponent: React.FC<AppNavbarComponentProps> = ({
         <Container maxWidth="xl">
           <ToolBar disableGutters>
             <StyledAppBarLogoBox>
-              <LogoComponent />
+              <Typography variant="h6" component="h6">
+                STYLE <StyledSpanLabel>CLUB</StyledSpanLabel>
+              </Typography>
+              {/* <LogoComponent /> */}
             </StyledAppBarLogoBox>
-            {/* <StyledAppBarTabsBox>
+            <StyledAppBarTabsBox>
               <TabMenusComponent navMenus={navMenus} />
-            </StyledAppBarTabsBox> */}
-            {/* <StyledAppBarIconsBox>
+            </StyledAppBarTabsBox>
+            <StyledAppBarIconsBox>
               <UserActions session={session} />
-            </StyledAppBarIconsBox> */}
+            </StyledAppBarIconsBox>
           </ToolBar>
         </Container>
       </AppBar>

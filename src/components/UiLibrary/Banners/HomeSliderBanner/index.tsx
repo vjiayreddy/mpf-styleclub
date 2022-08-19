@@ -1,15 +1,17 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import { alpha, styled } from "@mui/material/styles";
 import ContainerComponent from "../../../uiElements/Container/Container";
 import Slider from "react-slick";
 import Image from "next/image";
-import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 interface HomeSliderBannerProps {
   image: string;
   title: string;
+  btnName: string;
 }
 
 const StyledSlide = styled(Box)(() => ({
@@ -18,23 +20,32 @@ const StyledSlide = styled(Box)(() => ({
   height: "100%",
 }));
 
-const StyledSlideBackdrop = styled(Box)(({ theme }) => ({
+const StyledSlideBackdrop = styled(Box)(() => ({
   width: "100%",
   height: "100%",
   top: 0,
   left: 0,
   position: "absolute",
-  //backgroundColor: alpha(theme.palette.common.black, 0.2),
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  flexDirection: "column",
 }));
 
 const StyledBannerTitle = styled(Typography)<{ component: any }>(
   ({ theme }) => ({
     color: theme.palette.common.white,
+    marginBottom: 30,
   })
 );
+
+const StyledBannerButton = styled(Button)(({ theme }) => ({
+  background: theme.palette.common.white,
+  color: theme.palette.secondary.main,
+  "&:hover": {
+    background: theme.palette.common.white,
+  },
+}));
 
 const settings = {
   dots: false,
@@ -53,7 +64,11 @@ const settings = {
   ],
 };
 
-const BannerSlide: React.FC<HomeSliderBannerProps> = ({ image, title }) => {
+const BannerSlide: React.FC<HomeSliderBannerProps> = ({
+  image,
+  title,
+  btnName,
+}) => {
   return (
     <StyledSlide>
       <Image
@@ -70,6 +85,14 @@ const BannerSlide: React.FC<HomeSliderBannerProps> = ({ image, title }) => {
         <StyledBannerTitle variant="h2" component="h2">
           {title}
         </StyledBannerTitle>
+        <Box>
+          <StyledBannerButton
+            endIcon={<ArrowForwardIcon sx={{ width: "16px" }} />}
+            color="secondary"
+          >
+            {btnName}
+          </StyledBannerButton>
+        </Box>
       </StyledSlideBackdrop>
     </StyledSlide>
   );
@@ -79,14 +102,20 @@ const HomeSliderBanner = () => {
   return (
     <ContainerComponent>
       <Slider {...settings}>
-        <BannerSlide title="Mens" image="/assets/images/home_banner_2.webp" />
         <BannerSlide
-          title="Suit's"
+          btnName="Shop Suits"
+          title="Suits"
+          image="/assets/images/home_banner_2.webp"
+        />
+        <BannerSlide
+          btnName="Shop Sherwani"
+          title="Sherwani"
           image="/assets/images/home_banner_slide.webp"
         />
         <BannerSlide
-          title="Women's"
-          image="/assets/images/home_banner_slide.webp"
+          btnName="Shop Formals"
+          title="Formals"
+          image="/assets/images/home_banner_3.webp"
         />
       </Slider>
     </ContainerComponent>

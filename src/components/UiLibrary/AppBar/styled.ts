@@ -15,6 +15,9 @@ const StyledAppBarTabsBox = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  [theme.breakpoints.down("sm")]: {
+    display:"none"
+  },
 }));
 const StyledAppBarIconsBox = styled(Box)(() => ({
   display: "flex",
@@ -26,6 +29,8 @@ const StyledAppBarActionBox = styled(Box)(({ theme }) => ({
   marginLeft: 30,
   [theme.breakpoints.down("sm")]: {
     display: "none",
+    marginLeft: 0,
+    alignItems: "center",
   },
 }));
 
@@ -37,7 +42,8 @@ const StyledTabsList = styled(Tabs)(({ theme }) => ({
 }));
 const StyledTab = styled(Tab)<{ ref?: React.Ref<HTMLDivElement> }>(() => ({
   minHeight: 62,
-  fontWeight:600
+  fontWeight: 500,
+  fontSize: 16,
 }));
 
 const StyledDialogBoxContent = styled(Box)(({ theme }) => ({
@@ -45,7 +51,12 @@ const StyledDialogBoxContent = styled(Box)(({ theme }) => ({
 }));
 
 const StyledMenuPaper = styled(Paper)((theme) => ({
-  width: "70%"
+  width: "70%",
+}));
+
+const StyledSpanLabel = styled("span")(({ theme }) => ({
+  color: theme.palette.primary.main,
+  fontWeight: 700,
 }));
 
 export {
@@ -57,4 +68,5 @@ export {
   StyledTab,
   StyledDialogBoxContent,
   StyledMenuPaper,
+  StyledSpanLabel,
 };

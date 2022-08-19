@@ -4,7 +4,6 @@ import LocalMallIcon from "@mui/icons-material/LocalMallOutlined";
 import Box from "@mui/material/Box";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
-import SearchIcon from "@mui/icons-material/Search";
 import UIIconButton from "../../IconButton";
 import IconButton from "@mui/material/IconButton";
 import { useSession } from "next-auth/react";
@@ -16,11 +15,13 @@ import UserActionMenu from "../UserMenu";
 import Drawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 import CartItemCard from "../../Cards/CartItemCard";
+import SearchIcon from "../../Icon/components/SearchIcon";
+import UserIcon from "../../Icon/components/UserIcon";
+import CartIcon from "../../Icon/components/CartIcon";
 
 interface UserActionsProps {
   session: any;
 }
-
 
 const UserActions: React.FC<UserActionsProps> = ({ session }) => {
   const { status } = useSession();
@@ -73,7 +74,7 @@ const UserActions: React.FC<UserActionsProps> = ({ session }) => {
 
   return (
     <>
-      <Grid spacing={3} container alignItems="center">
+      <Grid spacing={2} container alignItems="center">
         <Grid item>
           <UIIconButton size="small" onClick={() => {}} icon={<SearchIcon />} />
         </Grid>
@@ -84,8 +85,8 @@ const UserActions: React.FC<UserActionsProps> = ({ session }) => {
               setShowDrawer(true);
             }}
             icon={
-              <Badge badgeContent={4} color="secondary">
-                <LocalMallIcon />
+              <Badge badgeContent={null} color="secondary">
+                <CartIcon />
               </Badge>
             }
           />
@@ -112,7 +113,7 @@ const UserActions: React.FC<UserActionsProps> = ({ session }) => {
                     U
                   </Avatar>
                 ) : (
-                  <Avatar sx={{ width: 24, height: 24 }} />
+                  <UserIcon />
                 )}
               </>
             )}

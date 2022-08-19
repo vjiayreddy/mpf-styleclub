@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Icon/Navigation/Fill/Prescriptions</title>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Icons" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
         <g id="Icon/Navigation/Fill/Prescriptions" fill="currentColor" fill-rule="nonzero">
             <g id="medicine" transform="translate(-0.000000, 0.000000)">
                 <path d="M21.1822674,11.3952642 C18.3990191,9.30907059 14.5054226,9.58633917 12.0458825,12.0458793 C9.58634237,14.5054195 9.30907378,18.3990159 11.3952674,21.1822642 L21.1822674,11.3952642 Z" id="Path"></path>

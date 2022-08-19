@@ -30,7 +30,7 @@ const TabMenus: React.FC<TabMenusProps> = ({ navMenus }) => {
     }
   }
   const prevOpen = React.useRef(open);
-  
+
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current!.focus();

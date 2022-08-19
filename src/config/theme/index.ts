@@ -77,9 +77,9 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     h6: {
-      fontSize: 32,
+      fontSize: 22,
       lineHeight: "120%",
-      fontWeight: 600,
+      fontWeight: 900,
       letterSpacing: "-3%",
     },
     subtitle1: {
@@ -107,14 +107,18 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     overline: {
-      fontSize: 13,
+      fontSize: 14,
       display: "block",
+      fontWeight: 500,
+      letterSpacing: 0.3,
+      lineHeight: 1,
     },
     caption: {
-      fontSize: 10,
+      fontSize: 14,
       lineHeight: "100%",
       fontWeight: 400,
       letterSpacing: "-3%",
+      color:muiTheme.palette.grey[500]
     },
 
     heading_extra_large: {
@@ -177,7 +181,7 @@ const theme = createTheme({
   components: {
     MuiButton: {
       defaultProps: {
-        size: "medium",
+        size: "large",
         color: "primary",
         variant: "contained",
         disableElevation: true,
@@ -185,10 +189,19 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 0,
-          minHeight: 46,
+          textTransform: "none",
+        },
+        sizeLarge: {
+          fontSize: "16px !important",
+          height: "55px !important",
+          whiteSpace: "nowrap",
+          lineHeight: "54px !important",
+          minWidth: "190px !important",
+          textTransform: "none",
         },
         containedSecondary: {
-          letterSpacing: 2,
+          lineHeight: "54px",
+          fontSize: 16,
           backgroundColor: APP_COLORS.SECONDARY_COLOR,
         },
         sizeSmall: {
@@ -221,7 +234,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
-          fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+          fontFamily: GLOBAL_FONTS.PRIMARY_FONT,
           color: APP_COLORS.SECONDARY_COLOR,
           paddingLeft: 20,
           paddingRight: 20,
