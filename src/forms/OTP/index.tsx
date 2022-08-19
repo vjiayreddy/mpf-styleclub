@@ -10,6 +10,8 @@ import LoadingButtonComponent from "../../components/uiElements/Buttons/LoadingB
 
 interface OtpFormProps {
   source: string;
+  loading?: boolean;
+  onSubmit: (otp: string) => void;
 }
 
 const StyledMainBox = styled(Box)(({ theme }) => ({
@@ -48,11 +50,11 @@ const StyledSpanLabel = styled("span")(({ theme }) => ({
   color: theme.palette.common.black,
 }));
 
-const OtpForm: React.FC<OtpFormProps> = ({ source }) => {
+const OtpForm: React.FC<OtpFormProps> = ({ source, loading, onSubmit }) => {
   const [OTP, setOTP] = useState("");
   const handleChange = (otp) => setOTP(otp);
   const handleSubmit = () => {
-    console.log(OTP);
+    onSubmit(OTP);
   };
 
   return (
@@ -100,7 +102,8 @@ const OtpForm: React.FC<OtpFormProps> = ({ source }) => {
           id="btn-verify-otp"
           onClick={handleSubmit}
           label="VERIFY & PROCEED"
-          loading={true}
+          disabled={OTP.length < 6}
+          loading={loading}
         />
       </Box>
     </StyledMainBox>

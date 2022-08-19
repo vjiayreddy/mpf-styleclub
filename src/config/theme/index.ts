@@ -176,6 +176,7 @@ const theme = createTheme({
     BASE_BLACK_80: APP_COLORS.BASE_BLACK_80,
     BASE_ORANGE: APP_COLORS.BASE_ORANGE,
     BASE_YELLOW: APP_COLORS.BASE_YELLOW,
+    BASE_BLACK_30: APP_COLORS.BASE_BLACK_30,
   },
   components: {
     MuiButton: {
@@ -259,7 +260,7 @@ const theme = createTheme({
         root: {
           fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
           fontWeight: 700,
-          fontSize:14,
+          fontSize: 14,
           color: APP_COLORS.SECONDARY_COLOR,
           marginBottom: 10,
         },

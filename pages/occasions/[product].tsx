@@ -30,7 +30,7 @@ import {
   GET_ALL_OCCASIONS,
   GET_CATEGORY_CONFIG,
   GET_OCCASION_CONFIG,
-} from "../../src/apollo/gqlQueries";
+} from "../../src/apollo/queries";
 import ServerError from "../../src/components/UiLibrary/Errors/ServerError";
 import {
   getOccasionIdByProductName,

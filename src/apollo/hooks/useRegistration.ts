@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { errorState } from "./../reactiveState/index";
 import { UserRegistrationPayload } from "./../../forms/Registration/index";
-import { POST_USER_REGISTRATION } from "./../gqlQueries/index";
+import { POST_USER_REGISTRATION } from "../queries/index";
 import { useMutation } from "@apollo/client";
 
 export const useRegistration = () => {

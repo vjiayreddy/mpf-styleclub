@@ -29,6 +29,7 @@ export interface EXTENDED_COLORS {
   BASE_BLACK: string;
   BASE_BLACK_80: string;
   BASE_BLACK_10: string;
+  BASE_BLACK_30: string;
 }
 
 export interface CUSTOM_STYLE_CLASSES {

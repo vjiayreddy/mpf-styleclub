@@ -5,9 +5,8 @@ import Box from "@mui/material/Box";
 import SigningForm from "../../src/forms/Signin/Signin";
 import { AUTH_STATE, ERRORS } from "../../src/utils/enums";
 import router from "next/router";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
 import OtpForm from "../../src/forms/OTP";
+import DialogModel from "../../src/components/UiLibrary/DialogModel/DialogModel";
 
 type loginPayload = {
   source: string;
@@ -67,16 +66,19 @@ const LoginPage = () => {
           />
         )}
       </StyledSigningFormBox>
-      <Dialog
+      <DialogModel
         open={open}
         onClose={() => {
           setOpen(false);
         }}
-      >
-        <DialogContent>
-          <OtpForm source={_formValues.source} />
-        </DialogContent>
-      </Dialog>
+        component={
+          <OtpForm
+            onSubmit={(otp: string) => console.log(otp)}
+            loading={false}
+            source={_formValues.source}
+          />
+        }
+      />
     </StyledMainBox>
   );
 };

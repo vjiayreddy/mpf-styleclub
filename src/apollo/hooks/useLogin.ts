@@ -4,7 +4,7 @@ import {
   NormalizedCacheObject,
 } from "@apollo/client";
 import apolloClient from "../config";
-import { GQL_USER_LOGIN } from "../gqlQueries";
+import { GQL_USER_LOGIN } from "../queries";
 
 type userParams = {
   source: string;

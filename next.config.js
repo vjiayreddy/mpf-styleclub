@@ -12,6 +12,7 @@ module.exports = withPWA({
   },
   reactStrictMode: false,
   images: {
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     domains: [
       "mpf-public-data.s3.ap-south-1.amazonaws.com",
       "assets.myntassets.com",

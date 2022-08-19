@@ -14,7 +14,7 @@ import _ from "lodash";
 // Apollo
 import apolloClient from "../src/apollo/config";
 import { ApolloProvider } from "@apollo/client";
-import { GET_ALL_OCCASIONS } from "../src/apollo/gqlQueries";
+import { GET_ALL_OCCASIONS } from "../src/apollo/queries";
 import { useEffect } from "react";
 import ToasterMessage from "../src/components/UiLibrary/Notifications/ToasterMessage";
 

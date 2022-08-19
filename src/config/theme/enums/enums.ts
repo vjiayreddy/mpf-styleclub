@@ -7,13 +7,14 @@ export enum APP_COLORS {
   BASE_YELLOW = "#FFDD29",
   BASE_ORANGE = "#FF8329",
   BASE_RED = "#FF2929",
-  BASE_BLACK = "#000000",
+  BASE_BLACK = "#111111",
   BASE_BLACK_80 = "#212121",
   BASE_BLACK_10 = "#eeeeee",
+  BASE_BLACK_30 = "#767676",
 }
 
 export enum GLOBAL_FONTS {
-  PRIMARY_FONT = "Inter",
+  PRIMARY_FONT = "Jost",
   SECONDARY_FONT = "Lato",
   OPTIONAL_FONT = "Lora",
 }

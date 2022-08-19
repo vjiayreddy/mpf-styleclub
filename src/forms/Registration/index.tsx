@@ -22,6 +22,7 @@ export type UserRegistrationPayload = {
 };
 interface RegistrationFormProps {
   onSubmit: (data: UserRegistrationPayload) => void;
+  loading: boolean;
 }
 
 const StyledFormBox = styled(Box)(({ theme }) => ({
@@ -30,7 +31,10 @@ const StyledFormBox = styled(Box)(({ theme }) => ({
   borderRadius: 10,
 }));
 
-const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit }) => {
+const RegistrationForm: React.FC<RegistrationFormProps> = ({
+  onSubmit,
+  loading,
+}) => {
   const {
     control,
     handleSubmit,
@@ -109,7 +113,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onSubmit }) => {
               id="btn-register"
               label="REGISTER"
               fullWidth={true}
-              loading={true}
+              loading={loading}
+              disabled={loading}
               color="secondary"
               onClick={handleSubmit(onFormSubmit)}
             />

@@ -7,6 +7,8 @@ export const GET_PRODUCTS_BY_FILTER = gql`
         title
         images
         name
+        price
+        discPrice
       }
       totalItemCount
     }

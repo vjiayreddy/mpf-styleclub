@@ -25,7 +25,7 @@ import {
   GET_ALL_OCCASIONS,
   GET_CATEGORY_CONFIG,
   GET_OCCASION_CONFIG,
-} from "../../src/apollo/gqlQueries";
+} from "../../src/apollo/queries";
 import ServerError from "../../src/components/UiLibrary/Errors/ServerError";
 import {
   getOccasionIdByProductName,
@@ -85,9 +85,10 @@ const ProductsPage = (props: any) => {
     });
   };
 
+
   return (
     <>
-      {sideFilters && (
+      {/* {sideFilters && (
         <Box p={0}>
           <ImageIconTabs
             tabIndex={getOccasionCategoryIndex(
@@ -106,7 +107,7 @@ const ProductsPage = (props: any) => {
             data={sideFilters?.categories || []}
           />
         </Box>
-      )}
+      )} */}
       <ContainerComponent>
         <StyledMainBox>
           <StyledGridContainer container>
@@ -174,8 +175,9 @@ const ProductsPage = (props: any) => {
                 {products.length > 0 ? (
                   <>
                     {products.map((item, index) => (
-                      <Grid key={index} item md={3}>
+                      <Grid key={index} item md={4} lg={4} xs={6} sm={3}>
                         <ProductCard
+                          price={item.price}
                           imgUrl={item.images[0]}
                           title={item.title}
                         />
