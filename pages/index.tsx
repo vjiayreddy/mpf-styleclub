@@ -8,13 +8,14 @@ import ProductService from "../src/components/UiLibrary/Services/ProductService"
 import EventCard from "../src/components/UiLibrary/Cards/EventCard";
 import HomeSliderBanner from "../src/components/UiLibrary/Banners/HomeSliderBanner";
 import ProductServiceV2 from "../src/components/UiLibrary/Services/ProductServiceV2";
-
+import NewCollections from "../src/containers/Home/NewCollections";
 
 const Home: NextPage = () => {
   return (
     <>
       <HomeSliderBanner />
       <ProductServiceV2 />
+      <NewCollections />
       {/* <HeroBanner
         onClickButton={() => {
           return;

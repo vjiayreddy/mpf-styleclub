@@ -65,10 +65,9 @@ const theme = createTheme({
       fontWeight: 500,
     },
     h4: {
-      fontSize: 53,
-      lineHeight: "120%",
-      fontWeight: 600,
-      letterSpacing: "-3%",
+      fontSize: 28,
+      lineHeight: 1.35714,
+      fontWeight: 500,
     },
     h5: {
       fontSize: 42,
@@ -95,10 +94,9 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     body1: {
-      fontSize: 16,
-      lineHeight: "160%",
+      fontSize: 18,
+      lineHeight: "25px",
       fontWeight: 400,
-      letterSpacing: "-3%",
     },
     body2: {
       fontSize: 14,
@@ -118,7 +116,7 @@ const theme = createTheme({
       lineHeight: "100%",
       fontWeight: 400,
       letterSpacing: "-3%",
-      color:muiTheme.palette.grey[500]
+      color: muiTheme.palette.grey[500],
     },
 
     heading_extra_large: {

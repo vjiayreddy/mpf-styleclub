@@ -1,11 +1,23 @@
-import React from 'react'
-import Typography from '@mui/material/Typography';
+import React from "react";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import Box from '@mui/material/Box';
-import { SxProps } from '@mui/system';
+import Box from "@mui/material/Box";
+import { SxProps } from "@mui/system";
 
-
-type variant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "caption" | "button" | "overline";
+type variant =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "subtitle1"
+  | "subtitle2"
+  | "body1"
+  | "body2"
+  | "caption"
+  | "button"
+  | "overline";
 type align = "left" | "right" | "inherit" | "center" | "justify";
 
 type ExtraProps = {
@@ -17,7 +29,7 @@ interface TitleWithSubtileProps {
   subTitle: string;
   titleSx?: SxProps;
   titleAlign?: align;
-  subTitleAlign?: align,
+  subTitleAlign?: align;
   titleVariant?: variant;
   subTitleVariant?: variant;
   subTitleSx?: SxProps;
@@ -25,20 +37,46 @@ interface TitleWithSubtileProps {
   subTitleComponent?: any;
 }
 
-
-const StyledTitle = styled(Typography)<ExtraProps>(() => ({}))
-const StyledSubTitle = styled(Typography)<ExtraProps>(() => ({}))
-const TitleWithSubtile: React.FC<TitleWithSubtileProps> = ({ title, subTitle, titleSx, subTitleSx, titleVariant = "h5", titleComponent = "h3", subTitleComponent = "p", titleAlign = "center", subTitleAlign = "center", subTitleVariant = "body1" }) => {
+const StyledTitle = styled(Typography)<ExtraProps>(() => ({}));
+const StyledSubTitle = styled(Typography)<ExtraProps>(({ theme }) => ({
+  color: theme.palette.grey[600],
+}));
+const TitleWithSubtile: React.FC<TitleWithSubtileProps> = ({
+  title,
+  subTitle,
+  titleSx,
+  subTitleSx,
+  titleVariant = "h5",
+  titleComponent = "h3",
+  subTitleComponent = "p",
+  titleAlign = "center",
+  subTitleAlign = "center",
+  subTitleVariant = "body1",
+}) => {
   return (
     <>
-      <Box>
-        <StyledTitle align={titleAlign} sx={titleSx} variant={titleVariant} component={titleComponent} >{title}</StyledTitle>
+      <Box mb={2}>
+        <StyledTitle
+          align={titleAlign}
+          sx={titleSx}
+          variant={titleVariant}
+          component={titleComponent}
+        >
+          {title}
+        </StyledTitle>
       </Box>
       <Box>
-        <StyledSubTitle align={subTitleAlign} sx={subTitleSx} variant={subTitleVariant} component={subTitleComponent}>{subTitle}</StyledSubTitle>
+        <StyledSubTitle
+          align={subTitleAlign}
+          sx={subTitleSx}
+          variant={subTitleVariant}
+          component={subTitleComponent}
+        >
+          {subTitle}
+        </StyledSubTitle>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default TitleWithSubtile
+export default TitleWithSubtile;
