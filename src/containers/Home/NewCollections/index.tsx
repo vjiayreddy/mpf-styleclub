@@ -7,7 +7,6 @@ import ContainerComponent from "../../../components/uiElements/Container/Contain
 import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import LinkIconButton from "../../../components/UiLibrary/LinkIconButton";
-import { Theme } from "react-toastify";
 
 const StyledNewCollectionsBox = styled(Box)(() => ({
   paddingTop: 150,
@@ -120,7 +119,7 @@ const NewCollections = () => {
           <Grid item xs={12} md={8} sm={6} lg={8} xl={8}>
             <StyledNewCollectionsImageBox>
               <Image
-                style={{ filter: "brightness(60%)" }}
+                style={{ filter: "brightness(80%)" }}
                 placeholder="blur"
                 loading="lazy"
                 blurDataURL="/assets/images/studio.webp"
@@ -129,20 +128,21 @@ const NewCollections = () => {
                 layout="fill"
                 objectFit="cover"
               />
-              <StyledNCContent>
-                <StyledNCContentTitle variant="h4" component="h6">
-                  Our Studio
-                </StyledNCContentTitle>
-                <LinkIconButton
-                  btnSx={(theme: any) => ({
-                    color: theme.palette.common.white,
-                    fontWeight: 500,
-                  })}
-                  label="Learn More"
-                  onClick={() => {}}
-                />
-              </StyledNCContent>
+               <StyledNCContent>
+              <StyledNCContentTitle variant="h4" component="h6">
+                Our Studio
+              </StyledNCContentTitle>
+              <LinkIconButton
+                btnSx={(theme: any) => ({
+                  color: theme.palette.common.white,
+                  fontWeight: 500,
+                })}
+                label="Learn More"
+                onClick={() => {}}
+              />
+            </StyledNCContent>
             </StyledNewCollectionsImageBox>
+           
           </Grid>
           <Grid item xs={12} md={4} sm={6} lg={4} xl={4}>
             <StyledNewCollectionsImageBox>

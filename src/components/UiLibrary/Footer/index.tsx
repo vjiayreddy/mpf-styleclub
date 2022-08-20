@@ -33,6 +33,7 @@ const StyledFooterLinks = styled("ul")(() => ({
   listStyle: "none",
   padding: 0,
 }));
+
 const StyledFooterATag = styled("a")(({ theme }) => ({
   textDecoration: "none",
   fontSize: 14,
@@ -43,13 +44,6 @@ const StyledFooterATag = styled("a")(({ theme }) => ({
     textDecoration: "underLine",
   },
 }));
-
-const supportMenus = [
-  "Contact Us",
-  "FAQ's",
-  "Size Guide",
-  "Shipping & Returns",
-];
 
 const shop = [
   "Men’s Shopping",
@@ -84,18 +78,9 @@ const Footer = () => {
           </Grid>
           <StyledFooterLinksBox container item xs={12}>
             <Grid item md={3} lg={3} xs={6} sm={4}>
-              <StyledFooterLinksTitle variant="overline" component="span">
-                SUPPORT
+              <StyledFooterLinksTitle variant="h4" component="span">
+                STYLE CLUB
               </StyledFooterLinksTitle>
-              <StyledFooterLinks>
-                {supportMenus.map((item, index) => (
-                  <li key={index}>
-                    <Link href="/">
-                      <StyledFooterATag>{item}</StyledFooterATag>
-                    </Link>
-                  </li>
-                ))}
-              </StyledFooterLinks>
             </Grid>
             <Grid item md={3} lg={3} xs={6} sm={4}>
               <StyledFooterLinksTitle variant="overline" component="span">
