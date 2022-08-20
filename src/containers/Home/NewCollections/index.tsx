@@ -120,15 +120,28 @@ const NewCollections = () => {
           <Grid item xs={12} md={8} sm={6} lg={8} xl={8}>
             <StyledNewCollectionsImageBox>
               <Image
-                style={{ filter: "brightness(80%)" }}
+                style={{ filter: "brightness(60%)" }}
                 placeholder="blur"
                 loading="lazy"
-                blurDataURL="/assets/images/accessories.webp"
+                blurDataURL="/assets/images/studio.webp"
                 alt="fashion-trend"
-                src="/assets/images/accessories.webp"
+                src="/assets/images/studio.webp"
                 layout="fill"
                 objectFit="cover"
               />
+              <StyledNCContent>
+                <StyledNCContentTitle variant="h4" component="h6">
+                  Our Studio
+                </StyledNCContentTitle>
+                <LinkIconButton
+                  btnSx={(theme: any) => ({
+                    color: theme.palette.common.white,
+                    fontWeight: 500,
+                  })}
+                  label="Learn More"
+                  onClick={() => {}}
+                />
+              </StyledNCContent>
             </StyledNewCollectionsImageBox>
           </Grid>
           <Grid item xs={12} md={4} sm={6} lg={4} xl={4}>
@@ -137,16 +150,24 @@ const NewCollections = () => {
                 style={{ filter: "brightness(80%)" }}
                 placeholder="blur"
                 loading="lazy"
-                blurDataURL="/assets/images/fashion-trend.webp"
+                blurDataURL="/assets/images/trendy.webp"
                 alt="fashion-trend"
-                src="/assets/images/fashion-trend.webp"
+                src="/assets/images/trendy.webp"
                 layout="fill"
                 objectFit="cover"
               />
               <StyledNCContent>
                 <StyledNCContentTitle variant="h4" component="h6">
-                  New Collections
+                  Men Fashion
                 </StyledNCContentTitle>
+                <LinkIconButton
+                  btnSx={(theme: any) => ({
+                    color: theme.palette.common.white,
+                    fontWeight: 500,
+                  })}
+                  label="Learn More"
+                  onClick={() => {}}
+                />
               </StyledNCContent>
             </StyledNewCollectionsImageBox>
           </Grid>
