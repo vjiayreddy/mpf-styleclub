@@ -13,14 +13,14 @@ import {
 } from "./interfaces/interfaces";
 import { OverrideMuiInputBase } from "./inputBase";
 declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides extends customTypographyProps {}
+  interface TypographyPropsVariantOverrides extends customTypographyProps { }
 }
 
 declare module "@mui/material/styles" {
-  interface Palette extends EXTENDED_COLORS {}
-  interface PaletteOptions extends EXTENDED_COLORS {}
-  interface Theme extends CUSTOM_STYLE_CLASSES {}
-  interface ThemeOptions extends CUSTOM_STYLE_CLASSES {}
+  interface Palette extends EXTENDED_COLORS { }
+  interface PaletteOptions extends EXTENDED_COLORS { }
+  interface Theme extends CUSTOM_STYLE_CLASSES { }
+  interface ThemeOptions extends CUSTOM_STYLE_CLASSES { }
 }
 
 declare module "@mui/material/styles/createTypography" {
@@ -37,7 +37,7 @@ declare module "@mui/material/styles/createTypography" {
 
 interface ExtendedTypographyOptions
   extends customTypographyVarients,
-    TypographyOptions {}
+  TypographyOptions { }
 
 const muiTheme = createTheme();
 const theme = createTheme({
@@ -70,10 +70,9 @@ const theme = createTheme({
       fontWeight: 500,
     },
     h5: {
-      fontSize: 42,
-      lineHeight: "120%",
-      fontWeight: 600,
-      letterSpacing: "-3%",
+      fontSize: 24,
+      lineHeight: 1,
+      fontWeight: 500,
     },
     h6: {
       fontSize: 22,
@@ -105,7 +104,7 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     overline: {
-      fontSize: 14,
+      fontSize: 13,
       display: "block",
       fontWeight: 500,
       letterSpacing: 0.3,
