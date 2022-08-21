@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import ReviewCard from "../Cards/ReviewCard";
 import SlickSlider from "react-slick";
+import TitleWithSubtile from "../Typography/TitleWithSubtile";
 
 const StyledReviewsBox = styled(Box)(() => ({
   paddingLeft: 20,
@@ -24,6 +25,13 @@ const Reviews = () => {
   return (
     <ContainerComponent>
       <StyledReviewsBox className="review-slider">
+        <Box mb={10}>
+          <TitleWithSubtile
+            titleVariant="h3"
+            title="Latest Buyers Reviews"
+            subTitle=""
+          />
+        </Box>
         <SlickSlider {...settings}>
           <Box p={1}>
             <ReviewCard
