@@ -4,6 +4,7 @@ import HomeSliderBanner from "../src/components/UiLibrary/Banners/HomeSliderBann
 import ProductServiceV2 from "../src/components/UiLibrary/Services/ProductServiceV2";
 import NewCollections from "../src/containers/Home/NewCollections";
 import DiscoverStylist from "../src/containers/Home/DiscoverStylist";
+import Reviews from "../src/components/UiLibrary/Reviews";
 
 const Home: NextPage = () => {
   return (
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
       <ProductServiceV2 />
       <NewCollections />
       <DiscoverStylist />
+      <Reviews />
     </>
   );
 };

@@ -81,16 +81,15 @@ const theme = createTheme({
       letterSpacing: "-3%",
     },
     subtitle1: {
-      fontSize: 28,
+      fontSize: 18,
       lineHeight: "160%",
       fontWeight: 600,
       letterSpacing: "-3%",
     },
     subtitle2: {
-      fontSize: 18,
-      lineHeight: "160%",
-      fontWeight: 400,
-      letterSpacing: "-3%",
+      fontSize: 16,
+      lineHeight:1,
+      fontWeight: 500,
     },
     body1: {
       fontSize: 18,
@@ -112,9 +111,8 @@ const theme = createTheme({
     },
     caption: {
       fontSize: 14,
-      lineHeight: "100%",
+      lineHeight:1,
       fontWeight: 400,
-      letterSpacing: "-3%",
       color: muiTheme.palette.grey[500],
     },
 

@@ -34,3 +34,12 @@ input:-internal-autofill-selected {
   border: 1px solid gainsboro;
   margin: 10;
 }
+
+.review-slider {
+  .slick-dots li button:before {
+    font-size: 10px !important;
+  }
+  .slick-dots li.slick-active button:before {
+    color: #c4a262;
+  }
+}
