@@ -31,7 +31,7 @@ const AppNavbarComponent: React.FC<AppNavbarComponentProps> = ({
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
-        <Container maxWidth="xl">
+        <Container  maxWidth={false}>
           <ToolBar disableGutters>
             <StyledAppBarLogoBox>
               <Typography variant="h6" component="h6">

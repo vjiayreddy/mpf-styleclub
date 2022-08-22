@@ -8,6 +8,9 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Link from "@mui/material/Link";
+
 import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
 import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
 import { GetServerSideProps } from "next";
@@ -45,20 +48,27 @@ const StyledMainBox = styled(Box)(() => ({
 
 const StyledGridContainer = styled(Grid)(() => ({}));
 
-const StyledSideFilterBox = styled(Grid)(({ theme }) => ({
-  padding: theme.spacing(4),
-  position: "-webkit-sticky",
-  top: 100,
-  bottom: 20,
+const StyledProductHeader = styled(Box)(({ theme }) => ({
+  paddingTop: 50,
+  paddingBottom: 50,
+  paddingLeft: 20,
+  backgroundColor: theme.palette.grey[100],
 }));
 const StyledProductGrid = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(4),
+}));
+
+const StyledFilterBar = styled(Box)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.grey[200]}`,
+  paddingTop: 20,
+  paddingBottom: 20,
 }));
 
 // Component
 import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
 import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
 import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
+import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
 
 // Client side render
 const ProductsPage = (props: any) => {
@@ -85,33 +95,60 @@ const ProductsPage = (props: any) => {
     });
   };
 
-
   return (
     <>
-      {/* {sideFilters && (
-        <Box p={0}>
-          <ImageIconTabs
-            tabIndex={getOccasionCategoryIndex(
-              sideFilters.categories,
-              router.query?.category as string
-            )}
-            onTabChange={(_, value) => {
-              router.push({
-                pathname: `${ROUTES.PRODUCTS}/${router.query.product}`,
-                query: {
-                  p: 1,
-                  category: sideFilters.categories[value]?.name,
-                },
-              });
-            }}
-            data={sideFilters?.categories || []}
+      <StyledProductHeader>
+        <ContainerComponent>
+          <TitleWithSubtile
+            titleSx={{ textAlign: "left", paddingLeft: "5px" }}
+            titleVariant="h2"
+            title="Products"
+            subTitle=""
           />
-        </Box>
-      )} */}
+          <Box pl={1} pr={1}>
+            <Breadcrumbs aria-label="breadcrumb">
+              <Link underline="hover" color="inherit" href="/">
+                Home
+              </Link>
+              <Link
+                underline="hover"
+                color="inherit"
+                href="/material-ui/getting-started/installation/"
+              >
+                Formal Ware
+              </Link>
+            </Breadcrumbs>
+          </Box>
+        </ContainerComponent>
+      </StyledProductHeader>
+      <StyledFilterBar>
+        <ContainerComponent>
+          {sideFilters && (
+            <Box>
+              <ImageIconTabs
+                tabIndex={getOccasionCategoryIndex(
+                  sideFilters.categories,
+                  router.query?.category as string
+                )}
+                onTabChange={(_, value) => {
+                  router.push({
+                    pathname: `${ROUTES.PRODUCTS}/${router.query.product}`,
+                    query: {
+                      p: 1,
+                      category: sideFilters.categories[value]?.name,
+                    },
+                  });
+                }}
+                data={sideFilters?.categories || []}
+              />
+            </Box>
+          )}
+        </ContainerComponent>
+      </StyledFilterBar>
       <ContainerComponent>
         <StyledMainBox>
           <StyledGridContainer container>
-            <StyledSideFilterBox item md={3}>
+            {/* <StyledSideFilterBox item md={3}>
               {sideFilters && (
                 <>
                   <SideFilterAccordion
@@ -164,18 +201,19 @@ const ProductsPage = (props: any) => {
                   />
                 </>
               )}
-            </StyledSideFilterBox>
-            <StyledProductGrid direction="column" container item md={9}>
+            </StyledSideFilterBox> */}
+            <StyledProductGrid direction="column" container item md={12}>
               <Grid
                 sx={{ flexGrow: 1, paddingBottom: "75px" }}
                 item
+                xs={12}
                 container
-                spacing={2}
+                spacing={3}
               >
                 {products.length > 0 ? (
                   <>
                     {products.map((item, index) => (
-                      <Grid key={index} item md={4} lg={4} xs={6} sm={3}>
+                      <Grid key={index} xs={6} item md={3} lg={3} sm={4}>
                         <ProductCard
                           price={item.price}
                           imgUrl={item.images[0]}
@@ -187,40 +225,46 @@ const ProductsPage = (props: any) => {
                 ) : (
                   <InfoCard
                     btnName="Try Again"
-                    title="No Result Found"
-                    content={`We couldn't find what you searched for.Ty searching again.`}
+                    title="No Products Found"
+                    content={`No products were found matching your selection.`}
                     onClickBtn={() => {}}
                   />
                 )}
               </Grid>
-              <Grid item container alignItems="center" justifyContent="center">
-                <Box p={3}>
-                  <Pagination
-                    count={10}
-                    page={Number(router.query.p) || 1}
-                    color="secondary"
-                    onChange={(_, page: number) => {
-                      router.push({
-                        pathname: `${ROUTES.PRODUCTS}/${router.query.product}`,
-                        query: {
-                          p: page,
-                          category: router.query?.category,
-                        },
-                      });
-                    }}
-                    renderItem={(item) => (
-                      <PaginationItem
-                        components={{
-                          previous: ArrowBackIcon,
-                          next: ArrowForwardIcon,
-                        }}
-                        {...item}
-                      />
-                    )}
-                  />
-                </Box>
-              </Grid>
             </StyledProductGrid>
+            <Grid
+              item
+              xs={12}
+              container
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Box p={3}>
+                <Pagination
+                  count={10}
+                  page={Number(router.query.p) || 1}
+                  color="secondary"
+                  onChange={(_, page: number) => {
+                    router.push({
+                      pathname: `${ROUTES.PRODUCTS}/${router.query.product}`,
+                      query: {
+                        p: page,
+                        category: router.query?.category,
+                      },
+                    });
+                  }}
+                  renderItem={(item) => (
+                    <PaginationItem
+                      components={{
+                        previous: ArrowBackIcon,
+                        next: ArrowForwardIcon,
+                      }}
+                      {...item}
+                    />
+                  )}
+                />
+              </Box>
+            </Grid>
           </StyledGridContainer>
         </StyledMainBox>
       </ContainerComponent>

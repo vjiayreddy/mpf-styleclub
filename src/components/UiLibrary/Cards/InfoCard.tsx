@@ -54,7 +54,7 @@ const InfoCard: React.FC<InfoCardProps> = ({
         )}
       </Box>
       <Box>
-        <Typography align="center" variant="h6" component="h6">
+        <Typography gutterBottom align="center" variant="h3" component="h6">
           {title}
         </Typography>
         <StyledInfoCardMessage variant="body1" component="p" align="center">

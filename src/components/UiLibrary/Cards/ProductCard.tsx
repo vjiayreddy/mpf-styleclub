@@ -7,6 +7,8 @@ import { styled } from "@mui/material/styles";
 import Image from "next/image";
 import LinkIconButton from "../LinkIconButton";
 import { Button } from "@mui/material";
+import IconButton from "../IconButton";
+import CartIcon from "../Icon/components/CartIcon";
 
 interface ProductCardProps {
   imgUrl: string;
@@ -21,28 +23,23 @@ const StyledImageBoxWrapper = styled(Box)(({ theme }) => ({
   justifyContent: "flex-start",
   padding: 15,
   flexDirection: "column",
-  height: "100%",
   borderRadius: 5,
 }));
 
 const StyledCardTitle = styled(Typography)<{ component: any }>(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: 500,
   color: theme.palette.BASE_BLACK,
-  textAlign: "center",
+  textAlign: "left",
 }));
 
-const StyledFlexBox = styled(Box)(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-}));
+
 
 const StyledCardPrice = styled(Typography)<{ component: any }>(({ theme }) => ({
   fontWeight: 600,
-  color: theme.palette.BASE_BLACK_30,
+  color: theme.palette.primary.main,
   marginTop: 10,
-  marginBottom:10,
-  textAlign: "center",
+  marginBottom: 10,
+  textAlign: "left",
 }));
 const ProductCard: React.FC<ProductCardProps> = ({ imgUrl, title, price }) => {
   return (
@@ -62,18 +59,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ imgUrl, title, price }) => {
             {title}
           </StyledCardTitle>
         </Grid>
-        <Grid item xs={12}>
-          <StyledCardPrice component="p" variant="subtitle2">
-            ${price}
-          </StyledCardPrice>
-          <StyledFlexBox>
+        <Grid item container alignItems="center" xs={12}>
+          <Grid item xs>
+            <StyledCardPrice component="p" variant="subtitle1">
+              ${price}
+            </StyledCardPrice>
+          </Grid>
+          <Grid item>
+            <IconButton onClick={() => {}} icon={<CartIcon />} />
+          </Grid>
+          {/* <StyledFlexBox>
             <Button fullWidth={true} variant="contained" color="secondary">
               Add To Cart
             </Button>
             <Button fullWidth={true} variant="contained" color="primary">
               Add To Wishlist
             </Button>
-          </StyledFlexBox>
+          </StyledFlexBox> */}
         </Grid>
       </Box>
     </StyledImageBoxWrapper>

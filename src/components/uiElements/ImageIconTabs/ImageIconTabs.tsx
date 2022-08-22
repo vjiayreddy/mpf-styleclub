@@ -7,8 +7,8 @@ import { useTheme } from "@mui/material";
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   width: "100%",
+  margin: "0 auto",
   paddingTop: 20,
-  borderBottom: `1px solid ${theme.palette.grey[200]}`,
   "& .MuiTabs-indicator": {
     display: "none",
   },
@@ -16,8 +16,9 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
 
 const StyledTab = styled(Tab)(({ theme }) => ({
   "&.MuiTab-textColorPrimary": {
-    fontSize: 12,
-    fontWeight: 600,
+    fontSize: 14,
+    fontWeight: 500,
+    color: theme.palette.grey[600],
   },
 }));
 
@@ -34,7 +35,13 @@ const ImageIconTabs: React.FC<ImageIconTabsProps> = ({
 }) => {
   const theme = useTheme();
   return (
-    <StyledTabs onChange={onTabChange} value={tabIndex}>
+    <StyledTabs
+      scrollButtons="auto"
+      centered
+      variant="scrollable"
+      onChange={onTabChange}
+      value={tabIndex}
+    >
       {data.map((item, index) => (
         <StyledTab
           key={index}
@@ -47,7 +54,7 @@ const ImageIconTabs: React.FC<ImageIconTabsProps> = ({
                     : "none",
               }}
               alt={item.name}
-              iconHeight={70}
+              iconHeight={60}
               iconWidth={60}
               image={item.image}
             />
