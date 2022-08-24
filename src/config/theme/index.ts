@@ -346,6 +346,16 @@ const theme = createTheme({
         },
       },
     },
+    MuiDrawer:{
+     styleOverrides:{
+      root:{
+        zIndex:1204
+      },
+      paper:{
+        borderRadius:0
+      }
+     }
+    }
   },
   globalCardStyle: {
     width: "100%",

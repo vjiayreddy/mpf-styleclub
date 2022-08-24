@@ -10,6 +10,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
+import Drawer from "@mui/material/Drawer";
 
 import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
 import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
@@ -58,6 +59,11 @@ const StyledProductGrid = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(4),
 }));
 
+const StyledCategoryFilterBar = styled(Box)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.grey[200]}`,
+  paddingBottom: 20,
+}));
+
 const StyledFilterBar = styled(Box)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.grey[200]}`,
   paddingTop: 20,
@@ -69,10 +75,14 @@ import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIc
 import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
 import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
 import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
+import { Button, Typography } from "@mui/material";
+import FiltersSvgIcon from "../../src/components/UiLibrary/Icon/components/Filters";
+import ProductFilters from "../../src/components/UiLibrary/ProductFilters";
 
 // Client side render
 const ProductsPage = (props: any) => {
   const { products, sideFilters } = props.initialData;
+  const [openFilters, setOpenFilters] = useState<boolean>(false);
   const router: NextRouter = useRouter();
   const { control } = useForm();
 
@@ -121,7 +131,7 @@ const ProductsPage = (props: any) => {
           </Box>
         </ContainerComponent>
       </StyledProductHeader>
-      <StyledFilterBar>
+      <StyledCategoryFilterBar>
         <ContainerComponent>
           {sideFilters && (
             <Box>
@@ -144,64 +154,41 @@ const ProductsPage = (props: any) => {
             </Box>
           )}
         </ContainerComponent>
+      </StyledCategoryFilterBar>
+      <StyledFilterBar>
+        <ContainerComponent>
+          <Box pl={3} pr={3}>
+            <Grid alignItems="center" justifyContent="space-between" container>
+              <Grid item>
+                <Typography
+                  sx={{ fontWeight: 500 }}
+                  variant="body2"
+                  component="p"
+                >
+                  Showing 1 - 12 of 36 result
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Button
+                  onClick={() => {
+                    setOpenFilters(true);
+                  }}
+                  startIcon={<FiltersSvgIcon />}
+                  color="inherit"
+                  variant="text"
+                  size="small"
+                >
+                  Filters
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+        </ContainerComponent>
       </StyledFilterBar>
+
       <ContainerComponent>
         <StyledMainBox>
           <StyledGridContainer container>
-            {/* <StyledSideFilterBox item md={3}>
-              {sideFilters && (
-                <>
-                  <SideFilterAccordion
-                    title="Fabric"
-                    component={
-                      <div>
-                        <CheckBoxGroup
-                          defaultValues={props?.selectedFabrics || []}
-                          onGetSelectedValues={(values) => {
-                            handleRouter("fabric", values);
-                          }}
-                          control={control}
-                          name="Fabric"
-                          options={sideFilters.sideFilters.fabricFilters}
-                        />
-                      </div>
-                    }
-                  />
-                  <SideFilterAccordion
-                    title="Colors"
-                    component={
-                      <div>
-                        <CheckBoxGroup
-                          defaultValues={props?.selectedColors || []}
-                          onGetSelectedValues={(values) => {
-                            handleRouter("colors", values);
-                          }}
-                          control={control}
-                          name="Colors"
-                          options={sideFilters.sideFilters.colorFilters}
-                        />
-                      </div>
-                    }
-                  />
-                  <SideFilterAccordion
-                    title="Patterns"
-                    component={
-                      <div>
-                        <CheckBoxGroup
-                          defaultValues={props?.selectedPatterns || []}
-                          onGetSelectedValues={(values) => {
-                            handleRouter("patterns", values);
-                          }}
-                          control={control}
-                          name="patterns"
-                          options={sideFilters.sideFilters.patternFilters}
-                        />
-                      </div>
-                    }
-                  />
-                </>
-              )}
-            </StyledSideFilterBox> */}
             <StyledProductGrid direction="column" container item md={12}>
               <Grid
                 sx={{ flexGrow: 1, paddingBottom: "75px" }}
@@ -268,6 +255,74 @@ const ProductsPage = (props: any) => {
           </StyledGridContainer>
         </StyledMainBox>
       </ContainerComponent>
+      <ProductFilters
+        openDrawer={openFilters}
+        onCloseDrawer={() => setOpenFilters(false)}
+      >
+        Drawer
+      </ProductFilters>
+      {/* <Drawer
+        onClose={() => {
+          setOpenFilters(false);
+        }}
+        open={openFilters}
+        anchor="right"
+      >
+        <Box sx={{ width: 350 }}>
+          {sideFilters && (
+            <>
+              <SideFilterAccordion
+                title="Fabric"
+                component={
+                  <div>
+                    <CheckBoxGroup
+                      defaultValues={props?.selectedFabrics || []}
+                      onGetSelectedValues={(values) => {
+                        handleRouter("fabric", values);
+                      }}
+                      control={control}
+                      name="Fabric"
+                      options={sideFilters.sideFilters.fabricFilters}
+                    />
+                  </div>
+                }
+              />
+              <SideFilterAccordion
+                title="Colors"
+                component={
+                  <div>
+                    <CheckBoxGroup
+                      defaultValues={props?.selectedColors || []}
+                      onGetSelectedValues={(values) => {
+                        handleRouter("colors", values);
+                      }}
+                      control={control}
+                      name="Colors"
+                      options={sideFilters.sideFilters.colorFilters}
+                    />
+                  </div>
+                }
+              />
+              <SideFilterAccordion
+                title="Patterns"
+                component={
+                  <div>
+                    <CheckBoxGroup
+                      defaultValues={props?.selectedPatterns || []}
+                      onGetSelectedValues={(values) => {
+                        handleRouter("patterns", values);
+                      }}
+                      control={control}
+                      name="patterns"
+                      options={sideFilters.sideFilters.patternFilters}
+                    />
+                  </div>
+                }
+              />
+            </>
+          )}
+        </Box>
+      </Drawer> */}
     </>
   );
 };
