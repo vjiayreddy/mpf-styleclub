@@ -1,30 +1,10 @@
 import _ from "lodash";
 import { productFilterParams } from "../apollo/interfaces";
 
-export const getOccasionIdByProductName = (
-  productName: string,
-  occasions: any
-) => {
-  const findProduct = _.find(occasions, (item) => item.name === productName);
-  const params: productFilterParams = {
-    occasionId: findProduct ? findProduct._id : null,
-    catIds: findProduct ? findProduct.catIds : [],
-    filter: {
-      endPrice: 10000,
-      startPrice: 2000,
-    },
-    sortBy: "popularity",
-  };
-  return params;
-};
-
-export const getCategoryIdByParams = (
-  occasionId: any,
-  occasionCatId: string
-) => {
+const getProductFiltersParams = (occasionId, catIds: string[]) => {
   const params: productFilterParams = {
     occasionId: occasionId,
-    catIds: [occasionCatId],
+    catIds: catIds,
     filter: {
       endPrice: 75000,
       startPrice: 2000,
@@ -34,10 +14,34 @@ export const getCategoryIdByParams = (
   return params;
 };
 
+export const getOccasionIdByProductName = (
+  productName: string,
+  occasions: any
+) => {
+  const findProduct = _.find(occasions, (item) => item.name === productName);
+  const occasionId = findProduct ? findProduct._id : null;
+  const catIds = findProduct ? findProduct.catIds : [];
+  return getProductFiltersParams(occasionId, catIds);
+};
+
+export const getCategoryIdByParams = (
+  occasionId: any,
+  occasionCatId: string
+) => {
+  return getProductFiltersParams(occasionId, [occasionCatId]);
+};
+
 export const getOccasionFilters = (getOccasionConfig: any) => {
   return {
     categories: getOccasionConfig?.categories || [],
     sideFilters: getOccasionConfig.sideFilters,
+  };
+};
+
+export const getCategoryFilters = (getCategoryConfig: any) => {
+  return {
+    categories: getCategoryConfig?.topFilters.patternFilters || [],
+    sideFilters: getCategoryConfig.sideFilters,
   };
 };
 

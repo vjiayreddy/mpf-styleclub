@@ -12,7 +12,7 @@ interface SideFilterAccordionProps {
 }
 
 const StyledSummaryLabel = styled(Typography)<{ component: any }>(() => ({
-  fontWeight: 700,
+  fontWeight: 500,
 }));
 
 const SideFilterAccordion: React.FC<SideFilterAccordionProps> = ({

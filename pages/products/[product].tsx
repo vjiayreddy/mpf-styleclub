@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ContainerComponent from "../../src/components/uiElements/Container/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -10,7 +10,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import Drawer from "@mui/material/Drawer";
 
 import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
 import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
@@ -40,6 +39,7 @@ import {
   getFilteredPatternIds,
   getFilteredColorIds,
   getSelectedFiltersByParam,
+  getCategoryFilters,
 } from "../../src/services";
 
 const StyledMainBox = styled(Box)(() => ({
@@ -104,6 +104,8 @@ const ProductsPage = (props: any) => {
       },
     });
   };
+
+  console.log(props);
 
   return (
     <>
@@ -259,70 +261,80 @@ const ProductsPage = (props: any) => {
         openDrawer={openFilters}
         onCloseDrawer={() => setOpenFilters(false)}
       >
-        Drawer
+        {sideFilters && (
+          <>
+            <SideFilterAccordion
+              title="Fabric"
+              component={
+                <div>
+                  <CheckBoxGroup
+                    defaultValues={props?.selectedFabrics || []}
+                    onGetSelectedValues={(values) => {
+                      handleRouter("fabric", values);
+                    }}
+                    control={control}
+                    name="Fabric"
+                    options={sideFilters.sideFilters.fabricFilters}
+                  />
+                </div>
+              }
+            />
+            <SideFilterAccordion
+              title="Colors"
+              component={
+                <div>
+                  <CheckBoxGroup
+                    defaultValues={props?.selectedColors || []}
+                    onGetSelectedValues={(values) => {
+                      handleRouter("colors", values);
+                    }}
+                    control={control}
+                    name="Colors"
+                    options={sideFilters.sideFilters.colorFilters}
+                  />
+                </div>
+              }
+            />
+
+            <SideFilterAccordion
+              title="Patterns"
+              component={
+                <div>
+                  <CheckBoxGroup
+                    defaultValues={props?.selectedPatterns || []}
+                    onGetSelectedValues={(values) => {
+                      handleRouter("patterns", values);
+                    }}
+                    control={control}
+                    name="patterns"
+                    options={sideFilters.sideFilters.patternFilters}
+                  />
+                </div>
+              }
+            />
+            {sideFilters.typeFilters?.isTypeFilterEnabled && (
+              <>
+                <SideFilterAccordion
+                  title="Types"
+                  component={
+                    <div>
+                      <CheckBoxGroup
+                        defaultValues={props?.selectedPatterns || []}
+                        onGetSelectedValues={(values) => {
+                          handleRouter("types", values);
+                        }}
+                        control={control}
+                        name="types"
+                        options={sideFilters.typeFilters.typeFilters}
+                      />
+                    </div>
+                  }
+                />
+              </>
+            )}
+          </>
+        )}
       </ProductFilters>
-      {/* <Drawer
-        onClose={() => {
-          setOpenFilters(false);
-        }}
-        open={openFilters}
-        anchor="right"
-      >
-        <Box sx={{ width: 350 }}>
-          {sideFilters && (
-            <>
-              <SideFilterAccordion
-                title="Fabric"
-                component={
-                  <div>
-                    <CheckBoxGroup
-                      defaultValues={props?.selectedFabrics || []}
-                      onGetSelectedValues={(values) => {
-                        handleRouter("fabric", values);
-                      }}
-                      control={control}
-                      name="Fabric"
-                      options={sideFilters.sideFilters.fabricFilters}
-                    />
-                  </div>
-                }
-              />
-              <SideFilterAccordion
-                title="Colors"
-                component={
-                  <div>
-                    <CheckBoxGroup
-                      defaultValues={props?.selectedColors || []}
-                      onGetSelectedValues={(values) => {
-                        handleRouter("colors", values);
-                      }}
-                      control={control}
-                      name="Colors"
-                      options={sideFilters.sideFilters.colorFilters}
-                    />
-                  </div>
-                }
-              />
-              <SideFilterAccordion
-                title="Patterns"
-                component={
-                  <div>
-                    <CheckBoxGroup
-                      defaultValues={props?.selectedPatterns || []}
-                      onGetSelectedValues={(values) => {
-                        handleRouter("patterns", values);
-                      }}
-                      control={control}
-                      name="patterns"
-                      options={sideFilters.sideFilters.patternFilters}
-                    />
-                  </div>
-                }
-              />
-            </>
-          )}
-        </Box>
-      </Drawer> */}
     </>
   );
 };
@@ -337,6 +349,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { query } = ctx;
   let filterParams: productFilterParams = {};
   let occasionFilters = {};
+  let _dataCategoryConfig = null;
   try {
     const { data: dataOccasion } = await client.query({
       query: GET_ALL_OCCASIONS,
@@ -388,10 +401,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           });
 
           if (dataCategoryConfig) {
+            const { getCategoryConfig } = dataCategoryConfig;
             filterParams = getCategoryIdByParams(
               matchedOccasion.occasionId,
               occasionFilters["categories"][categoryIndex]["_id"]
             );
+            _dataCategoryConfig = getCategoryConfig;
+            occasionFilters["sideFilters"] =
+              getCategoryFilters(getCategoryConfig).sideFilters;
+            occasionFilters["typeFilters"] = getCategoryConfig["topFilters"];
           }
         }
 
@@ -437,6 +455,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
   } catch (error) {
+    console.log("error", error);
     return {
       props: {
         serverError: true,

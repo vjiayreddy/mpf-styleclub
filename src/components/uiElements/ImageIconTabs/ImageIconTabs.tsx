@@ -33,11 +33,13 @@ const ImageIconTabs: React.FC<ImageIconTabsProps> = ({
   tabIndex,
   onTabChange,
 }) => {
+
+  console.log(data);
+
   const theme = useTheme();
   return (
     <StyledTabs
       scrollButtons="auto"
-      centered
       variant="scrollable"
       onChange={onTabChange}
       value={tabIndex}
@@ -59,7 +61,7 @@ const ImageIconTabs: React.FC<ImageIconTabsProps> = ({
               image={item.image}
             />
           }
-          label={item.label}
+          label={item.label || item.name}
         />
       ))}
     </StyledTabs>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Control, FieldValues, useController } from "react-hook-form";
 import Checkbox from "@mui/material/Checkbox";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { Controller, useForm } from "react-hook-form";
-import router from "next/router";
+import { Controller } from "react-hook-form";
 
 interface CheckBoxGroupProps {
   options: any[];
@@ -63,33 +64,38 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({
     }
   }, [defaultValues]);
 
-
   return (
     <React.Fragment>
-      {options.map((option, index) => (
-        <FormControlLabel
-          key={index}
-          label={option.name || option.colorname}
-          control={
-            <Controller
-              name={name}
-              render={() => {
-                return (
-                  <Checkbox
-                    checked={checkedValues.includes(
-                      option.name || option.colorname
-                    )}
-                    onChange={() =>
-                      handleSelect(option.name || option.colorname)
-                    }
+      <Box pt={3} pb={3}>
+        <Grid container>
+          {options.map((option, index) => (
+            <Grid item xs={6} key={index}>
+              <FormControlLabel
+                key={index}
+                label={option.name || option.colorname}
+                control={
+                  <Controller
+                    name={name}
+                    render={() => {
+                      return (
+                        <Checkbox
+                          checked={checkedValues.includes(
+                            option.name || option.colorname
+                          )}
+                          onChange={() =>
+                            handleSelect(option.name || option.colorname)
+                          }
+                        />
+                      );
+                    }}
+                    control={control}
                   />
-                );
-              }}
-              control={control}
-            />
-          }
-        />
-      ))}
+                }
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </React.Fragment>
   );
 };

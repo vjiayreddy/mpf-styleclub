@@ -10,6 +10,7 @@ import CloseSvgIcon from "../Icon/components/CloseIcon";
 interface ProductFiltersProps {
   openDrawer: boolean;
   onCloseDrawer?: () => void;
+  children: React.ReactChild | React.ReactChildren;
 }
 
 const StyledProductFilterBox = styled(Box)(() => ({
@@ -18,7 +19,7 @@ const StyledProductFilterBox = styled(Box)(() => ({
 }));
 
 const StyledProductFilterHeader = styled(Box)(({ theme }) => ({
-  padding: 25,
+  padding: 20,
   borderBottom: `1px solid ${theme.palette.divider}`,
   width: "100%",
   position: "absolute",
@@ -27,9 +28,17 @@ const StyledProductFilterHeader = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.common.white,
 }));
 
+const StyledProductContainer = styled(Box)(({ theme }) => ({
+  paddingTop: 100,
+  paddingLeft: 20,
+  paddingRight: 20,
+  paddingBottom: 70,
+}));
+
 const ProductFilters: React.FC<ProductFiltersProps> = ({
   openDrawer,
   onCloseDrawer,
+  children,
 }) => {
   return (
     <Drawer anchor="right" onClose={onCloseDrawer} open={openDrawer}>
@@ -42,10 +51,11 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               </Typography>
             </Grid>
             <Grid item>
-                <IconButton onClick={()=>{}} icon={<CloseSvgIcon/>}/>
+              <IconButton onClick={onCloseDrawer} icon={<CloseSvgIcon />} />
             </Grid>
           </Grid>
         </StyledProductFilterHeader>
+        <StyledProductContainer>{children}</StyledProductContainer>
       </StyledProductFilterBox>
     </Drawer>
   );

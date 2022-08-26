@@ -19,7 +19,7 @@ export type sideFilterType = {
 
 export type productFilterParams = {
   filter?: sideFilterType;
-  catIds?: [string];
+  catIds?: string[];
   occasionId?: string;
   isAccessory?: boolean;
   searchTerm?: string;

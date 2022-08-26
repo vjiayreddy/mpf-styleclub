@@ -13,7 +13,7 @@ const FiltersSvgIcon = (props: React.SVGProps<SVGSVGElement>) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <g clip-path="url(#clip0)">
+            <g clipPath="url(#clip0)">
                 <path
                     d="M16.0001 4H7.78186V5.45457H16.0001V4Z"
                     fill="currentColor"

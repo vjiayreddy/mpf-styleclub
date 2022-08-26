@@ -13,14 +13,14 @@ import {
 } from "./interfaces/interfaces";
 import { OverrideMuiInputBase } from "./inputBase";
 declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides extends customTypographyProps { }
+  interface TypographyPropsVariantOverrides extends customTypographyProps {}
 }
 
 declare module "@mui/material/styles" {
-  interface Palette extends EXTENDED_COLORS { }
-  interface PaletteOptions extends EXTENDED_COLORS { }
-  interface Theme extends CUSTOM_STYLE_CLASSES { }
-  interface ThemeOptions extends CUSTOM_STYLE_CLASSES { }
+  interface Palette extends EXTENDED_COLORS {}
+  interface PaletteOptions extends EXTENDED_COLORS {}
+  interface Theme extends CUSTOM_STYLE_CLASSES {}
+  interface ThemeOptions extends CUSTOM_STYLE_CLASSES {}
 }
 
 declare module "@mui/material/styles/createTypography" {
@@ -37,7 +37,7 @@ declare module "@mui/material/styles/createTypography" {
 
 interface ExtendedTypographyOptions
   extends customTypographyVarients,
-  TypographyOptions { }
+    TypographyOptions {}
 
 const muiTheme = createTheme();
 const theme = createTheme({
@@ -88,7 +88,7 @@ const theme = createTheme({
     },
     subtitle2: {
       fontSize: 16,
-      lineHeight:1,
+      lineHeight: 1,
       fontWeight: 500,
     },
     body1: {
@@ -111,7 +111,7 @@ const theme = createTheme({
     },
     caption: {
       fontSize: 14,
-      lineHeight:1,
+      lineHeight: 1,
       fontWeight: 400,
       color: muiTheme.palette.grey[500],
     },
@@ -346,16 +346,23 @@ const theme = createTheme({
         },
       },
     },
-    MuiDrawer:{
-     styleOverrides:{
-      root:{
-        zIndex:1204
+    MuiDrawer: {
+      styleOverrides: {
+        root: {
+          zIndex: 1204,
+        },
+        paper: {
+          borderRadius: 0,
+        },
       },
-      paper:{
-        borderRadius:0
-      }
-     }
-    }
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          fontSize: 14,
+        },
+      },
+    },
   },
   globalCardStyle: {
     width: "100%",
