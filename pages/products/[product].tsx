@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ContainerComponent from "../../src/components/uiElements/Container/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { NextRouter, useRouter } from "next/router";
 import { styled } from "@mui/material/styles";
 import Pagination from "@mui/material/Pagination";
@@ -10,9 +12,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-
-import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
-import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
 import { GetServerSideProps } from "next";
 import apolloClient from "../../src/apollo/config";
 import { useForm } from "react-hook-form";
@@ -42,13 +41,23 @@ import {
   getCategoryFilters,
 } from "../../src/services";
 
+// Component
+import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
+import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
+import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
+import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
+import FiltersSvgIcon from "../../src/components/UiLibrary/Icon/components/Filters";
+import ProductFilters from "../../src/components/UiLibrary/ProductFilters";
+import ChipFilters from "../../src/components/Layouts/ProductsLayout/ChipFilters";
+import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
+import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
+
 const StyledMainBox = styled(Box)(() => ({
   display: "flex",
   minHeight: `calc(100vh - 63px)`,
 }));
 
 const StyledGridContainer = styled(Grid)(() => ({}));
-
 const StyledProductHeader = styled(Box)(({ theme }) => ({
   paddingTop: 50,
   paddingBottom: 50,
@@ -70,26 +79,15 @@ const StyledFilterBar = styled(Box)(({ theme }) => ({
   paddingBottom: 20,
 }));
 
-// Component
-import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
-import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
-import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
-import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
-import { Button, Typography } from "@mui/material";
-import FiltersSvgIcon from "../../src/components/UiLibrary/Icon/components/Filters";
-import ProductFilters from "../../src/components/UiLibrary/ProductFilters";
-
 // Client side render
 const ProductsPage = (props: any) => {
-  const { products, sideFilters } = props.initialData;
+  const { products, sideFilters, totalProducts } = props.initialData;
   const [openFilters, setOpenFilters] = useState<boolean>(false);
   const router: NextRouter = useRouter();
   const { control } = useForm();
-
   if (props?.serverError) {
     return <ServerError />;
   }
-
   const handleRouter = (filterName: string, values: any) => {
     const { query } = router;
     const queryParams = { ...query };
@@ -104,9 +102,6 @@ const ProductsPage = (props: any) => {
       },
     });
   };
-
-  console.log(props);
-
   return (
     <>
       <StyledProductHeader>
@@ -167,7 +162,8 @@ const ProductsPage = (props: any) => {
                   variant="body2"
                   component="p"
                 >
-                  Showing 1 - 12 of 36 result
+                  Showing {router.query.p || 1} - {products.length} of{" "}
+                  {totalProducts} result
                 </Typography>
               </Grid>
               <Grid item>
@@ -187,7 +183,7 @@ const ProductsPage = (props: any) => {
           </Box>
         </ContainerComponent>
       </StyledFilterBar>
-
+      <ChipFilters filters={props} />
       <ContainerComponent>
         <StyledMainBox>
           <StyledGridContainer container>
@@ -202,7 +198,7 @@ const ProductsPage = (props: any) => {
                 {products.length > 0 ? (
                   <>
                     {products.map((item, index) => (
-                      <Grid key={index} xs={6} item md={3} lg={3} sm={4}>
+                      <Grid key={index} xs={6} item md={3} lg={3} xl={2} sm={4}>
                         <ProductCard
                           price={item.price}
                           imgUrl={item.images[0]}
@@ -216,7 +212,9 @@ const ProductsPage = (props: any) => {
                     btnName="Try Again"
                     title="No Products Found"
                     content={`No products were found matching your selection.`}
-                    onClickBtn={() => {}}
+                    onClickBtn={() => {
+                      return;
+                    }}
                   />
                 )}
               </Grid>
@@ -273,7 +271,7 @@ const ProductsPage = (props: any) => {
                       handleRouter("fabric", values);
                     }}
                     control={control}
-                    name="Fabric"
+                    name="fabric"
                     options={sideFilters.sideFilters.fabricFilters}
                   />
                 </div>
@@ -289,7 +287,7 @@ const ProductsPage = (props: any) => {
                       handleRouter("colors", values);
                     }}
                     control={control}
-                    name="Colors"
+                    name="colors"
                     options={sideFilters.sideFilters.colorFilters}
                   />
                 </div>
@@ -349,7 +347,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { query } = ctx;
   let filterParams: productFilterParams = {};
   let occasionFilters = {};
-  let _dataCategoryConfig = null;
   try {
     const { data: dataOccasion } = await client.query({
       query: GET_ALL_OCCASIONS,
@@ -406,10 +403,21 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
               matchedOccasion.occasionId,
               occasionFilters["categories"][categoryIndex]["_id"]
             );
-            _dataCategoryConfig = getCategoryConfig;
             occasionFilters["sideFilters"] =
               getCategoryFilters(getCategoryConfig).sideFilters;
             occasionFilters["typeFilters"] = getCategoryConfig["topFilters"];
+            filterParams.filter.fabricIds = getFilteredFabricIds(
+              query,
+              occasionFilters
+            );
+            filterParams.filter.patternIds = getFilteredPatternIds(
+              query,
+              occasionFilters
+            );
+            filterParams.filter.colorIds = getFilteredColorIds(
+              query,
+              occasionFilters
+            );
           }
         }
 
@@ -455,12 +463,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       }
     }
   } catch (error) {
-    console.log("error", error);
     return {
       props: {
         serverError: true,
         initialData: {
           products: [],
+          totalProducts: 0,
           sideFilters: [],
         },
       },

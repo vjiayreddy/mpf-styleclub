@@ -288,7 +288,7 @@ const theme = createTheme({
       },
       styleOverrides: {
         label: {
-          fontFamily: GLOBAL_FONTS.SECONDARY_FONT,
+         fontSize:14
         },
       },
     },

@@ -33,4 +33,11 @@ export enum ERRORS {
   MOBILE_NOT_VERIFIED = "MOBILE_NOT_VERIFIED",
 }
 
+export enum FILTERS {
+  FABRIC = "fabric",
+  PATTERNS = "patterns",
+  COLORS = "colors",
+  TYPES = "types",
+}
+
 export default IconEnum;
