@@ -10,8 +10,6 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
 import { GetServerSideProps } from "next";
 import apolloClient from "../../src/apollo/config";
 import { useForm } from "react-hook-form";
@@ -44,19 +42,17 @@ import {
 // Component
 import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
 import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
-import CheckBoxGroup from "../../src/components/UiLibrary/FormElements/CheckBoxGrop";
 import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
 import FiltersSvgIcon from "../../src/components/UiLibrary/Icon/components/Filters";
-import ProductFilters from "../../src/components/UiLibrary/ProductFilters";
 import ChipFilters from "../../src/components/Layouts/ProductsLayout/ChipFilters";
 import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
-import SideFilterAccordion from "../../src/components/UiLibrary/Accordions/SideFilterAccordion";
+import NextBreadcrumbs from "../../src/components/UiLibrary/NextBreadcrumbs";
+import ProductFilters from "../../src/containers/ProductFilters";
 
 const StyledMainBox = styled(Box)(() => ({
   display: "flex",
   minHeight: `calc(100vh - 63px)`,
 }));
-
 const StyledGridContainer = styled(Grid)(() => ({}));
 const StyledProductHeader = styled(Box)(({ theme }) => ({
   paddingTop: 50,
@@ -72,36 +68,23 @@ const StyledCategoryFilterBar = styled(Box)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.grey[200]}`,
   paddingBottom: 20,
 }));
-
 const StyledFilterBar = styled(Box)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.grey[200]}`,
   paddingTop: 20,
   paddingBottom: 20,
 }));
 
+
+
 // Client side render
 const ProductsPage = (props: any) => {
   const { products, sideFilters, totalProducts } = props.initialData;
   const [openFilters, setOpenFilters] = useState<boolean>(false);
   const router: NextRouter = useRouter();
-  const { control } = useForm();
   if (props?.serverError) {
     return <ServerError />;
   }
-  const handleRouter = (filterName: string, values: any) => {
-    const { query } = router;
-    const queryParams = { ...query };
-    delete queryParams?.product;
-    delete queryParams?.p;
-    router.push({
-      pathname: `${ROUTES.PRODUCTS}/${query.product}`,
-      query: {
-        p: 1,
-        ...queryParams,
-        [filterName]: values?.join(","),
-      },
-    });
-  };
+
   return (
     <>
       <StyledProductHeader>
@@ -113,18 +96,7 @@ const ProductsPage = (props: any) => {
             subTitle=""
           />
           <Box pl={1} pr={1}>
-            <Breadcrumbs aria-label="breadcrumb">
-              <Link underline="hover" color="inherit" href="/">
-                Home
-              </Link>
-              <Link
-                underline="hover"
-                color="inherit"
-                href="/material-ui/getting-started/installation/"
-              >
-                Formal Ware
-              </Link>
-            </Breadcrumbs>
+            <NextBreadcrumbs />
           </Box>
         </ContainerComponent>
       </StyledProductHeader>
@@ -258,81 +230,8 @@ const ProductsPage = (props: any) => {
       <ProductFilters
         openDrawer={openFilters}
         onCloseDrawer={() => setOpenFilters(false)}
-      >
-        {sideFilters && (
-          <>
-            <SideFilterAccordion
-              title="Fabric"
-              component={
-                <div>
-                  <CheckBoxGroup
-                    defaultValues={props?.selectedFabrics || []}
-                    onGetSelectedValues={(values) => {
-                      handleRouter("fabric", values);
-                    }}
-                    control={control}
-                    name="fabric"
-                    options={sideFilters.sideFilters.fabricFilters}
-                  />
-                </div>
-              }
-            />
-            <SideFilterAccordion
-              title="Colors"
-              component={
-                <div>
-                  <CheckBoxGroup
-                    defaultValues={props?.selectedColors || []}
-                    onGetSelectedValues={(values) => {
-                      handleRouter("colors", values);
-                    }}
-                    control={control}
-                    name="colors"
-                    options={sideFilters.sideFilters.colorFilters}
-                  />
-                </div>
-              }
-            />
-
-            <SideFilterAccordion
-              title="Patterns"
-              component={
-                <div>
-                  <CheckBoxGroup
-                    defaultValues={props?.selectedPatterns || []}
-                    onGetSelectedValues={(values) => {
-                      handleRouter("patterns", values);
-                    }}
-                    control={control}
-                    name="patterns"
-                    options={sideFilters.sideFilters.patternFilters}
-                  />
-                </div>
-              }
-            />
-            {sideFilters.typeFilters?.isTypeFilterEnabled && (
-              <>
-                <SideFilterAccordion
-                  title="Types"
-                  component={
-                    <div>
-                      <CheckBoxGroup
-                        defaultValues={props?.selectedPatterns || []}
-                        onGetSelectedValues={(values) => {
-                          handleRouter("types", values);
-                        }}
-                        control={control}
-                        name="types"
-                        options={sideFilters.typeFilters.typeFilters}
-                      />
-                    </div>
-                  }
-                />
-              </>
-            )}
-          </>
-        )}
-      </ProductFilters>
+        data={props}
+      />
     </>
   );
 };
