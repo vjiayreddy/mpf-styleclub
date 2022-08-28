@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import ContainerComponent from "../../src/components/uiElements/Container/Container";
 import ProductServiceV2 from "../../src/components/UiLibrary/Services/ProductServiceV2";
 import { styled } from "@mui/material/styles";
-import { Button, CardContent, Typography } from "@mui/material";
+import { Button, CardActions, CardContent, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import SizeSvgIcon from "../../src/components/UiLibrary/Icon/components/Size";
@@ -57,11 +57,16 @@ const StyledCard = styled(Card)(({ theme }) => ({
   border: `1px solid ${theme.palette.grey[200]}`,
 }));
 
-const slidesData = [
-  "https://mpf-public-data.s3.ap-south-1.amazonaws.com/Images/MPFProducts_2.0/Shirt/60310f23d0c8573eb07d1592_0.jpg",
-  "https://mpf-public-data.s3.ap-south-1.amazonaws.com/Images/MPFProducts_2.0/Shirt/60310f23d0c8573eb07d1592_1.jpg",
-  "https://mpf-public-data.s3.ap-south-1.amazonaws.com/Images/MPFProducts_2.0/Shirt/60310f23d0c8573eb07d1592_2.jpg",
-];
+const StyledStylingBox = styled(Box)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.grey[200]}`,
+  paddingBottom: theme.spacing(1.5),
+}));
+const StyledStylingLabelCaption = styled(Typography)<{ component: any }>(
+  ({ theme }) => ({
+    color: theme.palette.grey[600],
+    marginBottom:8
+  })
+);
 
 interface ProductDetailsProps {
   product: any;
@@ -151,7 +156,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                   <StyledCardHeader title="Product Details" />
                   <CardContent sx={{ paddingLeft: `10px`, paddingTop: "0px" }}>
                     <Box>
-                      <StyledProductInfoLabel   gutterBottom component="p" variant="subtitle2">
+                      <StyledProductInfoLabel
+                        gutterBottom
+                        component="p"
+                        variant="subtitle2"
+                      >
                         Product Id :
                         <StyledSpanLabel>{product.pidSerial}</StyledSpanLabel>{" "}
                       </StyledProductInfoLabel>
@@ -199,6 +208,38 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                       </Box>
                     ))}
                   </CardContent>
+                </StyledCard>
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box mb={3}>
+                <StyledCard>
+                  <StyledCardHeader title="Standard Styling" />
+                  <CardContent>
+                    <Grid container spacing={2}>
+                      {product.tags.map((item, index) => (
+                        <Fragment key={index}>
+                          {item.isModifiable && item.name && (
+                            <Grid item md={3} lg={3} sm={4} xl={3} xs={6}>
+                              <StyledStylingBox>
+                                <StyledStylingLabelCaption gutterBottom variant="body2" component="p">
+                                  {item.label}
+                                </StyledStylingLabelCaption>
+                                <Typography variant="subtitle2">
+                                  {item.name}
+                                </Typography>
+                              </StyledStylingBox>
+                            </Grid>
+                          )}
+                        </Fragment>
+                      ))}
+                    </Grid>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="medium" variant="contained" color="warning">
+                      Customize
+                    </Button>
+                  </CardActions>
                 </StyledCard>
               </Box>
             </Grid>

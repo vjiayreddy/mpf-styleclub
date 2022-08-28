@@ -10,8 +10,8 @@ import Typography from "@mui/material/Typography";
 import { GetServerSideProps } from "next";
 import { NextRouter, useRouter } from "next/router";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import apolloClient from "../../src/apollo/config";
+
 import {
   Product,
   productFilterParams,
