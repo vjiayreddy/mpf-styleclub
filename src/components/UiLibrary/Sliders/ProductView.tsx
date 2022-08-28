@@ -1,10 +1,10 @@
-import React, { useEffect, useState,memo } from "react";
+import React, { useEffect, useState, memo } from "react";
 import SlickSlider from "react-slick";
 import Box from "@mui/material/Box";
 import Image from "next/image";
 
 interface ProductViewProps {
-  sliderImages: string[];
+  sliderImages: string[] | null;
   imageAlt?: string;
 }
 
@@ -17,15 +17,16 @@ const settingsMain = {
 };
 
 const settingsThumbs = {
-  slidesToShow: 3,
-  slidesToScroll: 1,
+  slidesToShow: 4,
+  slidesToScroll: 4,
   asNavFor: ".slider-for",
-  dots: true,
-  centerMode: true,
+  dots: false,
+  centerMode: false,
   swipeToSlide: true,
   focusOnSelect: true,
   centerPadding: "10px",
   variableWidth: true,
+  infinite:false
 };
 
 const ProductView: React.FC<ProductViewProps> = ({
@@ -44,46 +45,50 @@ const ProductView: React.FC<ProductViewProps> = ({
 
   return (
     <>
-      <SlickSlider
-        {...settingsMain}
-        asNavFor={nav2}
-        ref={(slider) => setProductViewSlider(slider)}
-      >
-        {sliderImages.map((slide, index) => (
-          <div key={index}>
-            <Image
-              alt={imageAlt + index}
-              src={slide}
-              width={600}
-              height={850}
-              placeholder="blur"
-              loading="lazy"
-              blurDataURL={slide}
-            />
+      {sliderImages && (
+        <>
+          <SlickSlider
+            {...settingsMain}
+            asNavFor={nav2}
+            ref={(slider) => setProductViewSlider(slider)}
+          >
+            {sliderImages.map((slide, index) => (
+              <div key={index}>
+                <Image
+                  alt={imageAlt + index}
+                  src={slide}
+                  width={600}
+                  height={850}
+                  placeholder="blur"
+                  loading="lazy"
+                  blurDataURL={slide}
+                />
+              </div>
+            ))}
+          </SlickSlider>
+          <div className="product-thumbnail-slider-wrap">
+            <SlickSlider
+              {...settingsThumbs}
+              asNavFor={nav1}
+              ref={(slider) => setThumbnailSlider(slider)}
+            >
+              {sliderImages.map((slide, index) => (
+                <Box pr={1} key={index}>
+                  <Image
+                    alt={imageAlt + index}
+                    src={slide}
+                    width={85}
+                    height={100}
+                    placeholder="blur"
+                    loading="lazy"
+                    blurDataURL={slide}
+                  />
+                </Box>
+              ))}
+            </SlickSlider>
           </div>
-        ))}
-      </SlickSlider>
-      <div className="product-thumbnail-slider-wrap">
-        <SlickSlider
-          {...settingsThumbs}
-          asNavFor={nav1}
-          ref={(slider) => setThumbnailSlider(slider)}
-        >
-          {sliderImages.map((slide, index) => (
-            <Box pr={1} key={index}>
-              <Image
-                alt={imageAlt + index}
-                src={slide}
-                width={85}
-                height={100}
-                placeholder="blur"
-                loading="lazy"
-                blurDataURL={slide}
-              />
-            </Box>
-          ))}
-        </SlickSlider>
-      </div>
+        </>
+      )}
     </>
   );
 };

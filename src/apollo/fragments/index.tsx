@@ -3,11 +3,15 @@ import { gql } from "@apollo/client";
 export const CORE_PRODUCT_FIELDS = gql`
   fragment CoreProductFields on Product {
     _id
-    pid
+    pId
     name
     title
-    subtitle
+    subTitle
     images
     price
+    description
+    brand{
+      name
+    }
   }
 `;

@@ -14,20 +14,29 @@ import { useForm } from "react-hook-form";
 import apolloClient from "../../src/apollo/config";
 import {
   Product,
-  productFilterParams, ProductFilterResponse,
-  ProductFilterVariables
+  productFilterParams,
+  ProductFilterResponse,
+  ProductFilterVariables,
 } from "../../src/apollo/interfaces";
 import {
   GET_ALL_OCCASIONS,
   GET_CATEGORY_CONFIG,
-  GET_OCCASION_CONFIG, GET_PRODUCTS_BY_FILTER
+  GET_OCCASION_CONFIG,
+  GET_PRODUCTS_BY_FILTER,
 } from "../../src/apollo/queries";
 import ContainerComponent from "../../src/components/uiElements/Container/Container";
 import ServerError from "../../src/components/UiLibrary/Errors/ServerError";
 import { ROUTES } from "../../src/routes/Routes";
 import {
-  getCategoryFilters, getCategoryIdByParams, getFilteredColorIds, getFilteredFabricIds,
-  getFilteredPatternIds, getOccasionCategoryIndex, getOccasionFilters, getOccasionIdByProductName, getSelectedFiltersByParam
+  getCategoryFilters,
+  getCategoryIdByParams,
+  getFilteredColorIds,
+  getFilteredFabricIds,
+  getFilteredPatternIds,
+  getOccasionCategoryIndex,
+  getOccasionFilters,
+  getOccasionIdByProductName,
+  getSelectedFiltersByParam,
 } from "../../src/services";
 
 // Component
@@ -64,8 +73,6 @@ const StyledFilterBar = styled(Box)(({ theme }) => ({
   paddingTop: 20,
   paddingBottom: 20,
 }));
-
-
 
 // Client side render
 const ProductsPage = (props: any) => {
@@ -163,6 +170,7 @@ const ProductsPage = (props: any) => {
                     {products.map((item, index) => (
                       <Grid key={index} xs={6} item md={3} lg={3} xl={2} sm={4}>
                         <ProductCard
+                          name={item.name}
                           price={item.price}
                           imgUrl={item.images[0]}
                           title={item.title}
@@ -319,7 +327,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           variables: {
             limit: 25,
             page: Number(query.p) | 1,
-            params: filterParams ,
+            params: filterParams,
           },
         });
 

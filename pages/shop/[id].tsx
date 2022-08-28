@@ -9,6 +9,12 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import SizeSvgIcon from "../../src/components/UiLibrary/Icon/components/Size";
 import ProductViewSlider from "../../src/components/UiLibrary/Sliders/ProductView";
+import apolloClient from "../../src/apollo/config";
+import { GET_SINGLE_PRODUCT_BY_NAME } from "../../src/apollo/queries";
+import { prefetchProducts } from "../../data/prefetchProducts";
+import ServerError from "../../src/components/UiLibrary/Errors/ServerError";
+import { GetStaticProps } from "next";
+import { NextRouter, useRouter } from "next/router";
 
 const StyledGridContainer = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(8),
@@ -56,42 +62,63 @@ const slidesData = [
   "https://mpf-public-data.s3.ap-south-1.amazonaws.com/Images/MPFProducts_2.0/Shirt/60310f23d0c8573eb07d1592_2.jpg",
 ];
 
-const ProductDetails = () => {
+interface ProductDetailsProps {
+  product: any;
+  serverError: boolean;
+}
+
+const ProductDetails: React.FC<ProductDetailsProps> = ({
+  product,
+  serverError,
+}) => {
+  const router: NextRouter = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <ContainerComponent>
+        <ProductServiceV2 />
+        <div>Loading...</div>
+      </ContainerComponent>
+    );
+  }
+
+  if (serverError) {
+    return (
+      <ContainerComponent>
+        <ProductServiceV2 />
+        <ServerError />
+      </ContainerComponent>
+    );
+  }
+
   return (
     <ContainerComponent>
       <ProductServiceV2 />
       <StyledGridContainer container spacing={8}>
         <Grid xs={12} item md={5} lg={5} xl={4}>
           <ProductViewSlider
-            imageAlt="Basic Dress Green"
-            sliderImages={slidesData}
+            imageAlt={product.name}
+            sliderImages={product.images}
           />
         </Grid>
         <StyledProductContentBox xs={12} item md={7} lg={7} xl={8}>
           <Box mb={4}>
             <Box mt={2} mb={2}>
               <Typography variant="body1" component="span">
-                Blue Berry
+                {product.brand[0].name}
               </Typography>
             </Box>
             <Typography variant="h3" component="h6">
-              Basic Dress Green
+              {product.title}
             </Typography>
             <Box mt={2} mb={2}>
               <Typography color="primary" variant="h4" component="h6">
-                $236.00
+                ₹{product.price}
               </Typography>
             </Box>
             <Box>
               <StyledProductContent component="span" variant="body1">
-                Ultimate combination of elegance and simplicity, this
-                well-crafted handmade cotton shirt looks fresh throughout and is
-                a perfect work from home wardrobe addition. Smarten up and pair
-                it with your best loved trousers to finish the look. It is
-                tailored with ease around the shoulders and chest bringing in
-                both comfort and style. Customize this checked shirt with
-                different fits, collars, cuffs and pocket with the help of your
-                personal stylist. #Simplicity #CobaltBlue #PerfectFit
+                {product.description}
               </StyledProductContent>
             </Box>
           </Box>
@@ -171,20 +198,39 @@ const ProductDetails = () => {
   );
 };
 
+export const getStaticProps: GetStaticProps = async (context) => {
+  const client = apolloClient;
+  const { params } = context;
+  try {
+    const { data, error } = await client.query({
+      query: GET_SINGLE_PRODUCT_BY_NAME,
+      variables: {
+        productName: params.id,
+      },
+    });
+
+    if (error && !data) {
+      return {
+        notFound: true,
+      };
+    }
+    return {
+      revalidate: 1,
+      props: {
+        serverError: false,
+        product: data?.getSingleProductByName,
+      },
+    };
+  } catch (error) {
+    return {
+      props: { serverError: true, product: null },
+    };
+  }
+};
 export async function getStaticPaths() {
   return {
-    paths: [
-      { params: { id: "perfect-blue-solid-shirt" } },
-      { params: { id: "perfect-fit-white-solid-shirt" } },
-    ],
-    fallback: false, // can also be true or 'blocking'
-  };
-}
-
-export async function getStaticProps(context) {
-  return {
-    // Passed to the page component as props
-    props: { post: {} },
+    paths: prefetchProducts,
+    fallback: true,
   };
 }
 

@@ -152,16 +152,24 @@ export const GET_CATEGORY_CONFIG = gql`
   }
 `;
 export const GET_SINGLE_PRODUCT_BY_NAME = gql`
- ${CORE_PRODUCT_FIELDS}
- query GqlGetSingleProductByName(productName:String!){
-  getSingleProductByName($productName:productName){
-    ...CORE_PRODUCT_FIELDS
+  query GetSingleProductByName($productName: String!) {
+    getSingleProductByName(productName: $productName) {
+      _id
+      pId
+      name
+      title
+      subTitle
+      images
+      price
+      description
+      brand{
+        name
+      }
+    }
   }
- }
 `;
 
 // User Related GQL Queries
-
 export const GQL_USER_LOGIN = gql`
   query userLogin($source: String!, $password: String!) {
     login(source: $source, password: $password) {
