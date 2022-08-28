@@ -62,7 +62,10 @@ const ProductDetails = () => {
       <ProductServiceV2 />
       <StyledGridContainer container spacing={8}>
         <Grid xs={12} item md={5} lg={5} xl={4}>
-          <ProductViewSlider imageAlt="Basic Dress Green" sliderImages={slidesData} />
+          <ProductViewSlider
+            imageAlt="Basic Dress Green"
+            sliderImages={slidesData}
+          />
         </Grid>
         <StyledProductContentBox xs={12} item md={7} lg={7} xl={8}>
           <Box mb={4}>
@@ -167,5 +170,22 @@ const ProductDetails = () => {
     </ContainerComponent>
   );
 };
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { id: "perfect-blue-solid-shirt" } },
+      { params: { id: "perfect-fit-white-solid-shirt" } },
+    ],
+    fallback: false, // can also be true or 'blocking'
+  };
+}
+
+export async function getStaticProps(context) {
+  return {
+    // Passed to the page component as props
+    props: { post: {} },
+  };
+}
 
 export default ProductDetails;

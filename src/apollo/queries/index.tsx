@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { CORE_PRODUCT_FIELDS } from "../fragments";
 export const GET_PRODUCTS_BY_FILTER = gql`
   query ProductsFilter($params: ProductFilter!, $limit: Int, $page: Int) {
     productsFilter(params: $params, limit: $limit, page: $page) {
@@ -150,7 +151,14 @@ export const GET_CATEGORY_CONFIG = gql`
     }
   }
 `;
-//export const GET_SINGLE_PRODUCT_BY_ID = gql``;
+export const GET_SINGLE_PRODUCT_BY_NAME = gql`
+ ${CORE_PRODUCT_FIELDS}
+ query GqlGetSingleProductByName(productName:String!){
+  getSingleProductByName($productName:productName){
+    ...CORE_PRODUCT_FIELDS
+  }
+ }
+`;
 
 // User Related GQL Queries
 
