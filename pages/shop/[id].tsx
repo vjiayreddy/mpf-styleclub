@@ -44,6 +44,7 @@ const StyledCardHeader = styled(CardHeader)(({ theme }) => ({
 
 const StyledSpanLabel = styled("span")(({ theme }) => ({
   color: theme.palette.grey[500],
+  paddingLeft: 5,
 }));
 
 const StyledProductInfoLabel = styled(Typography)<{ component: any }>(
@@ -150,15 +151,53 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                   <StyledCardHeader title="Product Details" />
                   <CardContent sx={{ paddingLeft: `10px`, paddingTop: "0px" }}>
                     <Box>
-                      <StyledProductInfoLabel component="p" variant="subtitle2">
-                        Product Id : <StyledSpanLabel>123352</StyledSpanLabel>{" "}
-                        <br />
-                        Type : <StyledSpanLabel>4 Buttons</StyledSpanLabel>{" "}
-                        <br />
-                        Color: <StyledSpanLabel>Black</StyledSpanLabel> <br />
-                        Fabric: <StyledSpanLabel>Wool-blend</StyledSpanLabel>
+                      <StyledProductInfoLabel   gutterBottom component="p" variant="subtitle2">
+                        Product Id :
+                        <StyledSpanLabel>{product.pidSerial}</StyledSpanLabel>{" "}
                       </StyledProductInfoLabel>
                     </Box>
+                    {product.fabric && (
+                      <Box>
+                        <StyledProductInfoLabel
+                          gutterBottom
+                          component="p"
+                          variant="subtitle2"
+                        >
+                          Fabric :
+                          <StyledSpanLabel>
+                            {product.fabric[0].name}
+                          </StyledSpanLabel>{" "}
+                        </StyledProductInfoLabel>
+                      </Box>
+                    )}
+                    {product.secondaryColor && (
+                      <Box>
+                        <StyledProductInfoLabel
+                          gutterBottom
+                          component="p"
+                          variant="subtitle2"
+                        >
+                          Color :
+                          <StyledSpanLabel>
+                            {product.secondaryColor[0].colorname}
+                          </StyledSpanLabel>{" "}
+                        </StyledProductInfoLabel>
+                      </Box>
+                    )}
+                    {product.tags.map((item, index) => (
+                      <Box key={index}>
+                        {item.isVisible && item.name && (
+                          <StyledProductInfoLabel
+                            gutterBottom
+                            component="p"
+                            variant="subtitle2"
+                          >
+                            {item.label} :
+                            <StyledSpanLabel>{item.name}</StyledSpanLabel>{" "}
+                          </StyledProductInfoLabel>
+                        )}
+                      </Box>
+                    ))}
                   </CardContent>
                 </StyledCard>
               </Box>

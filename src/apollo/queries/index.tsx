@@ -162,7 +162,22 @@ export const GET_SINGLE_PRODUCT_BY_NAME = gql`
       images
       price
       description
-      brand{
+      pidSerial
+      secondaryColor {
+        colorname
+      }
+      fabric {
+        name
+      }
+      tags {
+        catTag
+        isModifiable
+        isVisible
+        label
+        name
+        value
+      }
+      brand {
         name
       }
     }
