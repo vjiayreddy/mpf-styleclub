@@ -1,6 +1,4 @@
-import { border } from "./../../../node_modules/@mui/system/index.d";
 import { createTheme } from "@mui/material";
-import { OverrideMuiButton } from "./button";
 import { OverrideMuiAppBar } from "./appbar";
 import { TypographyOptions } from "@mui/material/styles/createTypography";
 import { GLOBAL_FONTS, APP_COLORS } from "./enums/enums";
@@ -13,14 +11,14 @@ import {
 } from "./interfaces/interfaces";
 import { OverrideMuiInputBase } from "./inputBase";
 declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides extends customTypographyProps {}
+  interface TypographyPropsVariantOverrides extends customTypographyProps { }
 }
 
 declare module "@mui/material/styles" {
-  interface Palette extends EXTENDED_COLORS {}
-  interface PaletteOptions extends EXTENDED_COLORS {}
-  interface Theme extends CUSTOM_STYLE_CLASSES {}
-  interface ThemeOptions extends CUSTOM_STYLE_CLASSES {}
+  interface Palette extends EXTENDED_COLORS { }
+  interface PaletteOptions extends EXTENDED_COLORS { }
+  interface Theme extends CUSTOM_STYLE_CLASSES { }
+  interface ThemeOptions extends CUSTOM_STYLE_CLASSES { }
 }
 
 declare module "@mui/material/styles/createTypography" {
@@ -37,7 +35,7 @@ declare module "@mui/material/styles/createTypography" {
 
 interface ExtendedTypographyOptions
   extends customTypographyVarients,
-    TypographyOptions {}
+  TypographyOptions { }
 
 const muiTheme = createTheme();
 const theme = createTheme({
@@ -76,9 +74,8 @@ const theme = createTheme({
     },
     h6: {
       fontSize: 22,
-      lineHeight: "120%",
-      fontWeight: 900,
-      letterSpacing: "-3%",
+      lineHeight: 1,
+      fontWeight: 600,
     },
     subtitle1: {
       fontSize: 18,
@@ -288,7 +285,7 @@ const theme = createTheme({
       },
       styleOverrides: {
         label: {
-         fontSize:14
+          fontSize: 14,
         },
       },
     },

@@ -150,6 +150,7 @@ export const GET_CATEGORY_CONFIG = gql`
     }
   }
 `;
+//export const GET_SINGLE_PRODUCT_BY_ID = gql``;
 
 // User Related GQL Queries
 
@@ -163,7 +164,6 @@ export const GQL_USER_LOGIN = gql`
     }
   }
 `;
-
 export const POST_USER_REGISTRATION = gql`
   mutation RegisterUser(
     $email: String!

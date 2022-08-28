@@ -1,52 +1,43 @@
-import React, { useState } from "react";
-import ContainerComponent from "../../src/components/uiElements/Container/Container";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { NextRouter, useRouter } from "next/router";
-import { styled } from "@mui/material/styles";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import { GetServerSideProps } from "next";
-import apolloClient from "../../src/apollo/config";
+import { NextRouter, useRouter } from "next/router";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import apolloClient from "../../src/apollo/config";
 import {
-  ProductFilterResponse,
-  ProductFilterVariables,
   Product,
-  productFilterParams,
+  productFilterParams, ProductFilterResponse,
+  ProductFilterVariables
 } from "../../src/apollo/interfaces";
-import { ROUTES } from "../../src/routes/Routes";
 import {
-  GET_PRODUCTS_BY_FILTER,
   GET_ALL_OCCASIONS,
   GET_CATEGORY_CONFIG,
-  GET_OCCASION_CONFIG,
+  GET_OCCASION_CONFIG, GET_PRODUCTS_BY_FILTER
 } from "../../src/apollo/queries";
+import ContainerComponent from "../../src/components/uiElements/Container/Container";
 import ServerError from "../../src/components/UiLibrary/Errors/ServerError";
+import { ROUTES } from "../../src/routes/Routes";
 import {
-  getOccasionIdByProductName,
-  getOccasionFilters,
-  getOccasionCategoryIndex,
-  getCategoryIdByParams,
-  getFilteredFabricIds,
-  getFilteredPatternIds,
-  getFilteredColorIds,
-  getSelectedFiltersByParam,
-  getCategoryFilters,
+  getCategoryFilters, getCategoryIdByParams, getFilteredColorIds, getFilteredFabricIds,
+  getFilteredPatternIds, getOccasionCategoryIndex, getOccasionFilters, getOccasionIdByProductName, getSelectedFiltersByParam
 } from "../../src/services";
 
 // Component
+import ChipFilters from "../../src/components/Layouts/ProductsLayout/ChipFilters";
 import ImageIconTabs from "../../src/components/uiElements/ImageIconTabs/ImageIconTabs";
 import InfoCard from "../../src/components/UiLibrary/Cards/InfoCard";
-import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
-import FiltersSvgIcon from "../../src/components/UiLibrary/Icon/components/Filters";
-import ChipFilters from "../../src/components/Layouts/ProductsLayout/ChipFilters";
 import ProductCard from "../../src/components/UiLibrary/Cards/ProductCard";
+import FiltersSvgIcon from "../../src/components/UiLibrary/Icon/components/Filters";
 import NextBreadcrumbs from "../../src/components/UiLibrary/NextBreadcrumbs";
+import TitleWithSubtile from "../../src/components/UiLibrary/Typography/TitleWithSubtile";
 import ProductFilters from "../../src/containers/ProductFilters";
 
 const StyledMainBox = styled(Box)(() => ({
@@ -328,7 +319,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           variables: {
             limit: 25,
             page: Number(query.p) | 1,
-            params: filterParams as productFilterParams,
+            params: filterParams ,
           },
         });
 

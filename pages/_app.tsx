@@ -9,7 +9,8 @@ const clientSideEmotionCache = createEmotionCache();
 import useNetworkStatus from "../src/utils/useNetworkStatus";
 import { SessionProvider } from "next-auth/react";
 import AppLayoutComponent from "../src/components/Layouts/DefaultLayout";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import _ from "lodash";
 // Apollo
 import apolloClient from "../src/apollo/config";

@@ -54,7 +54,7 @@ const BaseComponent: React.FC<BaseComponentProps> = ({ theme }) => {
         as="font"
         crossOrigin="anonymous"
       /> */}
-      <link
+      {/* <link
         rel="stylesheet"
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
@@ -63,7 +63,7 @@ const BaseComponent: React.FC<BaseComponentProps> = ({ theme }) => {
         rel="stylesheet"
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-      />
+      /> */}
     </>
   );
 };

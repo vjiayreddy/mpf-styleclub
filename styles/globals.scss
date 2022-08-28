@@ -43,3 +43,10 @@ input:-internal-autofill-selected {
     color: #c4a262;
   }
 }
+.product-thumbnail-slider-wrap {
+  .slick-track {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100% !important;
+  }
+}
