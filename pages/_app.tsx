@@ -11,6 +11,7 @@ import { SessionProvider } from "next-auth/react";
 import AppLayoutComponent from "../src/components/Layouts/DefaultLayout";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import NextNProgress from "nextjs-progressbar";
 import _ from "lodash";
 // Apollo
 import apolloClient from "../src/apollo/config";
@@ -50,6 +51,13 @@ function MyApp(props) {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <ToasterMessage />
+          <NextNProgress
+            startPosition={0.3}
+            stopDelayMs={200}
+            height={5}
+            showOnShallow={true}
+            color="#29D"
+          />
           <ApolloProvider client={apolloClient}>
             <AppLayoutComponent navMenus={props.navMenu}>
               <Component {...appProps} />
