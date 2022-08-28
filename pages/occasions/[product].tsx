@@ -148,6 +148,7 @@ const OccasionPage = (props: any) => {
                     {products.map((item, index) => (
                       <Grid key={index} item md={3}>
                         <ProductCard
+                          name={item.name}
                           price={item.price}
                           imgUrl={item.images[0]}
                           title={item.title}
