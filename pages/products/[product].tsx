@@ -256,7 +256,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         query.product as string,
         getAllOccasions
       );
-
       if (matchedOccasion) {
         filterParams = matchedOccasion;
         const { data: occasionConfig } = await client.query({

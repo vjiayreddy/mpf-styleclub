@@ -162,6 +162,7 @@ export const GET_SINGLE_PRODUCT_BY_NAME = gql`
       images
       price
       description
+      catId
       pidSerial
       secondaryColor {
         colorname
@@ -183,7 +184,29 @@ export const GET_SINGLE_PRODUCT_BY_NAME = gql`
     }
   }
 `;
-
+export const GET_SIMILAR_PRODUCTS = gql`
+  query GetSimilarProducts(
+    $productId: ID!
+    $catId: String!
+    $page: Int
+    $limit: Int
+  ) {
+    getSimilarProducts(
+      productId: $productId
+      catId: $catId
+      page: $page
+      limit: $limit
+    ) {
+      products {
+        _id
+        images
+        name
+        title
+        price
+      }
+    }
+  }
+`;
 // User Related GQL Queries
 export const GQL_USER_LOGIN = gql`
   query userLogin($source: String!, $password: String!) {

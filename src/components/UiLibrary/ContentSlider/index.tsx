@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import SlickSlider from "react-slick";
-import SliderProductCard from "../Cards/SliderProductCard";
+import SliderProductCard from "../Cards/ProductCard";
 import IconButton from "../IconButton";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -15,14 +15,13 @@ const settings = {
   dots: false,
   infinite: true,
   speed: 500,
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScroll: 3,
   lazyLoad: true,
 };
 
 const StyledContentSliderBox = styled(Box)(() => ({
   position: "relative",
-  top: "50%",
   width: "100%",
 }));
 
@@ -63,9 +62,10 @@ const ContentSlider: React.FC<ContentSliderProps> = ({ data }) => {
           {data.map((product, index) => (
             <Box key={index} p={1} component="div">
               <SliderProductCard
+                name={product.name}
                 price={product.price}
-                title={product.productName}
-                imgUrl={product.imgUrl}
+                title={product.title}
+                imgUrl={product.images[0]}
               />
             </Box>
           ))}

@@ -29,4 +29,9 @@ export const prefetchProducts = [
       id: "cotton-slim-fit-knee-length-maroon-kurta",
     },
   },
+  {
+    params: {
+      id: "luxurious-gold-wedding-sherwani",
+    },
+  },
 ];

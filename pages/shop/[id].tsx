@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import Grid from "@mui/material/Grid";
+import { useLazyQuery } from "@apollo/client";
 import Box from "@mui/material/Box";
 import ContainerComponent from "../../src/components/uiElements/Container/Container";
 import ProductServiceV2 from "../../src/components/UiLibrary/Services/ProductServiceV2";
@@ -10,11 +11,15 @@ import CardHeader from "@mui/material/CardHeader";
 import SizeSvgIcon from "../../src/components/UiLibrary/Icon/components/Size";
 import ProductViewSlider from "../../src/components/UiLibrary/Sliders/ProductView";
 import apolloClient from "../../src/apollo/config";
-import { GET_SINGLE_PRODUCT_BY_NAME } from "../../src/apollo/queries";
+import {
+  GET_SIMILAR_PRODUCTS,
+  GET_SINGLE_PRODUCT_BY_NAME,
+} from "../../src/apollo/queries";
 import { prefetchProducts } from "../../data/prefetchProducts";
 import ServerError from "../../src/components/UiLibrary/Errors/ServerError";
 import { GetStaticProps } from "next";
 import { NextRouter, useRouter } from "next/router";
+import ContentSlider from "../../src/components/UiLibrary/ContentSlider";
 
 const StyledGridContainer = styled(Grid)(({ theme }) => ({
   padding: theme.spacing(8),
@@ -64,21 +69,22 @@ const StyledStylingBox = styled(Box)(({ theme }) => ({
 const StyledStylingLabelCaption = styled(Typography)<{ component: any }>(
   ({ theme }) => ({
     color: theme.palette.grey[600],
-    marginBottom:8
+    marginBottom: 8,
   })
 );
 
 interface ProductDetailsProps {
   product: any;
   serverError: boolean;
+  similarProducts: any;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({
   product,
   serverError,
+  similarProducts,
 }) => {
   const router: NextRouter = useRouter();
-
   if (router.isFallback) {
     return (
       <ContainerComponent>
@@ -222,7 +228,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
                           {item.isModifiable && item.name && (
                             <Grid item md={3} lg={3} sm={4} xl={3} xs={6}>
                               <StyledStylingBox>
-                                <StyledStylingLabelCaption gutterBottom variant="body2" component="p">
+                                <StyledStylingLabelCaption
+                                  gutterBottom
+                                  variant="body2"
+                                  component="p"
+                                >
                                   {item.label}
                                 </StyledStylingLabelCaption>
                                 <Typography variant="subtitle2">
@@ -273,6 +283,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             </Grid>
           </Grid>
         </StyledProductContentBox>
+        {similarProducts && (
+          <Grid item xs={12}>
+            <ContentSlider data={similarProducts.products} />
+          </Grid>
+        )}
       </StyledGridContainer>
     </ContainerComponent>
   );
@@ -280,6 +295,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const client = apolloClient;
+  let similarProducts = null;
   const { params } = context;
   try {
     const { data, error } = await client.query({
@@ -288,17 +304,31 @@ export const getStaticProps: GetStaticProps = async (context) => {
         productName: params.id,
       },
     });
-
+    const { data: dataSimilarProducts, error: dataSimilarProductsError } =
+      await client.query({
+        errorPolicy: "none",
+        query: GET_SIMILAR_PRODUCTS,
+        variables: {
+          productId: data?.getSingleProductByName._id || "",
+          catId: data?.getSingleProductByName.catId || "",
+          limit: 6,
+          page: 1,
+        },
+      });
     if (error && !data) {
       return {
         notFound: true,
       };
+    }
+    if (dataSimilarProducts) {
+      similarProducts = dataSimilarProducts.getSimilarProducts;
     }
     return {
       revalidate: 1,
       props: {
         serverError: false,
         product: data?.getSingleProductByName,
+        similarProducts: similarProducts,
       },
     };
   } catch (error) {
