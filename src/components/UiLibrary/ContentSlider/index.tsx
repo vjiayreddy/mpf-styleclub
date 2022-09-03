@@ -6,6 +6,7 @@ import SliderProductCard from "../Cards/ProductCard";
 import IconButton from "../IconButton";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import _ from "lodash";
 
 interface ContentSliderProps {
   data: any[];
@@ -65,7 +66,11 @@ const ContentSlider: React.FC<ContentSliderProps> = ({ data }) => {
                 name={product.name}
                 price={product.price}
                 title={product.title}
-                imgUrl={product.images[0]}
+                imgUrl={
+                  !_.isEmpty(product?.images)
+                    ? product?.images[0]
+                    : "/assets/clients/11.jpg"
+                }
               />
             </Box>
           ))}
