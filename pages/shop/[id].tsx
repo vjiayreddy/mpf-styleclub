@@ -12,6 +12,7 @@ import SizeSvgIcon from "../../src/components/UiLibrary/Icon/components/Size";
 import ProductViewSlider from "../../src/components/UiLibrary/Sliders/ProductView";
 import apolloClient from "../../src/apollo/config";
 import {
+  GET_COMPLETE_LOOK,
   GET_SIMILAR_PRODUCTS,
   GET_SINGLE_PRODUCT_BY_NAME,
 } from "../../src/apollo/queries";
@@ -77,12 +78,14 @@ interface ProductDetailsProps {
   product: any;
   serverError: boolean;
   similarProducts: any;
+  completeLook: any;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({
   product,
   serverError,
   similarProducts,
+  completeLook,
 }) => {
   const router: NextRouter = useRouter();
   if (router.isFallback) {
@@ -288,6 +291,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             <ContentSlider data={similarProducts.products} />
           </Grid>
         )}
+        {completeLook && (
+          <Grid item xs={12}>
+            <ContentSlider data={completeLook.products} />
+          </Grid>
+        )}
       </StyledGridContainer>
     </ContainerComponent>
   );
@@ -296,6 +304,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
 export const getStaticProps: GetStaticProps = async (context) => {
   const client = apolloClient;
   let similarProducts = null;
+  let completeLook = null;
   const { params } = context;
   try {
     const { data, error } = await client.query({
@@ -304,17 +313,26 @@ export const getStaticProps: GetStaticProps = async (context) => {
         productName: params.id,
       },
     });
-    const { data: dataSimilarProducts, error: dataSimilarProductsError } =
-      await client.query({
-        errorPolicy: "none",
-        query: GET_SIMILAR_PRODUCTS,
-        variables: {
-          productId: data?.getSingleProductByName._id || "",
-          catId: data?.getSingleProductByName.catId || "",
-          limit: 6,
-          page: 1,
-        },
-      });
+    const { data: dataSimilarProducts } = await client.query({
+      errorPolicy: "none",
+      query: GET_SIMILAR_PRODUCTS,
+      variables: {
+        productId: data?.getSingleProductByName._id || "",
+        catId: data?.getSingleProductByName.catId || "",
+        limit: 10,
+        page: 1,
+      },
+    });
+    const { data: dataCompleteLook } = await client.query({
+      errorPolicy: "none",
+      query: GET_COMPLETE_LOOK,
+      variables: {
+        productId: data?.getSingleProductByName._id || "",
+        catId: data?.getSingleProductByName.catId || "",
+        limit: 10,
+        page: 1,
+      },
+    });
     if (error && !data) {
       return {
         notFound: true,
@@ -323,12 +341,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
     if (dataSimilarProducts) {
       similarProducts = dataSimilarProducts.getSimilarProducts;
     }
+    if (dataCompleteLook) {
+      completeLook = dataCompleteLook.getCompleteTheLookProducts;
+    }
     return {
       revalidate: 1,
       props: {
         serverError: false,
         product: data?.getSingleProductByName,
         similarProducts: similarProducts,
+        completeLook: completeLook,
       },
     };
   } catch (error) {

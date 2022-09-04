@@ -17,7 +17,7 @@ const settings = {
   infinite: true,
   speed: 500,
   slidesToShow: 4,
-  slidesToScroll: 3,
+  slidesToScroll: 4,
   lazyLoad: true,
 };
 
@@ -46,7 +46,7 @@ const ContentSlider: React.FC<ContentSliderProps> = ({ data }) => {
   const onClickNext = () => {
     sliderRef.slickNext();
   };
-  const onClickRight = () => {
+  const onClickPrev = () => {
     sliderRef.slickPrev();
   };
   return (
@@ -79,11 +79,11 @@ const ContentSlider: React.FC<ContentSliderProps> = ({ data }) => {
 
       <StyledArrowButtonsBox>
         <IconButton
-          onClick={onClickNext}
+          onClick={onClickPrev}
           icon={<KeyboardArrowLeftIcon fontSize="small" />}
         />
         <IconButton
-          onClick={onClickRight}
+          onClick={onClickNext}
           icon={<KeyboardArrowRightIcon fontSize="small" />}
         />
       </StyledArrowButtonsBox>

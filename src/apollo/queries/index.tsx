@@ -207,6 +207,29 @@ export const GET_SIMILAR_PRODUCTS = gql`
     }
   }
 `;
+export const GET_COMPLETE_LOOK = gql`
+  query GetCompleteTheLookProducts(
+    $productId: ID!
+    $catId: String!
+    $page: Int
+    $limit: Int
+  ) {
+    getCompleteTheLookProducts(
+      productId: $productId
+      catId: $catId
+      page: $page
+      limit: $limit
+    ) {
+      products {
+        _id
+        images
+        name
+        title
+        price
+      }
+    }
+  }
+`;
 // User Related GQL Queries
 export const GQL_USER_LOGIN = gql`
   query userLogin($source: String!, $password: String!) {
